@@ -25,7 +25,7 @@
             <asp:ListItem>Test1</asp:ListItem>
             <asp:ListItem>test2</asp:ListItem>
         </asp:RadioButtonList>
-        <br />
+        Hier ist Magdalena<br />
     </form>
 </body>
 </html>
