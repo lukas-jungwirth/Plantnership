@@ -19,10 +19,6 @@
         <asp:Button ID="Button6" runat="server" Text="Button" />
         <asp:CheckBox ID="CheckBox1" runat="server" />
         <br />
-        <asp:RadioButtonList ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
-            <asp:ListItem>Test1</asp:ListItem>
-            <asp:ListItem>test2</asp:ListItem>
-        </asp:RadioButtonList>
         Hier ist Magdalena<br />
         <asp:Button ID="Button7" runat="server" Text="Button" OnClick="Button7_Click" />
         <asp:Label ID="lblOutput" runat="server" Text="Hier kommt der text rein"></asp:Label>
