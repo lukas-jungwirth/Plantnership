@@ -26,6 +26,7 @@
             <asp:ListItem>test2</asp:ListItem>
         </asp:RadioButtonList>
         Hier ist Magdalena<br />
+        <asp:Button ID="Button7" runat="server" Text="Button" />
     </form>
 </body>
 </html>
