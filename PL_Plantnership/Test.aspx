@@ -20,6 +20,10 @@
         <asp:CheckBox ID="CheckBox1" runat="server" />
         <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
         <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+        <br />
+        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+        </asp:RadioButtonList>
+        <br />
     </form>
 </body>
 </html>
