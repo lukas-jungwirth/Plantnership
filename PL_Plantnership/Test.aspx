@@ -21,7 +21,9 @@
         <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
         <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
         <br />
-        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+        <asp:RadioButtonList ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+            <asp:ListItem>Test1</asp:ListItem>
+            <asp:ListItem>test2</asp:ListItem>
         </asp:RadioButtonList>
         <br />
     </form>

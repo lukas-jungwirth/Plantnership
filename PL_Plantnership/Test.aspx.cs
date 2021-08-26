@@ -13,5 +13,10 @@ namespace PL_Plantnership
         {
 
         }
+
+        protected System.Void RadioButtonList1_SelectedIndexChanged(System.Object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
