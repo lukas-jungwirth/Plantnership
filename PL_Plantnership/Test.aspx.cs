@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BL_Plantnership;
+
 
 namespace PL_Plantnership
 {
@@ -14,9 +16,11 @@ namespace PL_Plantnership
 
         }
 
-        protected System.Void RadioButtonList1_SelectedIndexChanged(System.Object sender, System.EventArgs e)
+        protected void Button7_Click(object sender, EventArgs e)
         {
-
+            Starter starter = new Starter();
+            int zahl = starter.test();
+            lblOutput.Text = zahl.ToString();
         }
     }
 }
