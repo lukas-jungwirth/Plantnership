@@ -22,5 +22,9 @@ namespace PL_Plantnership
             int zahl = starter.test();
             lblOutput.Text = zahl.ToString();
         }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+                    }
     }
 }
