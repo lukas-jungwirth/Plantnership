@@ -22,6 +22,7 @@
         Hier ist Magdalena<br />
         <asp:Button ID="Button7" runat="server" Text="Button" OnClick="Button7_Click" />
         <asp:Label ID="lblOutput" runat="server" Text="Hier kommt der text rein"></asp:Label>
-    </form>
+        <br />
+        super tolle arbeit leute</form>
 </body>
 </html>
