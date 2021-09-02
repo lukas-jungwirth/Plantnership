@@ -18,7 +18,7 @@ namespace PL_Plantnership
 
         protected void Button7_Click(object sender, EventArgs e)
         {
-            Starter starter = new Starter();
+            Main starter = new Main();
             int zahl = starter.test();
             lblOutput.Text = zahl.ToString();
         }
