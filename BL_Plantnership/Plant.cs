@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace BL_Plantnership
 {
-    class Plant
+    public class Plant
     {
         //init
         private string _ID = "";
@@ -143,14 +143,7 @@ namespace BL_Plantnership
         }//"Save()"
 
         //STATIC METHODS
-/*
-internal bedeutet, dass sie nur von Klassen aus BOKunden(aus dem eigenem Namespace) aufgerufen werden können 
-- also nicht direkt aus dem PL
 
-Die Methoden sind im BOKunde-Objekt, damit der BO-Programmierer alle SQL-Statements, die Kunden betreffen, an einer Stelle hat
-Der PL-Programmierer sieht diese Implementation aber nicht.Er sieht die Methoden, von wo aus er diese Objekte "bekommt"
-(also entsprechend der Navigability). Man hätte diese Methoden technisch aber problemlos auch in die cMain geben können!
-*/
 
         // Hilfsfunktion für die beiden unteren Methoden
         private static Plant FillPlantFromSQLDataReader(SqlDataReader reader)
@@ -185,7 +178,7 @@ Der PL-Programmierer sieht diese Implementation aber nicht.Er sieht die Methoden
                 return null;
         }
 
-        // Laden aller Kunden als Liste von Objekten
+        //loads all plant objects from a given category into a list of plant objects
         internal static Plants LoadAllFromCategory(string Category)
         {
             // Schnellvariante, wie oben aber alles in einer Zeile....

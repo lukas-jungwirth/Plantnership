@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL_Plantnership
 {
-    //list of plant objects
-    public class Plants : List<Plant>
+    class Users
     {
     }
 }
