@@ -13,7 +13,6 @@ namespace BL_Plantnership
         private string _ID = "";
         private string _Name;
         private string _LastName;
-        private string _Gender;
         private string _Mail;
         private DateTime _DateOfEntrance;
         private string _Rank;
@@ -36,11 +35,6 @@ namespace BL_Plantnership
         {
             get { return _LastName; }
             set { _LastName = value; }
-        }
-        public string Gender 
-        {
-            get { return _Gender; }
-            set { _Gender = value; }
         }
         public string Mail 
         {
@@ -96,13 +90,18 @@ namespace BL_Plantnership
         }//"Delete()"
 
 
+        public bool Register()
+        {
+
+        }
+
         public bool Save()
         {
 
             if (_ID == "")
             {
                 //if there is no existing element in the database INSERT new
-                string SQL = "insert into User (ID, name , lastName , gender , mail, dateOfEntrance) values (@id, @name, @lstName, @gen, @mail, @doe)";
+                string SQL = "insert into User (ID, name , lastNam , mail, dateOfEntrance, username, password) values (@id, @name, @lstName, @gen, @mail, @doe, @user, @pw)";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
@@ -112,8 +111,9 @@ namespace BL_Plantnership
                 cmd.Parameters.Add(new SqlParameter("id", _ID));
                 cmd.Parameters.Add(new SqlParameter("name", Name));
                 cmd.Parameters.Add(new SqlParameter("lstName", LastName));
-                cmd.Parameters.Add(new SqlParameter("gen", Gender));
                 cmd.Parameters.Add(new SqlParameter("mail", Mail));
+                cmd.Parameters.Add(new SqlParameter("doe", currentDate));
+                cmd.Parameters.Add(new SqlParameter("user", currentDate));
                 cmd.Parameters.Add(new SqlParameter("doe", currentDate));
 
                 //return number of applied records
@@ -123,19 +123,44 @@ namespace BL_Plantnership
             else
             {
                 //if there is an existing element UPDATE fields
-                string SQL = "update Plant set name=@name, lastName=@lstName, gender=@gen, mail=@mail  where ID = @id";
+                string SQL = "update Plant set name=@name, lastName=@lstName, mail=@mail  where ID = @id";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
                 cmd.Parameters.Add(new SqlParameter("id", _ID));
                 cmd.Parameters.Add(new SqlParameter("name", Name));
                 cmd.Parameters.Add(new SqlParameter("lstName", LastName));
-                cmd.Parameters.Add(new SqlParameter("gen", Gender));
                 cmd.Parameters.Add(new SqlParameter("mail", Mail));
                 cmd.Parameters.Add(new SqlParameter("doe", currentDate));
                 return (cmd.ExecuteNonQuery() > 0);
             }
-        }//"Save()"
+        }//"Save"
+
+
+        //STATIC METHODS
+        // Hilfsfunktion für die beiden unteren Methoden
+     
+
+        // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
+        internal static User LoadUserOnLogin(string username, string password)
+        {
+            SqlCommand cmd = new SqlCommand("select id, name, lastName, mail from Kunden where username = @user and password = @pw", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("user", username));
+            cmd.Parameters.Add(new SqlParameter("pw", password));
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                reader.Read(); //setzt den Reader auf den ersten / nächsten DS
+                User user = new User();
+                user.ID = reader.GetString(0);
+                user.Name = reader.GetString(1);
+                user.LastName = reader.GetString(2);
+                user.Mail = reader.GetString(3);
+                return user;
+            }
+            else
+                return null;
+        }//"Load()"
 
 
     }//"class User"

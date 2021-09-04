@@ -55,6 +55,11 @@ namespace BL_Plantnership
             return con;
         }//"GetConnection()"
 
+        public static User login(string username, string password)
+        {
+            return User.LoadUserOnLogin(username, password);
+        }
+
         //Methode ladet ale Kunden aus der BD, verpackt diese in Kundenobjekte und liefert sie als Kundenliste zurück.
         public static Plants getAllPlantsFromCategory(string category)
         {
