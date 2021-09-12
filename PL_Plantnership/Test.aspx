@@ -16,6 +16,30 @@
         <asp:Button ID="Button7" runat="server" Text="Button" OnClick="Button7_Click" />
         <asp:Label ID="lblOutput" runat="server" Text="Hier kommt der text rein"></asp:Label>
         <br />
-        super tolle arbeit leute</form>
+        super tolle arbeit leute
+        <select id="selectSternzeichen">
+            <option>Widder</option>
+            <option>Waage</option>
+            <option>Stier</option>
+            <option>Skorpion</option>
+            <option>Zwillinge</option>
+            <option>Krebs</option>
+            <option>Steinbock</option>
+            <option>Löwe</option>
+            <option>Wassermann</option>
+            <option>Jungfrau</option>
+            <option>Fische</option>
+        </select>
+        <select id="selectJz">
+            <option>Frühling</option>
+            <option>Sommer</option>
+            <option>Herbst</option>
+            <option>Winter</option>
+        </select>
+
+        <asp:Button ID="btnGetMyCategory" runat="server" OnClick="btnGetMyCategory_Click" Text="Berechne die perfekte Kategorie für mich" />
+
+    </form>
+
 </body>
 </html>

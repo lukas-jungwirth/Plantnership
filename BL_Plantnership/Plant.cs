@@ -160,6 +160,67 @@ namespace BL_Plantnership
 
 
         //STATIC METHODS
+        public static string getMatchCategory(string sternzeichen, string jahreszeit)
+        {
+            string sz = sternzeichen.ToLower();
+            string jz = jahreszeit.ToLower();
+
+            int cat = 0;
+            if (sz == "widder" || sz == "waage") { cat = 1; }
+            else if (sz == "stier" || sz == "skorpion") { cat = 2; }
+            else if (sz == "zwillinge" || sz == "schütze") { cat = 3; }
+            else if (sz == "krebs" || sz == "steinbock") { cat = 4; }
+            else if (sz == "löwe" || sz == "wassermann") { cat = 5; }
+            else if (sz == "jungfrau" || sz == "fische") { cat = 6; }
+
+            if (jz == "frühling") {
+                if (cat <= 5) cat += 1;
+                else cat = 1;
+            }
+            else if (jz == "sommer") {
+                if (cat <= 4) cat += 2;
+                else if (cat == 5) cat = 1;
+                else cat = 2;
+            }
+            else if (jz == "herbst") {
+                if (cat >= 2) cat -= 1;
+                else cat = 6;
+
+            }
+            else if (jz == "winter") {
+                if (cat >= 3) cat -= 2;
+                else if (cat == 2) cat = 6;
+                else cat = 5;
+                
+            }
+
+            string calculatedCat;
+            switch (cat)
+            {
+                case 1:
+                    calculatedCat = "apfel";
+                    break;
+                case 2:
+                    calculatedCat = "birne";
+                    break;
+                case 3:
+                    calculatedCat = "kirsche";
+                    break;
+                case 4:
+                    calculatedCat = "marille";
+                    break;
+                case 5:
+                    calculatedCat = "zwetschke";
+                    break;
+                default:
+                    calculatedCat = "pfirsich";
+                    break;
+            }
+
+            return calculatedCat;
+        }
+
+
 
         public static bool ChangePlantSellState(string plantID, bool sold)
         {
