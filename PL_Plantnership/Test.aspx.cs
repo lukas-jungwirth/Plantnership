@@ -18,9 +18,7 @@ namespace PL_Plantnership
 
         protected void Button7_Click(object sender, EventArgs e)
         {
-            Main starter = new Main();
-            int zahl = starter.test();
-            lblOutput.Text = zahl.ToString();
+            
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -28,6 +26,11 @@ namespace PL_Plantnership
                     }
 
         protected void btnGetMyCategory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

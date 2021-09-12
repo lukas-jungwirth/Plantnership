@@ -92,7 +92,7 @@ namespace BL_Plantnership
 
         public bool Register()
         {
-
+            return true;
         }
 
         public bool Save()

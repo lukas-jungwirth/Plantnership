@@ -73,6 +73,11 @@ namespace BL_Plantnership
             return Plant.Load(plantID);
         }
 
+        public static Plant getPlantMatch(string sternzeichen, string jahreszeit, bool plantForLife)
+        {
+            return Plant.LoadMatchingPlant(sternzeichen, jahreszeit, plantForLife);
+        }
+
         //gibt ein neues leeres Kundenobjekt zum SPeichern neuer Kunden zurück
         public static Plant newPlant()
         {

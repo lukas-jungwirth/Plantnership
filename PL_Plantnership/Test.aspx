@@ -30,7 +30,7 @@
             <option>Jungfrau</option>
             <option>Fische</option>
         </select>
-        <select id="selectJz">
+        &nbsp;<select id="selectJz">
             <option>Frühling</option>
             <option>Sommer</option>
             <option>Herbst</option>
@@ -38,6 +38,8 @@
         </select>
 
         <asp:Button ID="btnGetMyCategory" runat="server" OnClick="btnGetMyCategory_Click" Text="Berechne die perfekte Kategorie für mich" />
+
+        <asp:Label ID="lblOutMyCat" runat="server"></asp:Label>
 
     </form>
 

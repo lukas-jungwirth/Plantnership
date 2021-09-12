@@ -220,6 +220,50 @@ namespace BL_Plantnership
             return calculatedCat;
         }
 
+        public static List<string> getEntryIdList(string category)
+        {
+            string SQL = "select count(*) from Plant where category = @cat";
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = SQL;
+                cmd.Connection = Starter.GetConnection();
+                cmd.Parameters.Add(new SqlParameter("cat", category));
+
+                List<string> results = new List<string>();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        results.Add((string)reader["ID"]);
+                    }
+                    return results;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch
+            {
+                return null;
+            }
+         }
+
+        internal static Plant LoadMatchingPlant(string sternzeichen, string jahreszeit, bool plantForLife)
+        {
+            string cat = getMatchCategory(sternzeichen, jahreszeit);
+            List<string> categoryIds = getEntryIdList(cat);
+            int amount = categoryIds.Count;
+            Random rnd = new Random();
+            int rndNumb = rnd.Next(1, amount);
+            int numb = rndNumb;
+            string id = categoryIds[numb];
+            return Load(id);
+        }
 
 
         public static bool ChangePlantSellState(string plantID, bool sold)
@@ -250,19 +294,29 @@ namespace BL_Plantnership
         internal static Plant Load(string plantID)
         {
             string SQL = "select id, owner, category, variety, age, district, street, houseNumber, sold from Plant where ID = @id and category = @cat";
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = SQL;
-            cmd.Connection = Starter.GetConnection();
-            cmd.Parameters.Add(new SqlParameter("id", plantID));
-            
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            try
             {
-                reader.Read(); //setzt den Reader auf den ersten / nächsten DS
-                return FillPlantFromSQLDataReader(reader);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = SQL;
+                cmd.Connection = Starter.GetConnection();
+                cmd.Parameters.Add(new SqlParameter("id", plantID));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read(); //setzt den Reader auf den ersten / nächsten DS
+                    return FillPlantFromSQLDataReader(reader);
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
+            {
                 return null;
+            }
+              
         }
 
         //loads all plant objects from a given category into a list of plant objects (if Plant.Sold is false)
