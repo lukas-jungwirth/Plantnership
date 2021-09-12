@@ -139,14 +139,70 @@ namespace BL_Plantnership
 
         //STATIC METHODS
         // Hilfsfunktion für die beiden unteren Methoden
-     
+
+
+        internal static bool CheckUniqueUsername(string username)
+        {
+            SqlCommand cmd = new SqlCommand("select username from Kunden where username = @user", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("user", username));
+            SqlDataReader reader = cmd.ExecuteReader();
+            bool result = reader.HasRows ? false : true;
+            return result;
+        }
+
+        internal static bool register(string username, string password, string name, string lastname, string mail)
+        {
+            return true;
+        }
+
+        internal static string Login(string username, string password)
+        {
+            try
+            {
+                SqlCommand cmdName = new SqlCommand("select username from Kunden where username = @user", Starter.GetConnection());
+                cmdName.Parameters.Add(new SqlParameter("user", username));
+                SqlDataReader reader = cmdName.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    //if there is a user object with the insert username check password
+                    try
+                    {
+                        SqlCommand cmdPw = new SqlCommand("select ID from Kunden where username = @user and password = @pw", Starter.GetConnection());
+                        cmdPw.Parameters.Add(new SqlParameter("user", username));
+                        cmdPw.Parameters.Add(new SqlParameter("pw", password));
+                        string id = (string)cmdPw.ExecuteScalar();
+                        if(id != null && id != "")
+                        {
+                            return id;
+                        }
+                        else
+                        {
+                            return "Passwort falsch";
+                        }
+                    }
+                    catch
+                    {
+                        return "Fehler in der Datenbankverbindung! Bitte versuchen Sie es später erneut.";
+                    }
+                }
+                else
+                {
+                    return "Benutzername nicht vorhanden";
+                }
+                
+            }
+            catch
+            {
+                return "Fehler in der Datenbankverbindung! Bitte versuchen Sie es später erneut.";
+            }
+        }
+
 
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
-        internal static User LoadUserOnLogin(string username, string password)
+        internal static User Load(string id)
         {
-            SqlCommand cmd = new SqlCommand("select id, name, lastName, mail from Kunden where username = @user and password = @pw", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("user", username));
-            cmd.Parameters.Add(new SqlParameter("pw", password));
+            SqlCommand cmd = new SqlCommand("select ID, name, lastName, mail from Kunden where ID = @id" , Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("id", id));
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
@@ -159,8 +215,12 @@ namespace BL_Plantnership
                 return user;
             }
             else
+            {
                 return null;
+            }   
         }//"Load()"
+
+
 
 
     }//"class User"
