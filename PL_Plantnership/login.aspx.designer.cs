@@ -11,7 +11,7 @@ namespace PL_Plantnership
 {
 
 
-    public partial class Test
+    public partial class WebForm1
     {
 
         /// <summary>
@@ -24,39 +24,57 @@ namespace PL_Plantnership
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Button7-Steuerelement
+        /// lblName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// lblOutput-Steuerelement
+        /// txtBoxName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutput;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxName;
 
         /// <summary>
-        /// btnGetMyCategory-Steuerelement
+        /// lblPW-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetMyCategory;
+        protected global::System.Web.UI.WebControls.Label lblPW;
 
         /// <summary>
-        /// lblOutMyCat-Steuerelement
+        /// txtBoxPW-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutMyCat;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxPW;
+
+        /// <summary>
+        /// btnLoginAktiv-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLoginAktiv;
+
+        /// <summary>
+        /// btnRegistrieren-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegistrieren;
     }
 }
