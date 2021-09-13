@@ -34,5 +34,11 @@ namespace PL_Plantnership
         {
 
         }
+
+        protected void btnGetHash_Click(object sender, EventArgs e)
+        {
+            string hash = Starter.register("thomas", "passwort", "thom", "hons", "gamil");
+            lblHashResult.Text = hash;
+        }
     }
 }

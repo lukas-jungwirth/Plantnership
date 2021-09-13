@@ -29,42 +29,20 @@ namespace BL_Plantnership
             get { return _ID; }
             internal set { _ID = value; }
         }
-        public string Owner
-        {
-            get { return _Owner; }
-            set { _Owner = value; }
-        }
+        public string Owner { get; set; }
 
-        public string Category
-        {
-            get { return _Category; }
-            set { _Category = value; }
-        }
-        public string Variety
-        {
-            get { return _Variety; }
-            set { _Variety = value; }
-        }
-        public string Age
-        {
-            get { return _Age; }
-            set { _Age = value; }
-        }
-        public string District
-        {
-            get { return _District; }
-            set { _District = value; }
-        }
-        public string Street
-        {
-            get { return _Street; }
-            set { _Street = value; }
-        }
-        public string HouseNumber
-        {
-            get { return _HouseNumber; }
-            set { _HouseNumber = value; }
-        }
+        public string Category { get; set; }
+
+        public string Variety { get; set; }
+
+        public string Age { get; set; }
+
+        public string District { get; set; }
+
+        public string Street { get; set; }
+
+        public string HouseNumber { get; set; }
+
         public string Sold
         {
             get { return _Sold; }

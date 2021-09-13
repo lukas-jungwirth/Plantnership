@@ -55,6 +55,20 @@ namespace BL_Plantnership
             return con;
         }//"GetConnection()"
 
+        //register user
+            //1 - success
+            //0 - username existing
+            //-1 - error
+        public static int register(string username, string password, string name, string lastname, string mail)
+        {
+            //check if username already exists
+            if (!User.CheckUniqueUsername(username)) return 0;
+
+            //register user
+            if (User.register(username, password, name, lastname, mail)) return 1;
+            else return -1;
+        }
+
         //login function return ID of user
         public static string login(string username, string password)
         {

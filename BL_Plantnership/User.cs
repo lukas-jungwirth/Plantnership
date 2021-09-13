@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace BL_Plantnership
 {
     public class User
@@ -26,21 +27,12 @@ namespace BL_Plantnership
             internal set { _ID = value; }
         }
 
-        public string Name 
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
-        public string LastName 
-        {
-            get { return _LastName; }
-            set { _LastName = value; }
-        }
-        public string Mail 
-        {
-            get { return _Mail; }
-            set { _Mail = value; }
-        }
+        public string Name { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Mail { get; set; }
+
         public string Rank
         {
             get
@@ -150,50 +142,65 @@ namespace BL_Plantnership
             return result;
         }
 
+        //entweder diese static register function oder als objektbasierte wie load
         internal static bool register(string username, string password, string name, string lastname, string mail)
         {
-            return true;
+            string hashedPw = BCrypt.Net.BCrypt.HashPassword(password);
+            
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand("insert into User (ID, name , lastNam , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
+                string ID = Guid.NewGuid().ToString();
+                cmd.Parameters.Add(new SqlParameter("id", ID));
+                cmd.Parameters.Add(new SqlParameter("user", username));
+                cmd.Parameters.Add(new SqlParameter("pw", hashedPw));
+                cmd.Parameters.Add(new SqlParameter("name", name));
+                cmd.Parameters.Add(new SqlParameter("lstName", lastname));
+                cmd.Parameters.Add(new SqlParameter("mail", mail));
+                return (cmd.ExecuteNonQuery() > 0);
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         internal static string Login(string username, string password)
         {
             try
             {
-                SqlCommand cmdName = new SqlCommand("select username from Kunden where username = @user", Starter.GetConnection());
+                SqlCommand cmdName = new SqlCommand("select password, ID from Kunden where username = @user", Starter.GetConnection());
                 cmdName.Parameters.Add(new SqlParameter("user", username));
-                SqlDataReader reader = cmdName.ExecuteReader();
+                SqlDataReader reader = cmdName.ExecuteReader();           
                 if (reader.HasRows)
                 {
-                    //if there is a user object with the insert username check password
-                    try
+                    //if there is a user object with the insert username check password 
+                    reader.Read();
+                    string hash = reader.GetString(0);
+                    string ID = reader.GetString(1);
+
+                    bool verified = BCrypt.Net.BCrypt.Verify(password, hash);
+                    if (verified)
                     {
-                        SqlCommand cmdPw = new SqlCommand("select ID from Kunden where username = @user and password = @pw", Starter.GetConnection());
-                        cmdPw.Parameters.Add(new SqlParameter("user", username));
-                        cmdPw.Parameters.Add(new SqlParameter("pw", password));
-                        string id = (string)cmdPw.ExecuteScalar();
-                        if(id != null && id != "")
-                        {
-                            return id;
-                        }
-                        else
-                        {
-                            return "Passwort falsch";
-                        }
+                        return ID;
                     }
-                    catch
+                    else
                     {
-                        return "Fehler in der Datenbankverbindung! Bitte versuchen Sie es später erneut.";
+                        return "error_pw";
                     }
+                    
                 }
                 else
                 {
-                    return "Benutzername nicht vorhanden";
+                    return "error_user";
                 }
                 
             }
             catch
             {
-                return "Fehler in der Datenbankverbindung! Bitte versuchen Sie es später erneut.";
+                return "error_db";
             }
         }
 
