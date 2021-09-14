@@ -21,8 +21,15 @@
             <asp:Button ID="btnLoginAktiv" runat="server" OnClick="btnLoginAktiv_Click" Text="Login" />
             <asp:Button ID="btnRegistrieren" runat="server" OnClick="btnRegistrieren_Click" Text="neu Registrieren" />
         </div>
-    </form>
     <p>
-        &nbsp;</p>
-</body>
+        <asp:TextBox ID="inputUsername" runat="server"></asp:TextBox>
+        <asp:TextBox ID="inputPassword" runat="server"></asp:TextBox>
+        <asp:TextBox ID="inputName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="inputLastName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="inputMail" runat="server"></asp:TextBox>
+        <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Registriere dich wenn du uns vertraust!" />
+        <asp:Label ID="lblFeedbackRegister" runat="server"></asp:Label>
+        </p>
+    </form>
+    </body>
 </html>

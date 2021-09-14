@@ -28,31 +28,46 @@ namespace BL_Plantnership
         // Hilfsmethode, die eine Verbindung zur DB erzeugt und retourniert.
         static internal SqlConnection GetConnection()
         {
+            try
+            {
+                // Hinweis: das @ am Anfang von Strings verhindert das Sonder- und Escapezeichen interpretiert werden.
 
-            // Hinweis: das @ am Anfang von Strings verhindert das Sonder- und Escapezeichen interpretiert werden.
+                //Variante 1: DB File direkt angeben
+                //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
+                //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
 
-            //Variante 1: DB File direkt angeben
-            //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
-            //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
+                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Lukas\source\repos\Plantnership\DL_Plantnership\plantnership.mdf;Integrated Security=True;Connect Timeout=30";
+                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
 
-            //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
 
-            //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
-            List<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
-            dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
-            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=5";
+                //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
+                List<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
+                dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
+                string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DL_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=5";
 
-            //Variante 3: DBFile mit SQL Server Manager Express im SQL-Server registrieren und den "Kurznamen aus dem SQL Manager angeben
-            //Vorteil: nur ein logischer Name - Name und Pfad der DB kann verändert werden (SQL Manager)
-            //Nachteil: App kann nicht mit Copy&Paste auf den Zielserver verschoben werden, da DB regstriert werden muss.
-            //string conString = @"Data Source=localhost\SQLEXPRESS;Database=KundenDB4;Integrated Security=true;Integrated Security=True;Connect Timeout=30";
 
-            // weitere Varianten:
-            // man könnte den Conectionstring auch in eine externe Konfigurationsdatei schreioben und von dort auslesen...
+                //Variante 3: DBFile mit SQL Server Manager Express im SQL-Server registrieren und den "Kurznamen aus dem SQL Manager angeben
+                //Vorteil: nur ein logischer Name - Name und Pfad der DB kann verändert werden (SQL Manager)
+                //Nachteil: App kann nicht mit Copy&Paste auf den Zielserver verschoben werden, da DB regstriert werden muss.
+                //string conString = @"Data Source=localhost\SQLEXPRESS;Database=KundenDB4;Integrated Security=true;Integrated Security=True;Connect Timeout=30";
 
-            SqlConnection con = new SqlConnection(conString);
-            con.Open();
-            return con;
+                // weitere Varianten:
+                // man könnte den Conectionstring auch in eine externe Konfigurationsdatei schreioben und von dort auslesen...
+
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    con.Open();
+                    Console.WriteLine("ServerVersion: {0}", con.ServerVersion);
+                    Console.WriteLine("State: {0}", con.State);
+                    return con;
+                }
+                
+            }
+            catch
+            {
+                return null;
+            }
+           
         }//"GetConnection()"
 
         //register user
@@ -62,7 +77,8 @@ namespace BL_Plantnership
         public static int register(string username, string password, string name, string lastname, string mail)
         {
             //check if username already exists
-            if (!User.CheckUniqueUsername(username)) return 0;
+            int checkUser = User.CheckUniqueUsername(username);
+            if (checkUser != 1) return checkUser;
 
             //register user
             if (User.register(username, password, name, lastname, mail)) return 1;

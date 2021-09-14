@@ -133,13 +133,21 @@ namespace BL_Plantnership
         // Hilfsfunktion für die beiden unteren Methoden
 
 
-        internal static bool CheckUniqueUsername(string username)
+        internal static int CheckUniqueUsername(string username)
         {
-            SqlCommand cmd = new SqlCommand("select username from Kunden where username = @user", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("user", username));
-            SqlDataReader reader = cmd.ExecuteReader();
-            bool result = reader.HasRows ? false : true;
-            return result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("select username from Kunden where username = @user", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("user", username));
+                SqlDataReader reader = cmd.ExecuteReader();
+                int result = reader.HasRows ? 1 : 0;
+                return result;
+            }
+            catch
+            {
+                return -1;
+            }
+            
         }
 
         //entweder diese static register function oder als objektbasierte wie load

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL_Plantnership;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +25,28 @@ namespace PL_Plantnership
             //User in DB anlegen
 
             //Session mit User starten
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            string username = inputUsername.Text;
+            string pw = inputPassword.Text;
+            string name = inputName.Text;
+            string lastName = inputLastName.Text;
+            string mail = inputLastName.Text;
+            
+            int feedback = Starter.register(username, pw, name, lastName, mail);
+            string feedbackStr;
+            if (feedback == 1) feedbackStr = "Erfolgreich";
+            else if (feedback == 0) feedbackStr = "Username bereits vorhanden!";
+            else feedbackStr = "Ein Fehler ist aufgetreten!";
+
+            lblFeedbackRegister.Text = feedbackStr;
         }
     }
 }
