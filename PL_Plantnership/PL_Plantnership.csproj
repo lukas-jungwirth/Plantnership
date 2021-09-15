@@ -80,7 +80,6 @@
     <Content Include="PlantDetail.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="style.css" />
-    <Content Include="styleIndex.css" />
     <Content Include="Web.config" />
     <Content Include="Verwaltung.aspx" />
     <Content Include="login.aspx" />
