@@ -30,12 +30,42 @@ namespace BL_Plantnership
         {
             try
             {
-                List<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
-                dirs.RemoveAt(dirs.Count - 1);
-                string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
-                SqlConnection conn = new SqlConnection(conString);
-                conn.Open();
-                return conn;
+                // Hinweis: das @ am Anfang von Strings verhindert das Sonder- und Escapezeichen interpretiert werden.
+
+                //Variante 1: DB File direkt angeben
+                //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
+                //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
+
+                string conString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Lukas\source\repos\Plantnership\DB_Plantnership\DB_Plantnership.mdf; Integrated Security = True; Connect Timeout = 30";
+                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
+
+                //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
+                //<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
+                //dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
+                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DL_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=5";
+
+                //Variante 3: DBFile mit SQL Server Manager Express im SQL-Server registrieren und den "Kurznamen aus dem SQL Manager angeben
+                //Vorteil: nur ein logischer Name - Name und Pfad der DB kann verändert werden (SQL Manager)
+                //Nachteil: App kann nicht mit Copy&Paste auf den Zielserver verschoben werden, da DB regstriert werden muss.
+                //string conString = @"Data Source=localhost\SQLEXPRESS;Database=;Integrated Security=true;Integrated Security=True;Connect Timeout=30";
+
+                // weitere Varianten:
+                // man könnte den Conectionstring auch in eine externe Konfigurationsdatei schreioben und von dort auslesen...
+
+
+
+                /*
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    con.Open();
+                    Console.WriteLine("ServerVersion: {0}", con.ServerVersion);
+                    Console.WriteLine("State: {0}", con.State);
+                    return con;
+                }
+                */
+                SqlConnection con = new SqlConnection(conString);
+                con.Open();
+                return con;
             }
             catch
             {
