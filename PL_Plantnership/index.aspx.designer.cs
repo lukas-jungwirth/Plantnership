@@ -48,7 +48,7 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.ImageButton Image1;
 
         /// <summary>
         /// Image2-Steuerelement
@@ -57,7 +57,7 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.ImageButton Image2;
 
         /// <summary>
         /// Image3-Steuerelement
@@ -66,7 +66,7 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.ImageButton Image3;
 
         /// <summary>
         /// Image4-Steuerelement
@@ -75,7 +75,7 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image4;
+        protected global::System.Web.UI.WebControls.ImageButton Image4;
 
         /// <summary>
         /// Image5-Steuerelement
@@ -84,7 +84,7 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image5;
+        protected global::System.Web.UI.WebControls.ImageButton Image5;
 
         /// <summary>
         /// Image6-Steuerelement
@@ -93,7 +93,7 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image6;
+        protected global::System.Web.UI.WebControls.ImageButton Image6;
 
         /// <summary>
         /// lblSternzeichen-Steuerelement

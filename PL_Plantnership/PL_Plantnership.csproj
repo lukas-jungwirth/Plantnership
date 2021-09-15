@@ -77,6 +77,7 @@
     <Content Include="Fotos\Marillen.jpg" />
     <Content Include="Fotos\pexels-photo-1632790.jpeg" />
     <Content Include="index.aspx" />
+    <Content Include="ObstBaumUnterKategorie.aspx" />
     <Content Include="PlantDetail.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="style.css" />
@@ -94,6 +95,13 @@
     </Compile>
     <Compile Include="manageTree.aspx.designer.cs">
       <DependentUpon>manageTree.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ObstBaumUnterKategorie.aspx.cs">
+      <DependentUpon>ObstBaumUnterKategorie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ObstBaumUnterKategorie.aspx.designer.cs">
+      <DependentUpon>ObstBaumUnterKategorie.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantDetail.aspx.cs">
       <DependentUpon>PlantDetail.aspx</DependentUpon>
