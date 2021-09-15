@@ -96,15 +96,6 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.Image Image6;
 
         /// <summary>
-        /// btnMehrAnzeigen-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMehrAnzeigen;
-
-        /// <summary>
         /// lblSternzeichen-Steuerelement
         /// </summary>
         /// <remarks>

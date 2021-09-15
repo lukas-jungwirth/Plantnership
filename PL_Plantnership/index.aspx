@@ -24,22 +24,19 @@
 
        <div class="treeCat">
 
-        <asp:Image ID="Image1" runat="server" AlternateText="Apfelbaum" ImageUrl="~/Apfelbaum-titelbild-für-artikel-1.jpg" height="300px" width="300px"/>
+        <asp:Image ID="Image1" runat="server" AlternateText="Apfelbaum" ImageUrl="~/Fotos/Apfelbaum-titelbild-für-artikel-1.jpg" height="300px" width="300px"/>
 
-        <asp:Image ID="Image2" runat="server" AlternateText="Birnbaum" ImageUrl="~/Birnbaum-Martina-Berg-Fotoliaid188344.jpg" height="300px" width="300px"/>
-        <asp:Image ID="Image3" runat="server" AlternateText="Kirschbaum" ImageUrl="~/Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" height="300px" width="300px" />
+        <asp:Image ID="Image2" runat="server" AlternateText="Birnbaum" ImageUrl="~/Fotos/Birnbaum-Martina-Berg-Fotoliaid188344.jpg" height="300px" width="300px"/>
+        <asp:Image ID="Image3" runat="server" AlternateText="Kirschbaum" ImageUrl="~/Fotos/Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" height="300px" width="300px" />
        </div>
 
        <div class="treeCat">
-        <asp:Image ID="Image4" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Marillen.jpg" height="300px" width="300px"/>
-        <asp:Image ID="Image5" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/1-pfirsichbaum-1176136976.jpg" height="300px" width="300px"/>
-        <asp:Image ID="Image6" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" height="300px" width="300px" />
+        <asp:Image ID="Image4" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Fotos/Marillen.jpg" height="300px" width="300px"/>
+        <asp:Image ID="Image5" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/Fotos/1-pfirsichbaum-1176136976.jpg" height="300px" width="300px"/>
+        <asp:Image ID="Image6" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" height="300px" width="300px" />
            
        </div>
 
-       <div class="classMehrAnzeigen">
-       <asp:Button ID="btnMehrAnzeigen" runat="server" Text="mehr anzeigen" />
-       </div>
        
 
        <h2 class="categoryTree">Du weiß nicht was du willst?</h2>
@@ -79,6 +76,11 @@
        <div  class="btnTreeMatch">
        <asp:Button ID="btnTreeMatch" runat="server" OnClick="btnTreeMatch_Click" Text="Tree Match" />
         </div>
+
+       <footer>
+           Du bis am Ende der Seite angekommen, scroll bitte wieder rauf!
+       </footer>
+
            </form>
    
           

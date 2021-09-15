@@ -1,11 +1,10 @@
 ﻿/*---GENERAL---*/
 
-body{
+body {
     margin: 0;
-}
-span, input, h1, h2{
     font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
+
 span, input{
     font-size: 18px;
     padding: 5px 10px;
@@ -105,12 +104,13 @@ header {
     display: flex;
     align-items: baseline;
     justify-content: center;
+    margin: 40px;
 }
 
 .btnTreeMatch {
     display: flex;
     justify-content: center;
-    
+    margin: 50px;
 }
 
 #btnTreeMatch {
@@ -119,8 +119,17 @@ header {
     border-radius: 8px;
     line-height: 27px;
     cursor: pointer;
+    
 }
 
+footer {
+    background-color: #2d6a4f;
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: white;
+}
 
 /*---INPUT/REGISTER PAGE---*/
 .loginTitle {
@@ -177,6 +186,7 @@ header {
         }
 #btnLogin, #btnReg {
     margin-top: 25px;
+    
 }
 
 

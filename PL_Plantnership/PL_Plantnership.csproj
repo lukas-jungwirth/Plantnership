@@ -67,17 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1-pfirsichbaum-1176136976.jpg" />
-    <Content Include="77c66506-3181-4091-bebc-80f84d71c4b4.jpg" />
-    <Content Include="Apfelbaum-titelbild-für-artikel-1.jpg" />
-    <Content Include="Birnbaum-Martina-Berg-Fotoliaid188344.jpg" />
+    <Content Include="Fotos\1-pfirsichbaum-1176136976.jpg" />
+    <Content Include="Fotos\77c66506-3181-4091-bebc-80f84d71c4b4.jpg" />
+    <Content Include="Fotos\Apfelbaum-titelbild-für-artikel-1.jpg" />
+    <Content Include="Fotos\Birnbaum-Martina-Berg-Fotoliaid188344.jpg" />
     <Content Include="Global.asax" />
-    <Content Include="Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" />
+    <Content Include="Fotos\Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" />
     <Content Include="manageTree.aspx" />
-    <Content Include="Marillen.jpg" />
-    <Content Include="pexels-photo-1632790.jpeg" />
+    <Content Include="Fotos\Marillen.jpg" />
+    <Content Include="Fotos\pexels-photo-1632790.jpeg" />
     <Content Include="index.aspx" />
     <Content Include="PlantDetail.aspx" />
+    <Content Include="SteckbriefBaum.aspx" />
     <Content Include="style.css" />
     <Content Include="styleIndex.css" />
     <Content Include="Web.config" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SteckbriefBaum.aspx.cs">
+      <DependentUpon>SteckbriefBaum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SteckbriefBaum.aspx.designer.cs">
+      <DependentUpon>SteckbriefBaum.aspx</DependentUpon>
     </Compile>
     <Compile Include="Verwaltung.aspx.cs">
       <DependentUpon>Verwaltung.aspx</DependentUpon>
