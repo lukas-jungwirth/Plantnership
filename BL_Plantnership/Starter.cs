@@ -36,7 +36,7 @@ namespace BL_Plantnership
                 //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
                 //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
 
-                string conString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Lukas\source\repos\Plantnership\DB_Plantnership\DB_Plantnership.mdf; Integrated Security = True; Connect Timeout = 30";
+                string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Magdalena\Downloads\Platnership_log\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
                 //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
 
                 //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
