@@ -9,11 +9,11 @@
 ///  BOKommentar: bekommt man nur von Methoden aus BOKunde
 
 using System;
-using System.Data;
-using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Xml.Serialization;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.IO;
 
 namespace BL_Plantnership
@@ -26,46 +26,16 @@ namespace BL_Plantnership
     {
 
         // Hilfsmethode, die eine Verbindung zur DB erzeugt und retourniert.
-        static internal SqlConnection GetConnection()
+        internal static SqlConnection GetConnection()
         {
             try
             {
-                // Hinweis: das @ am Anfang von Strings verhindert das Sonder- und Escapezeichen interpretiert werden.
-
-                //Variante 1: DB File direkt angeben
-                //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
-                //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
-
-                string conString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Lukas\source\repos\Plantnership\DB_Plantnership\DB_Plantnership.mdf; Integrated Security = True; Connect Timeout = 30";
-                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
-
-                //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
-                //<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
-                //dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
-                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DL_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=5";
-
-                //Variante 3: DBFile mit SQL Server Manager Express im SQL-Server registrieren und den "Kurznamen aus dem SQL Manager angeben
-                //Vorteil: nur ein logischer Name - Name und Pfad der DB kann verändert werden (SQL Manager)
-                //Nachteil: App kann nicht mit Copy&Paste auf den Zielserver verschoben werden, da DB regstriert werden muss.
-                //string conString = @"Data Source=localhost\SQLEXPRESS;Database=;Integrated Security=true;Integrated Security=True;Connect Timeout=30";
-
-                // weitere Varianten:
-                // man könnte den Conectionstring auch in eine externe Konfigurationsdatei schreioben und von dort auslesen...
-
-
-
-                /*
-                using (SqlConnection con = new SqlConnection(conString))
-                {
-                    con.Open();
-                    Console.WriteLine("ServerVersion: {0}", con.ServerVersion);
-                    Console.WriteLine("State: {0}", con.State);
-                    return con;
-                }
-                */
-                SqlConnection con = new SqlConnection(conString);
-                con.Open();
-                return con;
+                List<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
+                dirs.RemoveAt(dirs.Count - 1);
+                string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
+                SqlConnection conn = new SqlConnection(conString);
+                conn.Open();
+                return conn;
             }
             catch
             {
@@ -75,9 +45,9 @@ namespace BL_Plantnership
         }//"GetConnection()"
 
         //register user
-            //1 - success
-            //0 - username existing
-            //-1 - error
+        //1 - success
+        //0 - username existing
+        //-1 - error        
         public static int register(string username, string password, string name, string lastname, string mail)
         {
             //check if username already exists

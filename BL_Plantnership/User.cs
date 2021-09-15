@@ -82,11 +82,6 @@ namespace BL_Plantnership
         }//"Delete()"
 
 
-        public bool Register()
-        {
-            return true;
-        }
-
         public bool Save()
         {
 
@@ -158,7 +153,7 @@ namespace BL_Plantnership
             try
             {
 
-                SqlCommand cmd = new SqlCommand("insert into User (ID, name , lastNam , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
+                SqlCommand cmd = new SqlCommand("insert into User (Id, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
                 string ID = Guid.NewGuid().ToString();
                 cmd.Parameters.Add(new SqlParameter("id", ID));
                 cmd.Parameters.Add(new SqlParameter("user", username));
@@ -174,25 +169,7 @@ namespace BL_Plantnership
             }
 
         }
-        internal static bool register(string name)
-        {
-            //string hashedPw = BCrypt.Net.BCrypt.HashPassword(password);
-            
-            try
-            {
 
-                SqlCommand cmd = new SqlCommand("insert into User (ID, name (@id, @name)", Starter.GetConnection());
-                string ID = Guid.NewGuid().ToString();
-                cmd.Parameters.Add(new SqlParameter("id", ID));
-                cmd.Parameters.Add(new SqlParameter("name", name));
-                return (cmd.ExecuteNonQuery() > 0);
-            }
-            catch
-            {
-                return false;
-            }
-
-        }
 
         internal static string Login(string username, string password)
         {
