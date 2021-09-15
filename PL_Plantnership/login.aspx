@@ -5,31 +5,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Login</title>
+    <title></title>
+     <link rel="Stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
-    <h1> Login </h1>
     <form id="form1" runat="server">
-        <asp:Label ID="lblName" runat="server" Text="Name: "></asp:Label>
-        <asp:TextBox ID="txtBoxName" runat="server"></asp:TextBox>
-        <br />
         <div>
-            <asp:Label ID="lblPW" runat="server" Text="Password"></asp:Label>
-            :
-            <asp:TextBox ID="txtBoxPW" runat="server"></asp:TextBox>
-            <br />
-            <asp:Button ID="btnLoginAktiv" runat="server" OnClick="btnLoginAktiv_Click" Text="Login" />
-            <asp:Button ID="btnRegistrieren" runat="server" OnClick="btnRegistrieren_Click" Text="neu Registrieren" />
+            <h1 class="loginTitle">Herzlich Willkommen bei Plantnership!</h1>
+            <div class="loginToggle">
+                <asp:Button ID="btnLoginSite" runat="server" Text="Login" CssClass="loginActive loginSiteBtn" OnClick="btnLoginSite_Click" />
+                <asp:Button ID="btnRegisterSite" runat="server" Text="Registrieren" CssClass="loginSiteBtn" OnClick="btnRegisterSite_Click"/>
+            </div>
+            <asp:MultiView ID="MultViewLogin" runat="server" ActiveViewIndex="0">
+                <asp:View ID="viewLogin" runat="server">
+                    <div class="loginWrapper">
+                        <h2>Login</h2>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblLoginUsername" runat="server">Username</asp:Label>
+                            <asp:TextBox ID="inputLoginUsername" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblLoginPassword" runat="server">Passwort</asp:Label>
+                            <asp:TextBox ID="inputLoginPassword" runat="server"></asp:TextBox>
+                        </div>
+                        <asp:Label ID="lblFeedbackLogin" runat="server" Text=""></asp:Label>
+                        <asp:Button ID="btnLogin" runat="server" Text="Einloggen" CssClass="button" />
+                    </div>
+                </asp:View>
+                <asp:View ID="viewRegister" runat="server">
+                    <div class="loginWrapper">
+                        <h2>Login</h2>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblRegUsername" runat="server">Username</asp:Label>
+                            <asp:TextBox ID="inputRegUsername" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblRegPassword" runat="server">Passwort</asp:Label>
+                            <asp:TextBox ID="inputRegPassword" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblRegName" runat="server">Vorname</asp:Label>
+                            <asp:TextBox ID="inputRegName" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblRegLstName" runat="server">Nachname</asp:Label>
+                            <asp:TextBox ID="inputRegLstName" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="inputWrapper">
+                            <asp:Label ID="lblRegMail" runat="server">Mail</asp:Label>
+                            <asp:TextBox ID="inputRegMail" runat="server"></asp:TextBox>
+                        </div>
+
+
+                        <asp:Label ID="lblFeedbackReg" runat="server" Text=""></asp:Label>
+                        <asp:Button ID="btnReg" runat="server" Text="Registrieren" CssClass="button" />
+                    </div>
+                </asp:View>
+            </asp:MultiView>
         </div>
-    <p>
-        <asp:TextBox ID="inputUsername" runat="server"></asp:TextBox>
-        <asp:TextBox ID="inputPassword" runat="server"></asp:TextBox>
-        <asp:TextBox ID="inputName" runat="server"></asp:TextBox>
-        <asp:TextBox ID="inputLastName" runat="server"></asp:TextBox>
-        <asp:TextBox ID="inputMail" runat="server"></asp:TextBox>
-        <asp:Button ID="btnRegister" runat="server" OnClick="btnRegister_Click" Text="Registriere dich wenn du uns vertraust!" />
-        <asp:Label ID="lblFeedbackRegister" runat="server"></asp:Label>
-        </p>
     </form>
-    </body>
+</body>
 </html>
