@@ -79,7 +79,6 @@
     <Content Include="index.aspx" />
     <Content Include="ObstBaumUnterKategorie.aspx" />
     <Content Include="PlantDetail.aspx" />
-    <Content Include="Register.aspx" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
     <Content Include="Verwaltung.aspx" />

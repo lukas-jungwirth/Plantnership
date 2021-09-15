@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.IO;
+using BCrypt.Net;
+
 
 namespace BL_Plantnership
 {
@@ -36,13 +38,13 @@ namespace BL_Plantnership
                 //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
                 //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
 
-                string conString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Lukas\source\repos\Plantnership\DB_Plantnership\DB_Plantnership.mdf; Integrated Security = True; Connect Timeout = 30";
+                string conString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Lukas\source\repos\Plantnership\DB_Plantnership\Platnership.mdf; Integrated Security = True; Connect Timeout = 30";
                 //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
 
                 //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
-                //<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
+                //List <string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
                 //dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
-                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DL_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=5";
+                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
 
                 //Variante 3: DBFile mit SQL Server Manager Express im SQL-Server registrieren und den "Kurznamen aus dem SQL Manager angeben
                 //Vorteil: nur ein logischer Name - Name und Pfad der DB kann verändert werden (SQL Manager)
@@ -83,10 +85,33 @@ namespace BL_Plantnership
             //check if username already exists
             //int checkUser = User.CheckUniqueUsername(username);
             //if (checkUser != 1) return checkUser;
+            
+
+            string hashedPw = BCrypt.Net.BCrypt.HashPassword(password).ToString();
+
+
+            try
+            {
+                
+                SqlCommand cmd = new SqlCommand("insert into [User] (Id, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
+                string ID = Guid.NewGuid().ToString();
+                cmd.Parameters.Add(new SqlParameter("id", ID));
+                cmd.Parameters.Add(new SqlParameter("user", username));
+                cmd.Parameters.Add(new SqlParameter("pw", password));
+                cmd.Parameters.Add(new SqlParameter("name", name));
+                cmd.Parameters.Add(new SqlParameter("lstName", lastname));
+                cmd.Parameters.Add(new SqlParameter("mail", mail));
+                if (cmd.ExecuteNonQuery() > 0) return 1;
+                return -1;
+            }
+            catch
+            {
+                return -1;
+            }
 
             //register user
-            if (User.register(username, password, name, lastname, mail)) return 1;
-            else return -1;
+            //if (User.register(username, password, name, lastname, mail)) return 1;
+            //else return -1;
         }
 
         //login function return ID of user
