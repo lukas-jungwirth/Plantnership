@@ -148,7 +148,7 @@ namespace BL_Plantnership
         //entweder diese static register function oder als objektbasierte wie load
         internal static bool register(string username, string password, string name, string lastname, string mail)
         {
-            string hashedPw = BCrypt.Net.BCrypt.HashPassword(password);
+            //string hashedPw = BCrypt.Net.BCrypt.HashPassword(password);
             
             try
             {
@@ -157,7 +157,7 @@ namespace BL_Plantnership
                 string ID = Guid.NewGuid().ToString();
                 cmd.Parameters.Add(new SqlParameter("id", ID));
                 cmd.Parameters.Add(new SqlParameter("user", username));
-                cmd.Parameters.Add(new SqlParameter("pw", hashedPw));
+                cmd.Parameters.Add(new SqlParameter("pw", password));
                 cmd.Parameters.Add(new SqlParameter("name", name));
                 cmd.Parameters.Add(new SqlParameter("lstName", lastname));
                 cmd.Parameters.Add(new SqlParameter("mail", mail));
