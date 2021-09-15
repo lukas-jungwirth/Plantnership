@@ -39,7 +39,8 @@
 
        
 
-       <h2 class="categoryTree">Du weiß nicht was du willst?</h2>
+       <h2 class="categoryTree">Du suchst den Plantner fürs Leben?</h2>
+       <p>Finde mit unserem Match Finder die perfekte Pflanze für deine Bedürfnisse!</p>
 
 
         <div class="treeMatchIndex">

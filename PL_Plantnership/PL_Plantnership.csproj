@@ -78,9 +78,8 @@
     <Content Include="Fotos\pexels-photo-1632790.jpeg" />
     <Content Include="index.aspx" />
     <Content Include="PlantDetail.aspx" />
-    <Content Include="SteckbriefBaum.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="style.css" />
-    <Content Include="styleIndex.css" />
     <Content Include="Web.config" />
     <Content Include="Verwaltung.aspx" />
     <Content Include="login.aspx" />
@@ -110,13 +109,6 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SteckbriefBaum.aspx.cs">
-      <DependentUpon>SteckbriefBaum.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SteckbriefBaum.aspx.designer.cs">
-      <DependentUpon>SteckbriefBaum.aspx</DependentUpon>
     </Compile>
     <Compile Include="Verwaltung.aspx.cs">
       <DependentUpon>Verwaltung.aspx</DependentUpon>
