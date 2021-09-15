@@ -11,8 +11,119 @@ span, input{
     padding: 5px 10px;
 }
 
-/*---INPUT/REGISTER PAGE---*/
 
+/*---INDEX/HOMEPAGE---*/
+
+header {
+    background-color: #2d6a4f;
+    display: flex;
+    justify-content: right;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    
+}
+
+.headIndex {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    font-size: 70px;
+    
+}
+
+.categoryTree {
+    padding: 20px;
+    background-color: #2d6a4f;
+    text-align: center;
+    color: white;
+}
+
+.treeCat{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+#Image1{
+    margin: 30px;
+}
+
+#Image2 {
+    margin: 30px;
+}
+
+#Image3 {
+    margin: 30px;
+}
+
+#Image4 {
+    margin: 30px;
+}
+
+#Image5 {
+    margin: 30px;
+}
+
+#Image6 {
+    margin: 30px;
+}
+
+
+
+.classMehrAnzeigen{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px;
+}
+
+#btnMehrAnzeigen {
+    background-color: #2d6a4f;
+    color: #fff;
+    border-radius: 8px;
+    line-height: 27px;
+    cursor: pointer;
+}
+
+#btnLoginIndex {
+    cursor: pointer;
+    background-color: #2d6a4f;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: white;
+    border: none;
+}
+
+#btnBaumVerwalten {
+    cursor: pointer;
+    background-color: #2d6a4f;
+    height: 100%;
+    color: white;
+    border: none;
+}
+
+.treeMatchIndex {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.btnTreeMatch {
+    //background-color: green;
+    display: flex;
+    justify-content: center;
+    
+}
+
+#btnTreeMatch {
+    background-color: #2d6a4f;
+    color: #fff;
+    border-radius: 8px;
+    line-height: 27px;
+    cursor: pointer;
+}
+
+
+/*---INPUT/REGISTER PAGE---*/
 .loginTitle {
     text-align: center;
 }
