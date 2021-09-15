@@ -58,7 +58,7 @@
 
 
                         <asp:Label ID="lblFeedbackReg" runat="server" Text=""></asp:Label>
-                        <asp:Button ID="btnReg" runat="server" Text="Registrieren" CssClass="button" />
+                        <asp:Button ID="btnReg" runat="server" Text="Registrieren" CssClass="button" OnClick="btnReg_Click" />
                     </div>
                 </asp:View>
             </asp:MultiView>

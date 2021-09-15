@@ -174,6 +174,25 @@ namespace BL_Plantnership
             }
 
         }
+        internal static bool register(string name)
+        {
+            //string hashedPw = BCrypt.Net.BCrypt.HashPassword(password);
+            
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand("insert into User (ID, name (@id, @name)", Starter.GetConnection());
+                string ID = Guid.NewGuid().ToString();
+                cmd.Parameters.Add(new SqlParameter("id", ID));
+                cmd.Parameters.Add(new SqlParameter("name", name));
+                return (cmd.ExecuteNonQuery() > 0);
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
 
         internal static string Login(string username, string password)
         {

@@ -13,5 +13,20 @@ namespace PL_Plantnership
         {
 
         }
+
+        protected void btnMyTreeSite_Click(object sender, EventArgs e)
+        {
+            MultiViewVerwaltung.ActiveViewIndex = 0;
+            btnMyTreeSite.CssClass = "loginActive loginSiteBtn";
+            btnRentTreeSite.CssClass = "loginSiteBtn";
+           
+        }
+
+        protected void btnRentTreeSite_Click(object sender, EventArgs e)
+        {
+            MultiViewVerwaltung.ActiveViewIndex = 1;
+            btnRentTreeSite.CssClass = "loginActive loginSiteBtn";
+            btnMyTreeSite.CssClass = "loginSiteBtn";
+        }
     }
 }

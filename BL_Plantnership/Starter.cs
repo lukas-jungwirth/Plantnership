@@ -54,7 +54,7 @@ namespace BL_Plantnership
 
 
 
-
+                /*
                 using (SqlConnection con = new SqlConnection(conString))
                 {
                     con.Open();
@@ -62,7 +62,10 @@ namespace BL_Plantnership
                     Console.WriteLine("State: {0}", con.State);
                     return con;
                 }
-
+                */
+                SqlConnection con = new SqlConnection(conString);
+                con.Open();
+                return con;
             }
             catch
             {

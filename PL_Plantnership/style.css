@@ -1,4 +1,6 @@
-﻿body{
+﻿/*---GENERAL---*/
+
+body{
     margin: 0;
 }
 span, input, h1, h2{
@@ -6,12 +8,15 @@ span, input, h1, h2{
 }
 span, input{
     font-size: 18px;
+    padding: 5px 10px;
 }
+
+/*---INPUT/REGISTER PAGE---*/
 
 .loginTitle {
     text-align: center;
 }
-.loginToggle{
+.loginToggle, .myTreeToggle{
     width: 100%;
     display: flex;
 }
@@ -21,7 +26,7 @@ span, input{
     border: 2px solid #2d6a4f;
     cursor: pointer;
 }
-.loginSiteBtn:hover, .loginActive {
+.loginActive {
     background-color: #2d6a4f;
     color: #fff;
 }
@@ -58,7 +63,53 @@ span, input{
             color: #fff;
             border-radius: 8px;
             line-height: 27px;
+            cursor: pointer;
         }
 #btnLogin, #btnReg {
     margin-top: 25px;
 }
+
+
+/*---MANAGE TREE PAGE---*/
+.manageWrapper {
+    max-width: 650px;
+    margin: 50px auto 0;
+    padding: 30px 50px 50px;
+    border-radius: 8px;
+    border-bottom: 2px solid #bbb;
+    box-shadow: 0px -1px 16px rgba(45,106,79, .26);
+}
+
+.buttonWrapper{
+    display:flex;
+    justify-content:center;
+    margin-top: 25px;
+}
+
+
+/*---VERWALTUNG PAGE---*/
+.settingContainer{
+    max-width: 100vw;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2.5%;
+}
+.myTreeToggle{
+    width: 70%;
+}
+.profilInfoWrapper{
+    width: 25%;
+    border: 2px solid darkred;
+    padding: 0px;
+    margin: 0px;
+}
+    .profilInfoWrapper h2 {
+        background-color: darkred;
+        margin: 0px;
+        padding: 4px 8px;
+        color: #fff;
+    }
+    .profileRow{
+        padding: 5px 0;
+    }

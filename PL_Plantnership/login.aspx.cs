@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL_Plantnership;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,6 +27,23 @@ namespace PL_Plantnership
             MultViewLogin.ActiveViewIndex = 1;
             btnRegisterSite.CssClass = "loginActive loginSiteBtn";
             btnLoginSite.CssClass = "loginSiteBtn";
+        }
+
+        protected void btnReg_Click(object sender, EventArgs e)
+        {
+            string user = inputRegUsername.Text;
+            string pw = inputRegPassword.Text;
+            string name = inputRegName.Text;
+            string lstName = inputRegLstName.Text;
+            string mail = inputRegMail.Text;
+            int feedback = Starter.register(user, pw, name, lstName, mail);
+            string feedbackStr;
+            if (feedback == 1) feedbackStr = "Erfolgreich registriert";
+            else if (feedback == 0) feedbackStr = "Benutzername bereits vorhanden";
+            else feedbackStr = "Ein Fehler ist aufgetreten!";
+
+            lblFeedbackReg.Text = feedbackStr;
+
         }
     }
 }

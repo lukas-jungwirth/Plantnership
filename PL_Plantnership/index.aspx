@@ -6,6 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>PlantnerShip</title>
+    <link rel="Stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
    
