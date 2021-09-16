@@ -61,7 +61,7 @@ namespace BL_Plantnership
             try
             {
                 
-                SqlCommand cmd = new SqlCommand("insert into [User] (Id, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
+                SqlCommand cmd = new SqlCommand("insert into [User] (ID, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
                 string ID = Guid.NewGuid().ToString();
                 cmd.Parameters.Add(new SqlParameter("id", ID));
                 cmd.Parameters.Add(new SqlParameter("user", username));
@@ -110,7 +110,7 @@ namespace BL_Plantnership
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT Id, password FROM [User] WHERE username = @user", Starter.GetConnection());
+                SqlCommand cmd = new SqlCommand("SELECT ID, password FROM [User] WHERE username = @user", Starter.GetConnection());
                 cmd.Parameters.Add(new SqlParameter("user", username));
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)

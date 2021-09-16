@@ -146,7 +146,7 @@ namespace BL_Plantnership
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
         internal static User Load(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select Id, username, name, lastName, mail from [User] where Id = @uid", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select ID, username, name, lastName, mail from [User] where ID = @uid", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("uid", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
