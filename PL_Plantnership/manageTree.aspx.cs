@@ -10,11 +10,21 @@ namespace PL_Plantnership
 {
     public partial class manageTree : System.Web.UI.Page
     {
-
+        User currentUser;
         string currentID;
         Plant currentPlant;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if ((User)Session["currentUser"] == null)
+            {
+                Response.Redirect("login.aspx");
+            }
+            else
+            {
+                currentUser = (User)Session["currentUser"];
+            }
+
             if (!IsPostBack)
             {
                 currentID = (string)Session["ID"]; //wurde beim Aufruf übertragen
@@ -64,23 +74,36 @@ namespace PL_Plantnership
             {
                 //Feldwerte in das Objekt laden
                 currentPlant.Category = radioBtnCat.SelectedValue;
-                currentPlant.Vorname = txtVorname.Text;
-                currentPlant.Kundenstatus = ddStatus.SelectedValue;
+                currentPlant.Variety = txtVariety.Text;
+                currentPlant.Age = txtAge.Text;
+                currentPlant.District = txtDistrict.Text;
+                currentPlant.Street = txtStreet.Text;
+                currentPlant.HouseNumber = txtHouseNumb.Text;
+                currentPlant.Owner = currentUser.Username;
                 if (currentPlant.Save())
-                    Response.Redirect("Default.aspx");
-                else lblFehlermeldung.Text = "Speichern fehlgeschlagen";
+                {
+                    Response.Redirect("Verwaltung.aspx");
+                }
+                else
+                {
+                    lblError.Text = "Speichern fehlgeschlagen";
+                }
             }
-            else lblFehlermeldung.Text = "Kunde existiert nicht mehr in DB!";
+            else lblError.Text = "Pflanze existiert nicht mehr in DB!";
         }
 
         protected void btnManageDelete_Click(object sender, EventArgs e)
         {
-
+            currentPlant = (Plant)Session["Plant"];
+            if (currentPlant.Delete())
+                Response.Redirect("Default.aspx");
+            else
+                lblError.Text = "Löschen nicht möglich";
         }
 
         protected void btnManageCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Verwaltung.aspx");
         }
     }
 }

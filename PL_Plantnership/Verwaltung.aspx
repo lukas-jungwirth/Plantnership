@@ -17,7 +17,15 @@
             </div>
             <asp:MultiView ID="MultiViewVerwaltung" runat="server" ActiveViewIndex="0">
                 <asp:View ID="viewMyTrees" runat="server">
-
+                   <asp:Repeater ID="Repeater1" runat="server">
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Variety") %>'></asp:Label>
+                        <br />
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Category") %>'></asp:Label>
+                        <br />
+                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:Repeater>
                 </asp:View>
                 <asp:View ID="viewRentedTrees" runat="server">
                 </asp:View>

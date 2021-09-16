@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace PL_Plantnership
 {
     public partial class WebForm2 : System.Web.UI.Page
@@ -25,6 +26,12 @@ namespace PL_Plantnership
                 lblProfileName.Text = currentUser.Name;
                 lblProfileLstName.Text = currentUser.LastName;
                 lblProfileMail.Text = currentUser.Mail;
+
+
+                myTrees = Starter.getPlantsByUsername(currentUser.Username);
+                Repeater1.DataSource = myTrees;
+                Repeater1.DataBind();
+                //lblTestOut.Text = myTrees[0].Variety;
 
                 if (!IsPostBack)
                 //if page is rendered the first time

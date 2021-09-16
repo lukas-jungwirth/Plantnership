@@ -158,6 +158,11 @@ namespace BL_Plantnership
             return Plant.LoadAllFromCategory(category);
         }
 
+        public static Plants getPlantsByUsername(string username)
+        {
+            return Plant.LoadAllFromUser(username);
+        }
+
         //Methode ladet einen Kundenrecord direkt aus der DB, speichert Werte in
         //BOKunde-Objekt und gibt initialisiertes Objekt zurück.
         public static Plant getPlantByID(string plantID)
