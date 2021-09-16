@@ -36,6 +36,9 @@
                 <div class="profileRow">
                     <span>Mail:</span><asp:Label ID="lblProfileMail" runat="server" Text=""></asp:Label>
                 </div>
+                <div class="profileRow">
+                   <asp:Button ID="btnCreateNewPlant" runat="server" Text="Neuen Baum hinzufügen" cssClass="button" OnClick="btnCreateNewPlant_Click"/>
+                </div>
             </div>
         </div>
     </form>

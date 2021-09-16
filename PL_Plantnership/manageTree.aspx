@@ -46,10 +46,11 @@
                <asp:TextBox ID="txtHouseNumb" runat="server"></asp:TextBox>
            </div>
             <div class="buttonWrapper">
-                <asp:Button ID="btnManageSave" runat="server" Text="Speichern" CssClass="button" />
-                <asp:Button ID="btnManageDelete" runat="server" Text="Baum löschen" CssClass="button"/>
-                <asp:Button ID="btnManageCancel" runat="server" Text="Abbrechen" CssClass="button"/>
+                <asp:Button ID="btnManageSave" runat="server" Text="Speichern" CssClass="button" OnClick="btnManageSave_Click" />
+                <asp:Button ID="btnManageDelete" runat="server" Text="Baum löschen" CssClass="button" OnClick="btnManageDelete_Click"/>
+                <asp:Button ID="btnManageCancel" runat="server" Text="Abbrechen" CssClass="button" OnClick="btnManageCancel_Click"/>
             </div>
+            <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
         </div>
     </form>
 </body>

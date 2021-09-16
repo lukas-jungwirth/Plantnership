@@ -12,6 +12,7 @@
     <form id="form1" runat="server">
         <div>
             <h1 class="loginTitle">Herzlich Willkommen bei Plantnership!</h1>
+            <p>Die Plantnerplattform für Planzenliebhaber mit Niveau!</p>
             <div class="loginToggle">
                 <asp:Button ID="btnLoginSite" runat="server" Text="Login" CssClass="loginActive loginSiteBtn" OnClick="btnLoginSite_Click" />
                 <asp:Button ID="btnRegisterSite" runat="server" Text="Registrieren" CssClass="loginSiteBtn" OnClick="btnRegisterSite_Click"/>

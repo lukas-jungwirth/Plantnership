@@ -67,6 +67,7 @@ namespace PL_Plantnership
                 dispFdbk = "Login erfolgreich";
                 // user to session
                 Session["currentUser"] = Starter.getUserByID(feedback);
+                Session["loggedIn"] = true;
                 Response.Redirect("index.aspx"); 
                 
             }

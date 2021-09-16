@@ -16,8 +16,16 @@ namespace PL_Plantnership
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            currentUser = (User)Session["currentUser"];
-            lblDisplayUsername.Text = currentUser.Username;
+            if((User)Session["currentUser"] == null)
+            {
+                Response.Redirect("login.aspx");
+            }
+            else
+            {
+                currentUser = (User)Session["currentUser"];
+                lblDisplayUsername.Text = currentUser.Username;
+            }
+            
         }
             protected void btnTreeMatch_Click(System.Object sender, System.EventArgs e)
         {
@@ -32,9 +40,10 @@ namespace PL_Plantnership
 
         protected void btnBaumVerwalten_Click(System.Object sender, System.EventArgs e)
         {
-            //wenn loggedin == true -> zur Bäume verwalten seite
 
-            //wenn loggedin == false -> zur login seite
+            //geht eh nur wenn user eingelogged
+            Response.Redirect("Verwaltung.aspx");
+
         }
     }
 }
