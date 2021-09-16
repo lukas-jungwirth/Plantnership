@@ -186,12 +186,42 @@ namespace BL_Plantnership
             return new Plant();
         }
 
+        public static List<string> getPriceList(string category)
+        {
+           
+            try
+            {
+                List<string> priceList = new List<string>();
+
+                SqlCommand cmd = new SqlCommand("select aboPrice1, aboPrice2 from Pricing where category = @cat", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("cat", category));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    string aboPrice1 = reader.GetString(0);
+                    string aboPrice2 = reader.GetString(1);
+
+                    priceList.Add(aboPrice1);
+                    priceList.Add(aboPrice2);
+                }
+                return priceList;
+
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public static bool purchasePlant(string userID, string plantID, string aboType)
         {
-            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @ytp)", GetConnection());
+            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", GetConnection());
             cmd.Parameters.Add(new SqlParameter("pid", plantID));
             cmd.Parameters.Add(new SqlParameter("uid", userID));
-            cmd.Parameters.Add(new SqlParameter("ytp", aboType));
+            cmd.Parameters.Add(new SqlParameter("atyp", aboType));
             if(cmd.ExecuteNonQuery() > 0)
             {
                 return (Plant.ChangePlantSellState(plantID, true));
