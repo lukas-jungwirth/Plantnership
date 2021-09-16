@@ -17,19 +17,44 @@
     </header>
 
         <h3> Such dir einen Plantner für die Saison aus: </h3>
-        <div>
+        
             <asp:Repeater ID="repeaterPlantList" runat="server">
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Variety") %>'></asp:Label>
-                        <br />
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
-                        <br />
-                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("District") %>'></asp:Label>
-                        <asp:Button ID="btnDetails" runat="server" Text="Details anzeigen" cssClass="button" OnCommand="Detail_Click" CommandName="DetailClick" CommandArgument='<%# Eval("ID") %>'/>
-                    </ItemTemplate>
+                
+                    <ItemTemplate >
+
+                            <div class="lblunterkat">
+
+                                <div class="lblAlleDrei">
+
+                                <div class="flexBoxlisteBaumUnterkategorie1">
+                                    <h2>Sorte</h2>
+                                    <asp:Label cssClass="lbl1" ID="Label1" runat="server" Text='<%# Eval("Variety") %>'></asp:Label>
+                                </div>
+                                 
+                                <div class="flexBoxlisteBaumUnterkategorie1">
+                                    <h2>VermieterIN</h2>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
+                                </div>
+
+                                <div class="flexBoxlisteBaumUnterkategorie1">
+                                    <h2>PLZ:</h2>
+                                    <asp:Label ID="Label3" runat="server" Text='<%# Eval("District") %>'></asp:Label>
+                                </div>
+
+                                </div>
+                              
+                                
+                                    <asp:Button cssClass="btnUnterseite" ID="btnDetails" runat="server" Text="Details anzeigen" OnCommand="Detail_Click" CommandName="DetailClick" CommandArgument='<%# Eval("ID") %>'/>
+                                
+
+                        </div>
+                            </ItemTemplate>
+                    
                 </asp:Repeater>
-        </div>
+
+        
 
     </form>
+
 </body>
 </html>

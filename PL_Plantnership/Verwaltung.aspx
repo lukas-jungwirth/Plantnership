@@ -10,6 +10,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
+        <header>
+    <asp:Button ID="btnBaumVerwalten" runat="server"  Text="Meine Bäume verwalten" />
+    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
+    </header>
+
         <div class="settingContainer">
             <div class="myTreeToggle">
                 <asp:Button ID="btnMyTreeSite" runat="server" Text="Meine Bäume" CssClass="loginActive loginSiteBtn" OnClick="btnMyTreeSite_Click"/>

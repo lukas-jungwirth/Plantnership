@@ -10,6 +10,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
+        
+    <header>
+    <asp:Button ID="btnBaumVerwalten" runat="server"  Text="Meine Bäume verwalten" />
+    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
+    </header>
+
         <div class="manageWrapper">
             <h1>Baumverwaltung</h1>
             <h2>Baumdaten</h2>
