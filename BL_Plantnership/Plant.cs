@@ -256,8 +256,8 @@ namespace BL_Plantnership
 
         public static bool ChangePlantSellState(string plantID, bool sold)
         {
-            SqlCommand cmd = new SqlCommand("update Plant set sold = @sld where ID = @id ", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("id", plantID));
+            SqlCommand cmd = new SqlCommand("update Plant set sold = @sld where ID = @plID ", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("plID", plantID));
             cmd.Parameters.Add(new SqlParameter("sld", sold));
             return (cmd.ExecuteNonQuery() > 0);
         }//"ChangePlantSellState()"
