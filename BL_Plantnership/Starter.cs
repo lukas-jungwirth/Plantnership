@@ -61,7 +61,7 @@ namespace BL_Plantnership
             try
             {
                 
-                SqlCommand cmd = new SqlCommand("insert into [User] (Id, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
+                SqlCommand cmd = new SqlCommand("insert into [User] (ID, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
                 string ID = Guid.NewGuid().ToString();
                 cmd.Parameters.Add(new SqlParameter("id", ID));
                 cmd.Parameters.Add(new SqlParameter("user", username));
@@ -110,7 +110,7 @@ namespace BL_Plantnership
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("SELECT Id, password FROM [User] WHERE username = @user", Starter.GetConnection());
+                SqlCommand cmd = new SqlCommand("SELECT ID, password FROM [User] WHERE username = @user", Starter.GetConnection());
                 cmd.Parameters.Add(new SqlParameter("user", username));
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -186,12 +186,42 @@ namespace BL_Plantnership
             return new Plant();
         }
 
+        public static List<string> getPriceList(string category)
+        {
+           
+            try
+            {
+                List<string> priceList = new List<string>();
+
+                SqlCommand cmd = new SqlCommand("select aboPrice1, aboPrice2 from Pricing where category = @cat", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("cat", category));
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    string aboPrice1 = reader.GetString(0);
+                    string aboPrice2 = reader.GetString(1);
+
+                    priceList.Add(aboPrice1);
+                    priceList.Add(aboPrice2);
+                }
+                return priceList;
+
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public static bool purchasePlant(string userID, string plantID, string aboType)
         {
-            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @ytp)", GetConnection());
+            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", GetConnection());
             cmd.Parameters.Add(new SqlParameter("pid", plantID));
             cmd.Parameters.Add(new SqlParameter("uid", userID));
-            cmd.Parameters.Add(new SqlParameter("ytp", aboType));
+            cmd.Parameters.Add(new SqlParameter("atyp", aboType));
             if(cmd.ExecuteNonQuery() > 0)
             {
                 return (Plant.ChangePlantSellState(plantID, true));

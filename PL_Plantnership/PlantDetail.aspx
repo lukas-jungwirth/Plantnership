@@ -31,12 +31,8 @@
             <div class="aboWrapper">
                 <h2>Abostufe wählen</h2>
                 <asp:RadioButtonList ID="radioBtnCat" runat="server" AutoPostBack="True" style="margin-right: 0px" Width="176px">
-                    <asp:ListItem Value="Apfel"></asp:ListItem>
-                    <asp:ListItem Value="Birne"></asp:ListItem>
-                    <asp:ListItem Value="Kirsche"></asp:ListItem>
-                    <asp:ListItem Value="Marille"></asp:ListItem>
-                    <asp:ListItem Value="Zwetschke"></asp:ListItem>
-                    <asp:ListItem Value="Pfirsich"></asp:ListItem>
+                    <asp:ListItem Value="basic">Basic</asp:ListItem>
+                    <asp:ListItem Value="premium">Planter+</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
         </div>

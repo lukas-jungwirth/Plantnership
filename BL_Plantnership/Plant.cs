@@ -106,7 +106,7 @@ namespace BL_Plantnership
             if (_ID == "")
             {
                 //if there is no existing element in the database INSERT new
-                string SQL = "insert into Plant (Id, owner, category, variety, age, district, street, houseNumber) values (@plID, @owner, @cat, @var, @age, @dis, @str, @num)";
+                string SQL = "insert into Plant (ID, owner, category, variety, age, district, street, houseNumber) values (@plID, @owner, @cat, @var, @age, @dis, @str, @num)";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
@@ -129,7 +129,7 @@ namespace BL_Plantnership
             else
             {
                 //if there is an existing element UPDATE fields
-                string SQL = "update Plant set category=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where Id = @plID";
+                string SQL = "update Plant set category=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where ID = @plID";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
@@ -281,7 +281,7 @@ namespace BL_Plantnership
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
         internal static Plant Load(string plantID)
         {
-            string SQL = "select id, owner, category, variety, age, district, street, houseNumber, sold from Plant where Id = @id";
+            string SQL = "select ID, owner, category, variety, age, district, street, houseNumber, sold from Plant where ID = @id";
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -311,7 +311,7 @@ namespace BL_Plantnership
         internal static Plants LoadAllFromCategory(string Category)
         {
          
-            SqlCommand cmd = new SqlCommand("select Id, owner, category, variety, age, district, street, houseNumber, sold from Plant where category = @cat and sold = 0", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select ID, owner, category, variety, age, district, street, houseNumber, sold from Plant where category = @cat and sold = 0", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("cat", Category));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
