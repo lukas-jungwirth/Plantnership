@@ -29,7 +29,7 @@
                             <asp:TextBox ID="inputLoginPassword" runat="server"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblFeedbackLogin" runat="server" Text=""></asp:Label>
-                        <asp:Button ID="btnLogin" runat="server" Text="Einloggen" CssClass="button" />
+                        <asp:Button ID="btnLogin" runat="server" Text="Einloggen" CssClass="button" OnClick="btnLogin_Click" />
                     </div>
                 </asp:View>
                 <asp:View ID="viewRegister" runat="server">

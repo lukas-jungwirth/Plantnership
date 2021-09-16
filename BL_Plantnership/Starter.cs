@@ -15,8 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.IO;
-using BCrypt.Net;
-
+using BCryptNet = BCrypt.Net.BCrypt;
+using System.Security.Policy;
 
 namespace BL_Plantnership
 {
@@ -27,44 +27,16 @@ namespace BL_Plantnership
     public static class Starter
     {
 
-        // Hilfsmethode, die eine Verbindung zur DB erzeugt und retourniert.
+        //creates connection to DB
         internal static SqlConnection GetConnection()
         {
+
+            List<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
+            dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
+            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
+            
             try
             {
-                // Hinweis: das @ am Anfang von Strings verhindert das Sonder- und Escapezeichen interpretiert werden.
-
-                //Variante 1: DB File direkt angeben
-                //Vorteil: Man spart sich das Registrieren der DB im SQL Manager
-                //Nachteil: Pfad zur DB hardcoded - sollte besser in Web-Config gemacht werden
-
-                string conString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Lukas\source\repos\Plantnership\DB_Plantnership\Platnership.mdf; Integrated Security = True; Connect Timeout = 30";
-                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\lbschmiedl\Kundenverwaltung2014\DB\KundenDB4.mdf;Integrated Security=True;Connect Timeout=30";
-
-                //Variante 2: wie oben, aber der Pfad wird aus dem absoluten App-Pfad und der relativen Position des DB-Files berechnet.
-                //List <string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
-                //dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
-                //string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
-
-                //Variante 3: DBFile mit SQL Server Manager Express im SQL-Server registrieren und den "Kurznamen aus dem SQL Manager angeben
-                //Vorteil: nur ein logischer Name - Name und Pfad der DB kann verändert werden (SQL Manager)
-                //Nachteil: App kann nicht mit Copy&Paste auf den Zielserver verschoben werden, da DB regstriert werden muss.
-                //string conString = @"Data Source=localhost\SQLEXPRESS;Database=;Integrated Security=true;Integrated Security=True;Connect Timeout=30";
-
-                // weitere Varianten:
-                // man könnte den Conectionstring auch in eine externe Konfigurationsdatei schreioben und von dort auslesen...
-
-
-
-                /*
-                using (SqlConnection con = new SqlConnection(conString))
-                {
-                    con.Open();
-                    Console.WriteLine("ServerVersion: {0}", con.ServerVersion);
-                    Console.WriteLine("State: {0}", con.State);
-                    return con;
-                }
-                */
                 SqlConnection con = new SqlConnection(conString);
                 con.Open();
                 return con;
@@ -83,12 +55,8 @@ namespace BL_Plantnership
         public static int register(string username, string password, string name, string lastname, string mail)
         {
             //check if username already exists
-            //int checkUser = User.CheckUniqueUsername(username);
-            //if (checkUser != 1) return checkUser;
-            
-
-            string hashedPw = BCrypt.Net.BCrypt.HashPassword(password).ToString();
-
+            int checkUser = CheckUniqueUsername(username);
+            if (checkUser != 1) return checkUser;
 
             try
             {
@@ -97,7 +65,7 @@ namespace BL_Plantnership
                 string ID = Guid.NewGuid().ToString();
                 cmd.Parameters.Add(new SqlParameter("id", ID));
                 cmd.Parameters.Add(new SqlParameter("user", username));
-                cmd.Parameters.Add(new SqlParameter("pw", password));
+                cmd.Parameters.Add(new SqlParameter("pw", hashPw(password)));
                 cmd.Parameters.Add(new SqlParameter("name", name));
                 cmd.Parameters.Add(new SqlParameter("lstName", lastname));
                 cmd.Parameters.Add(new SqlParameter("mail", mail));
@@ -114,11 +82,70 @@ namespace BL_Plantnership
             //else return -1;
         }
 
-        //login function return ID of user
-        public static string login(string username, string password)
+        internal static int CheckUniqueUsername(string username)
         {
-            return User.Login(username, password);
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * from [User] WHERE username = @user", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("user", username));
+                SqlDataReader reader = cmd.ExecuteReader();
+                int result = reader.HasRows ? 0 : 1;
+                return result;
+            }
+            catch
+            {
+                return -1;
+            }
+
         }
+
+        public static string hashPw(string pw)
+        {
+            string hashedPw = BCryptNet.HashPassword(pw);
+            return hashedPw;
+        }
+
+        //login function return ID of user
+        public static string Login(string username, string password)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT Id, password FROM [User] WHERE username = @user", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("user", username));
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                string hash = "";
+                string ID = "";
+                    while (reader.Read())
+                    {
+                    ID = reader.GetString(0);
+                    hash = reader.GetString(1);
+                     }
+                    
+                    bool verified = BCryptNet.Verify(password, hash);
+                    if (verified)
+                    {
+                        return ID;
+                    }
+                    else
+                    {
+                        return "error_pw";
+                    }
+
+                }
+                else
+                {
+                    return "error_user";
+                }
+
+            }
+            catch
+            {
+                return "error_db";
+            }
+        }
+
 
         public static User getUserByID(string userID)
         {

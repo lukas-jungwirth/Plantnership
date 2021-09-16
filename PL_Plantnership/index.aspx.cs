@@ -11,8 +11,15 @@ namespace PL_Plantnership
 {
     public partial class Test : System.Web.UI.Page
     {
-       
-        protected void btnTreeMatch_Click(System.Object sender, System.EventArgs e)
+
+        private User currentUser;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            currentUser = (User)Session["currentUser"];
+            lblDisplayUsername.Text = currentUser.Username;
+        }
+            protected void btnTreeMatch_Click(System.Object sender, System.EventArgs e)
         {
             //Baumauswahl wird angezeigt
         }

@@ -38,12 +38,39 @@ namespace PL_Plantnership
             string mail = inputRegMail.Text;
             int feedback = Starter.register(user, pw, name, lstName, mail);
             string feedbackStr;
-            if (feedback == 1) feedbackStr = "Erfolgreich registriert";
+            if (feedback == 1) {
+                MultViewLogin.ActiveViewIndex = 0;
+                btnLoginSite.CssClass = "loginActive loginSiteBtn";
+                btnRegisterSite.CssClass = "loginSiteBtn";
+                feedbackStr = "erfolgreich";
+                lblFeedbackLogin.Text = "Registrierung war erfolgreich";
+            }
             else if (feedback == 0) feedbackStr = "Benutzername bereits vorhanden";
             else feedbackStr = "Ein Fehler ist aufgetreten!";
 
             lblFeedbackReg.Text = feedbackStr;
 
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string loginUser = inputLoginUsername.Text;
+            string loginPw = inputLoginPassword.Text;
+
+            string feedback = Starter.Login(loginUser, loginPw);
+            string dispFdbk;
+            if (feedback == "error_db") dispFdbk = "Leider ist ein Fehler in der Datenbankverbindung aufgetreten!";
+            else if (feedback == "error_user") dispFdbk = "Der eingegebene Username ist nicht vorhanden!";
+            else if (feedback == "error_pw") dispFdbk = "Passwort falsch!";
+            else
+            {
+                dispFdbk = "Login erfolgreich";
+                // user to session
+                Session["currentUser"] = Starter.getUserByID(feedback);
+                Response.Redirect("index.aspx"); 
+                
+            }
+            lblFeedbackLogin.Text = dispFdbk;
         }
     }
 }

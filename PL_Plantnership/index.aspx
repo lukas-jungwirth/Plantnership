@@ -14,7 +14,7 @@
     <header>
     
     <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
-    <asp:Button ID="btnLoginIndex" runat="server" OnClick="btnLogin_Click" Text="Login" />
+    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
     </header>
 
        <h1 class="headIndex">PlantnerSHIP</h1> 

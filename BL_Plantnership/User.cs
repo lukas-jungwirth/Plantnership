@@ -12,6 +12,7 @@ namespace BL_Plantnership
     public class User
     {
         private string _ID = "";
+        private string _Username;
         private string _Name;
         private string _LastName;
         private string _Mail;
@@ -27,11 +28,25 @@ namespace BL_Plantnership
             internal set { _ID = value; }
         }
 
-        public string Name { get; set; }
+        public string Username
+        {
+            get { return _Username; }
+            set { _Username = value;  }
+        }
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value;  }
+        }
+        public string LastName {
+            get { return _LastName; }
+            set { _LastName = value; }
+        }
 
-        public string LastName { get; set; }
-
-        public string Mail { get; set; }
+        public string Mail {
+            get { return _Mail; }
+            set { _Mail = value; }
+        }
 
         public string Rank
         {
@@ -110,7 +125,7 @@ namespace BL_Plantnership
             else
             {
                 //if there is an existing element UPDATE fields
-                string SQL = "update Plant set name=@name, lastName=@lstName, mail=@mail  where ID = @id";
+                string SQL = "update Plant set name=@name, lastName=@lstName, mail=@mail where ID = @id";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
@@ -128,101 +143,24 @@ namespace BL_Plantnership
         // Hilfsfunktion für die beiden unteren Methoden
 
 
-        internal static int CheckUniqueUsername(string username)
-        {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("select username from Kunden where username = @user", Starter.GetConnection());
-                cmd.Parameters.Add(new SqlParameter("user", username));
-                SqlDataReader reader = cmd.ExecuteReader();
-                int result = reader.HasRows ? 1 : 0;
-                return result;
-            }
-            catch
-            {
-                return -1;
-            }
-            
-        }
-
-        //entweder diese static register function oder als objektbasierte wie load
-        internal static bool register(string username, string password, string name, string lastname, string mail)
-        {
-            //string hashedPw = BCrypt.Net.BCrypt.HashPassword(password);
-            
-            try
-            {
-
-                SqlCommand cmd = new SqlCommand("insert into User (Id, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
-                string ID = Guid.NewGuid().ToString();
-                cmd.Parameters.Add(new SqlParameter("id", ID));
-                cmd.Parameters.Add(new SqlParameter("user", username));
-                cmd.Parameters.Add(new SqlParameter("pw", password));
-                cmd.Parameters.Add(new SqlParameter("name", name));
-                cmd.Parameters.Add(new SqlParameter("lstName", lastname));
-                cmd.Parameters.Add(new SqlParameter("mail", mail));
-                return (cmd.ExecuteNonQuery() > 0);
-            }
-            catch
-            {
-                return false;
-            }
-
-        }
-
-
-        internal static string Login(string username, string password)
-        {
-            try
-            {
-                SqlCommand cmdName = new SqlCommand("select password, ID from Kunden where username = @user", Starter.GetConnection());
-                cmdName.Parameters.Add(new SqlParameter("user", username));
-                SqlDataReader reader = cmdName.ExecuteReader();           
-                if (reader.HasRows)
-                {
-                    //if there is a user object with the insert username check password 
-                    reader.Read();
-                    string hash = reader.GetString(0);
-                    string ID = reader.GetString(1);
-
-                    bool verified = BCrypt.Net.BCrypt.Verify(password, hash);
-                    if (verified)
-                    {
-                        return ID;
-                    }
-                    else
-                    {
-                        return "error_pw";
-                    }
-                    
-                }
-                else
-                {
-                    return "error_user";
-                }
-                
-            }
-            catch
-            {
-                return "error_db";
-            }
-        }
-
-
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
-        internal static User Load(string id)
+        internal static User Load(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select ID, name, lastName, mail from Kunden where ID = @id" , Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("id", id));
+            SqlCommand cmd = new SqlCommand("select Id, username, name, lastName, mail from [User] where Id = @uid", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("uid", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
-                reader.Read(); //setzt den Reader auf den ersten / nächsten DS
                 User user = new User();
-                user.ID = reader.GetString(0);
-                user.Name = reader.GetString(1);
-                user.LastName = reader.GetString(2);
-                user.Mail = reader.GetString(3);
+                while (reader.Read())
+                {
+                    user.ID = reader.GetString(0);
+                    user.Username = reader.GetString(1);
+                    user.Name = reader.GetString(2);
+                    user.LastName = reader.GetString(3);
+                    user.LastName = reader.GetString(3);
+                    user.Mail = reader.GetString(4);
+                }
                 return user;
             }
             else
