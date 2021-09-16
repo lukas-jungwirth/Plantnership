@@ -19,11 +19,12 @@
                 <asp:View ID="viewMyTrees" runat="server">
                    <asp:Repeater ID="Repeater1" runat="server">
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Variety") %>'></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Category") %>'></asp:Label>
                         <br />
-                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Category") %>'></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Variety") %>'></asp:Label>
                         <br />
                         <asp:Label ID="Label3" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
+                        <asp:Button ID="Button1" runat="server" Text="Details ändern" cssClass="button" OnCommand="Edit_Click" CommandName="EditClick" CommandArgument='<%# Eval("ID") %>'/>
                     </ItemTemplate>
                 </asp:Repeater>
                 </asp:View>

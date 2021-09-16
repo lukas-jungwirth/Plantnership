@@ -24,16 +24,16 @@
 
        <div class="treeCat">
 
-        <asp:ImageButton ID="Image1" runat="server" AlternateText="Apfelbaum" ImageUrl="~/Fotos/Apfelbaum-titelbild-für-artikel-1.jpg" height="300px" width="300px"/>
+        <asp:ImageButton ID="imgBtnApfel" runat="server" AlternateText="Apfelbaum" ImageUrl="~/Fotos/Apfelbaum-titelbild-für-artikel-1.jpg" height="300px" width="300px" OnClick="imgBtnApfel_Click"/>
 
-        <asp:ImageButton ID="Image2" runat="server" AlternateText="Birnbaum" ImageUrl="~/Fotos/Birnbaum-Martina-Berg-Fotoliaid188344.jpg" height="300px" width="300px"/>
-        <asp:ImageButton ID="Image3" runat="server" AlternateText="Kirschbaum" ImageUrl="~/Fotos/Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" height="300px" width="300px" />
+        <asp:ImageButton ID="imgBtnBirne" runat="server" AlternateText="Birnbaum" ImageUrl="~/Fotos/Birnbaum-Martina-Berg-Fotoliaid188344.jpg" height="300px" width="300px"/>
+        <asp:ImageButton ID="imgBtnKirsche" runat="server" AlternateText="Kirschbaum" ImageUrl="~/Fotos/Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" height="300px" width="300px" />
        </div>
 
        <div class="treeCat">
-        <asp:ImageButton ID="Image4" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Fotos/Marillen.jpg" height="300px" width="300px"/>
-        <asp:ImageButton ID="Image5" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/Fotos/1-pfirsichbaum-1176136976.jpg" height="300px" width="300px"/>
-        <asp:ImageButton ID="Image6" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" height="300px" width="300px" />
+        <asp:ImageButton ID="imgBtnMarille" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Fotos/Marillen.jpg" height="300px" width="300px"/>
+        <asp:ImageButton ID="imgBtnPfirsich" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/Fotos/1-pfirsichbaum-1176136976.jpg" height="300px" width="300px"/>
+        <asp:ImageButton ID="imgBtnZwetschke" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" height="300px" width="300px" />
            
        </div>
 

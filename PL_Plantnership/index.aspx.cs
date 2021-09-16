@@ -45,5 +45,11 @@ namespace PL_Plantnership
             Response.Redirect("Verwaltung.aspx");
 
         }
+
+        protected void imgBtnApfel_Click(object sender, ImageClickEventArgs e)
+        {
+            Session["category"] = "Apfel";
+            Response.Redirect("ObstBaumUnterKategorie.aspx");
+        }
     }
 }

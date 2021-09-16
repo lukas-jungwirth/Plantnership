@@ -19,34 +19,30 @@ namespace PL_Plantnership
             {
                 Response.Redirect("login.aspx");
             }
-            else
-            {
-                currentUser = (User)Session["currentUser"];
-                lblProfileUsername.Text = currentUser.Username;
-                lblProfileName.Text = currentUser.Name;
-                lblProfileLstName.Text = currentUser.LastName;
-                lblProfileMail.Text = currentUser.Mail;
 
-
-                myTrees = Starter.getPlantsByUsername(currentUser.Username);
-                Repeater1.DataSource = myTrees;
-                Repeater1.DataBind();
-                //lblTestOut.Text = myTrees[0].Variety;
 
                 if (!IsPostBack)
                 //if page is rendered the first time
                 {
-                    //myTrees = Starter.getKunden(); //hier stecken alle Kunden als einzelne Objekte drin!
-                    //Session["alleKunden"] = alleKunden; // die heb ich mir in der Session auf
-                    //GVKunden.DataSource = alleKunden;
-                    //GVKunden.DataBind(); //dadurch wirds angezeigt
+
+                    currentUser = (User)Session["currentUser"];
+                    myTrees = Starter.getPlantsByUsername(currentUser.Username);
+                    Repeater1.DataSource = myTrees;
+                    Repeater1.DataBind();
+
+                    lblProfileUsername.Text = currentUser.Username;
+                    lblProfileName.Text = currentUser.Name;
+                    lblProfileLstName.Text = currentUser.LastName;
+                    lblProfileMail.Text = currentUser.Mail;
+
                 }
                 else
                 {
-                    
-                    //myTrees = (Plants)Session["alleKunden"];
+
+                    myTrees = (Plants)Session["myTrees"];
+                    currentUser = (User)Session["currentUser"];
                 }
-            }
+            
         }
 
         protected void btnMyTreeSite_Click(object sender, EventArgs e)
@@ -69,6 +65,20 @@ namespace PL_Plantnership
             //empty ID -> new plant object
             Session["plantID"] = "";
             Response.Redirect("manageTree.aspx");
+        }
+
+        protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
+        }
+
+        protected void Edit_Click(object sender, CommandEventArgs e)
+        {
+            if(e.CommandName == "EditClick")
+            {
+                Session["plantID"] = e.CommandArgument; 
+                Response.Redirect("manageTree.aspx");
+            }
         }
     }
 }

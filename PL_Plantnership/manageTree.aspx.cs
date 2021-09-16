@@ -27,7 +27,7 @@ namespace PL_Plantnership
 
             if (!IsPostBack)
             {
-                currentID = (string)Session["ID"]; //wurde beim Aufruf übertragen
+                currentID = (string)Session["plantID"]; //wurde beim Aufruf übertragen
                 if (currentID != "")
                 {
                     //Objekt laden und Werte setzen

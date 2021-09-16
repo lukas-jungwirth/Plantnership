@@ -129,10 +129,11 @@ namespace BL_Plantnership
             else
             {
                 //if there is an existing element UPDATE fields
-                string SQL = "update Plant set category=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where Id = @id";
+                string SQL = "update Plant set category=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where Id = @plID";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
+                cmd.Parameters.Add(new SqlParameter("plID", _ID));
                 cmd.Parameters.Add(new SqlParameter("cat", Category));
                 cmd.Parameters.Add(new SqlParameter("vari", Variety));
                 cmd.Parameters.Add(new SqlParameter("age", Age));
@@ -280,7 +281,7 @@ namespace BL_Plantnership
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
         internal static Plant Load(string plantID)
         {
-            string SQL = "select id, owner, category, variety, age, district, street, houseNumber, sold from Plant where ID = @id and category = @cat";
+            string SQL = "select id, owner, category, variety, age, district, street, houseNumber, sold from Plant where Id = @id";
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -310,7 +311,7 @@ namespace BL_Plantnership
         internal static Plants LoadAllFromCategory(string Category)
         {
          
-            SqlCommand cmd = new SqlCommand("select Id, owner, category, variety, age, district, street, houseNumber, sold from User where category = @cat and sold = 0", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select Id, owner, category, variety, age, district, street, houseNumber, sold from Plant where category = @cat and sold = 0", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("cat", Category));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
