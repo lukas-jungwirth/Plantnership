@@ -81,14 +81,10 @@ namespace PL_Plantnership
             }
         }
 
-        protected void btnLogout_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnHome1_Click(object sender, EventArgs e)
+        protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
         }
+
     }
 }

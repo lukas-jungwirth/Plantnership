@@ -38,7 +38,6 @@ namespace PL_Plantnership
             }
         }
 
-
         protected void Detail_Click(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "DetailClick")
@@ -48,9 +47,16 @@ namespace PL_Plantnership
             }
         }
 
-        protected void btnHome1_Click(object sender, EventArgs e)
+        protected void btnBaumVerwalten_Click(object sender, EventArgs e)
+        {
+            //geht eh nur wenn user eingelogged
+            Response.Redirect("Verwaltung.aspx");
+        }
+
+        protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
         }
     }
+    
 }

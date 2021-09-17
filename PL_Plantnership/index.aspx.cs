@@ -53,5 +53,40 @@ namespace PL_Plantnership
             Session["category"] = "Apfel";
             Response.Redirect("ObstBaumUnterKategorie.aspx");
         }
+
+        protected void imgBtnBirne_Click(object sender, ImageClickEventArgs e)
+        {
+            Session["category"] = "Birne";
+            Response.Redirect("ObstBaumUnterKategorie.aspx");
+        }
+
+        protected void imgBtnKirsche_Click(object sender, ImageClickEventArgs e)
+        {
+            Session["category"] = "Kirsche";
+            Response.Redirect("ObstBaumUnterKategorie.aspx");
+        }
+
+        protected void imgBtnMarille_Click(object sender, ImageClickEventArgs e)
+        {
+            Session["category"] = "Marille";
+            Response.Redirect("ObstBaumUnterKategorie.aspx");
+        }
+
+        protected void imgBtnPfirsich_Click(object sender, ImageClickEventArgs e)
+        {
+            Session["category"] = "Pfirsich";
+            Response.Redirect("ObstBaumUnterKategorie.aspx");
+        }
+
+        protected void imgBtnZwetschke_Click(object sender, ImageClickEventArgs e)
+        {
+            Session["category"] = "Zwetschke";
+            Response.Redirect("ObstBaumUnterKategorie.aspx");
+        }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 }

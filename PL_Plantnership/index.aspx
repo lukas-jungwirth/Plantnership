@@ -12,16 +12,9 @@
    <form id="form2" runat="server">
 
     <header>
-        <div class="headerLeft">
-            <asp:Label ID="btnHome" runat="server" Text="">Startseite</asp:Label>
-        </div>
-        <div class="headerCenter">
-                <p><span>Willkommen zurück </span><asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label></p>
-        </div>
-        <div class="headerRight">
-                <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
-                <asp:Button ID="btnLogout" runat="server" OnClick="btnBaumVerwalten_Click" Text="Logout" />
-        </div>
+    <asp:Button ID="btnHome" runat="server" OnClick="btnHome_Click" Text="Startseite" />
+    <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
+    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
     </header>
 
        <h1 class="headIndex">PlantnerSHIP</h1> 
@@ -33,14 +26,14 @@
 
         <asp:ImageButton ID="imgBtnApfel" runat="server" AlternateText="Apfelbaum" ImageUrl="~/Fotos/Apfelbaum-titelbild-für-artikel-1.jpg" height="300px" width="300px" OnClick="imgBtnApfel_Click"/>
 
-        <asp:ImageButton ID="imgBtnBirne" runat="server" AlternateText="Birnbaum" ImageUrl="~/Fotos/Birnbaum-Martina-Berg-Fotoliaid188344.jpg" height="300px" width="300px"/>
-        <asp:ImageButton ID="imgBtnKirsche" runat="server" AlternateText="Kirschbaum" ImageUrl="~/Fotos/Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" height="300px" width="300px" />
+        <asp:ImageButton ID="imgBtnBirne" runat="server" AlternateText="Birnbaum" ImageUrl="~/Fotos/Birnbaum-Martina-Berg-Fotoliaid188344.jpg" height="300px" width="300px" OnClick="imgBtnBirne_Click"/>
+        <asp:ImageButton ID="imgBtnKirsche" runat="server" AlternateText="Kirschbaum" ImageUrl="~/Fotos/Kirschbaum-Branko-Srot-Fotolia_161189688.jpg" height="300px" width="300px" OnClick="imgBtnKirsche_Click" />
        </div>
 
        <div class="treeCat">
-        <asp:ImageButton ID="imgBtnMarille" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Fotos/Marillen.jpg" height="300px" width="300px"/>
-        <asp:ImageButton ID="imgBtnPfirsich" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/Fotos/1-pfirsichbaum-1176136976.jpg" height="300px" width="300px"/>
-        <asp:ImageButton ID="imgBtnZwetschke" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" height="300px" width="300px" />
+        <asp:ImageButton ID="imgBtnMarille" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Fotos/Marillen.jpg" height="300px" width="300px" OnClick="imgBtnMarille_Click"/>
+        <asp:ImageButton ID="imgBtnPfirsich" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/Fotos/1-pfirsichbaum-1176136976.jpg" height="300px" width="300px" OnClick="imgBtnPfirsich_Click"/>
+        <asp:ImageButton ID="imgBtnZwetschke" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" height="300px" width="300px" OnClick="imgBtnZwetschke_Click" />
            
        </div>
 

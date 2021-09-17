@@ -13,7 +13,9 @@
 
         
     <header>
+    <asp:Button ID="btnHome" runat="server"  Text="Startseite" OnClick="btnHome_Click" />
 
+    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
     </header>
 
         <div class="manageWrapper">
