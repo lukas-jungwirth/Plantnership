@@ -12,9 +12,16 @@
    <form id="form2" runat="server">
 
     <header>
-    
-    <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
-    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
+        <div class="headerLeft">
+            <asp:Label ID="btnHome" runat="server" Text="">Startseite</asp:Label>
+        </div>
+        <div class="headerCenter">
+                <p><span>Willkommen zurück </span><asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label></p>
+        </div>
+        <div class="headerRight">
+                <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
+                <asp:Button ID="btnLogout" runat="server" OnClick="btnBaumVerwalten_Click" Text="Logout" />
+        </div>
     </header>
 
        <h1 class="headIndex">PlantnerSHIP</h1> 

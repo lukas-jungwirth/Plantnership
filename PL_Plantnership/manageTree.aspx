@@ -13,8 +13,7 @@
 
         
     <header>
-    <asp:Button ID="btnBaumVerwalten" runat="server"  Text="Meine Bäume verwalten" />
-    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
+
     </header>
 
         <div class="manageWrapper">

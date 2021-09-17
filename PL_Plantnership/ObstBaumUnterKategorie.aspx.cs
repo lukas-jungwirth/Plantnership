@@ -38,6 +38,7 @@ namespace PL_Plantnership
             }
         }
 
+
         protected void Detail_Click(object sender, CommandEventArgs e)
         {
             if (e.CommandName == "DetailClick")
@@ -45,6 +46,11 @@ namespace PL_Plantnership
                 Session["plantID"] = e.CommandArgument;
                 Response.Redirect("PlantDetail.aspx");
             }
+        }
+
+        protected void btnHome1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
         }
     }
 }

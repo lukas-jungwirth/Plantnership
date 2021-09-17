@@ -27,7 +27,7 @@
                         </div>
                         <div class="inputWrapper">
                             <asp:Label ID="lblLoginPassword" runat="server">Passwort</asp:Label>
-                            <asp:TextBox ID="inputLoginPassword" runat="server"></asp:TextBox>
+                            <asp:TextBox type="password" ID="inputLoginPassword" runat="server"></asp:TextBox>
                         </div>
                         <asp:Label ID="lblFeedbackLogin" runat="server" Text=""></asp:Label>
                         <asp:Button ID="btnLogin" runat="server" Text="Einloggen" CssClass="button" OnClick="btnLogin_Click" />

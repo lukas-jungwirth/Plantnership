@@ -11,6 +11,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <header>
+            <div class="headerLeft">
+                <asp:Label ID="btnHome" runat="server" Text="">Startseite</asp:Label>
+            </div>
+            <div class="headerRight">
+                <asp:Button ID="btnBaumVerwalten" runat="server" Text="Meine Bäume verwalten" />
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" />
+            </div>
+        </header>
         <div class="detailContainer">
             <h1>
                 <asp:Label ID="lblTitle" runat="server" Text="Label"></asp:Label>

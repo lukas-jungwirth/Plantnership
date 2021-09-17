@@ -10,24 +10,60 @@ input{
     padding: 5px 10px;
 }
 
-
-/*---INDEX/HOMEPAGE---*/
+/*---HEADER---*/
 
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 18px;
     background-color: #2d6a4f;
+}
+.headerLeft, .headerRight{
+    width: 40%;
+}
+.headerRight {
     display: flex;
     justify-content: right;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    
+    align-items: center;
 }
 
+.headerLeft, .headerCenter {
+    color: #f8f9fa;
+}
+
+#btnHome{
+    cursor: pointer;
+}
+
+header input[type=submit]  {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+#btnHome1{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+#btnBaumVerwalten {
+    color: #282828;
+    background: #b5e48c;
+}
+#btnLogout {
+    background-color: #dee2e6;
+    margin-left: 12px;
+}
+    
+
+/*---INDEX/HOMEPAGE---*/
 .headIndex {
     text-align: center;
     margin-top: 70px;
     margin-bottom: 70px;
     font-size: 70px;
-    
 }
 
 .categoryTree {
@@ -77,13 +113,6 @@ h3{
     border: none;
 }
 
-#btnBaumVerwalten {
-    border: none;
-    border-radius: 25px;
-    background-color: #40916c;
-    padding: 15px;
-    color: white;
-}
 
 .treeMatchIndex {
     display: flex;
