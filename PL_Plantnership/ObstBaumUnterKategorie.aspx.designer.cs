@@ -42,13 +42,13 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.Button btnBaumVerwalten;
 
         /// <summary>
-        /// lblDisplayUsername-Steuerelement
+        /// btnLogout-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDisplayUsername;
+        protected global::System.Web.UI.WebControls.Button btnLogout;
 
         /// <summary>
         /// repeaterPlantList-Steuerelement

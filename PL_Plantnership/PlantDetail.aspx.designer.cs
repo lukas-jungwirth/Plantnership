@@ -30,25 +30,25 @@ namespace PL_Plantnership
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label btnHome;
+        protected global::System.Web.UI.WebControls.Button btnHome;
 
         /// <summary>
-        /// btnBaumVerwalten-Steuerelement
+        /// Button2-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBaumVerwalten;
+        protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// btnLogout-Steuerelement
+        /// Button3-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogout;
+        protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
         /// lblTitle-Steuerelement

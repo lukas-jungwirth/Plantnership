@@ -10,24 +10,63 @@ input{
     padding: 5px 10px;
 }
 
-
-/*---INDEX/HOMEPAGE---*/
+/*---HEADER---*/
 
 header {
-    background-color: #2d6a4f;
     display: flex;
-    justify-content: center;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 18px;
+    background-color: #2d6a4f;
+}
+.headerLeft, .headerRight{
+    width: 40%;
+}
+.headerRight {
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
+.headerLeft, .headerCenter {
+    color: #f8f9fa;
+}
+
+#btnHome {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+header input[type=submit]  {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
+#btnHome1{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+
+#btnBaumVerwalten {
+    color: #282828;
+    background: #b5e48c;
+}
+#btnLogout {
+    background-color: #dee2e6;
+    margin-left: 12px;
+}
+    
+
+/*---INDEX/HOMEPAGE---*/
 .headIndex {
     text-align: center;
     margin-top: 70px;
     margin-bottom: 70px;
     font-size: 70px;
-    
 }
 
 .categoryTree {
@@ -77,32 +116,6 @@ h3{
     border: none;
 }
 
-
-#btnBaumVerwalten {
-    border: none;
-    border-radius: 25px;
-    background-color: #40916c;
-    padding: 15px;
-    color: white;
-    margin-left: 58%;
-}
-
-#btnHome {
-    border: none;
-    border-radius: 25px;
-    background-color: #40916c;
-    padding: 15px;
-    color: white;
-    margin-right: 30px;
-}
-
-#lblDisplayUsername {
-    display: flex;
-    color: white;
-    align-items: center;
-    margin-left: 30px;
-    font-size: 20px;
-}
 
 .treeMatchIndex {
     display: flex;
@@ -181,13 +194,13 @@ footer {
             border-bottom: 2px solid #2d6a4f;
         }
 
-.button {
-    border: none;
-    border-radius: 25px;
-    background-color: #40916c;
-    padding: 15px;
-    color: white;
-}
+        .button {
+            background-color: #2d6a4f;
+            color: #fff;
+            border-radius: 8px;
+            line-height: 27px;
+            cursor: pointer;
+        }
 #btnLogin, #btnReg {
     margin-top: 25px;
     
@@ -218,75 +231,29 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     padding: 2.5%;
-
 }
 .myTreeToggle{
     width: 70%;
 }
 .profilInfoWrapper{
     width: 25%;
-
-    border-left: 5px solid darkred;
-    padding-left: 10px;
+    border: 2px solid darkred;
+    padding: 0px;
     margin: 0px;
-
 }
-
-.profileRow{
-    padding-bottom: 5px;
-}
-
-.h2Profil{
-
-}
-
-.verwaltungFlex {
-
-    display: flex;
-    flex-direction: row;
-
-    text-align: left;
-
-    justify-content: center;
-}
-
-.flexBoxlisteBaumUnterkategorie2 {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-    width: 500px;
-
-
-}
-
-.vierbaume {
- 
-    margin-right: 26%;
-}
-
-.lblAlleDreiVerwaltung {
-    display: flex;
-    width: 900px;
-    text-align: center;
-    margin: 20px;
-    border-top: solid;
-    padding: 15px;
-    
-}
-
-.buttonEdit {
-    display: flex;
-    margin: 30px;
-    border: none;
-    border-radius: 25px;
-    background-color: #40916c;
-    padding: 15px;
-    color: white;
-}
+    .profilInfoWrapper h2 {
+        background-color: darkred;
+        margin: 0px;
+        padding: 4px 8px;
+        color: #fff;
+    }
+    .profileRow{
+        padding: 5px 0;
+    }
 
 /*---DETAIL PAGE---*/
 .detailContainer {
-    width: 90%;
+    width:90%;
     max-width: 700px;
     padding: 50px;
     box-shadow: 0px -1px 16px rgba(0, 0, 0, .16);
@@ -349,7 +316,6 @@ footer {
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
-    width: 150px;
 }
 
 .btnUnterseite {

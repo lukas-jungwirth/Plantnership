@@ -4,22 +4,25 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <link rel="Stylesheet" href="style.css" type="text/css" />
-    
+
 </head>
 <body>
     <form id="form1" runat="server">
+
         <header>
             <div class="headerLeft">
-                <asp:Label ID="btnHome" runat="server" Text="">Startseite</asp:Label>
+                <asp:Button ID="btnHome" runat="server" Text="Startseite" OnClick="btnHome_Click" />
             </div>
             <div class="headerRight">
-                <asp:Button ID="btnBaumVerwalten" runat="server" Text="Meine Bäume verwalten" />
-                <asp:Button ID="btnLogout" runat="server" Text="Logout" />
+                <asp:Button ID="Button2" runat="server" Text="Meine Bäume verwalten" />
+                <asp:Button ID="Button3" runat="server" Text="Logout" />
             </div>
         </header>
+
+
         <div class="detailContainer">
             <h1>
                 <asp:Label ID="lblTitle" runat="server" Text="Label"></asp:Label>
@@ -39,7 +42,7 @@
             </div>
             <div class="aboWrapper">
                 <h2>Abostufe wählen</h2>
-                <asp:RadioButtonList ID="radioBtnCat" runat="server" AutoPostBack="True" style="margin-right: 0px" Width="176px">
+                <asp:RadioButtonList ID="radioBtnCat" runat="server" AutoPostBack="True" Style="margin-right: 0px" Width="176px">
                     <asp:ListItem Value="basic">Basic</asp:ListItem>
                     <asp:ListItem Value="premium">Planter+</asp:ListItem>
                 </asp:RadioButtonList>

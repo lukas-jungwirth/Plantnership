@@ -38,5 +38,10 @@ namespace PL_Plantnership
                 currentID = (string)Session["plantID"];
             }
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 }
