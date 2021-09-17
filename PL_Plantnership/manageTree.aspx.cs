@@ -105,5 +105,10 @@ namespace PL_Plantnership
         {
             Response.Redirect("Verwaltung.aspx");
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
 }

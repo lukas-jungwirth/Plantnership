@@ -24,6 +24,15 @@ namespace PL_Plantnership
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// btnHome-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnHome;
+
+        /// <summary>
         /// btnBaumVerwalten-Steuerelement
         /// </summary>
         /// <remarks>
@@ -33,13 +42,13 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.Button btnBaumVerwalten;
 
         /// <summary>
-        /// btnLoginIndex-Steuerelement
+        /// lblDisplayUsername-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLoginIndex;
+        protected global::System.Web.UI.WebControls.Label lblDisplayUsername;
 
         /// <summary>
         /// repeaterPlantList-Steuerelement

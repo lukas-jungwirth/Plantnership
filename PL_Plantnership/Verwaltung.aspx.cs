@@ -80,5 +80,11 @@ namespace PL_Plantnership
                 Response.Redirect("manageTree.aspx");
             }
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
+
     }
 }

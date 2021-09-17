@@ -24,6 +24,15 @@ namespace PL_Plantnership
         protected global::System.Web.UI.HtmlControls.HtmlForm form2;
 
         /// <summary>
+        /// btnHome-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnHome;
+
+        /// <summary>
         /// btnBaumVerwalten-Steuerelement
         /// </summary>
         /// <remarks>

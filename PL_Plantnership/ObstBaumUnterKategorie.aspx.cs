@@ -46,5 +46,17 @@ namespace PL_Plantnership
                 Response.Redirect("PlantDetail.aspx");
             }
         }
+
+        protected void btnBaumVerwalten_Click(object sender, EventArgs e)
+        {
+            //geht eh nur wenn user eingelogged
+            Response.Redirect("Verwaltung.aspx");
+        }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
     }
+    
 }

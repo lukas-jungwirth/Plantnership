@@ -10,13 +10,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
     
-    <asp:Button ID="btnBaumVerwalten" runat="server"  Text="Meine Bäume verwalten" />
-    <asp:Button ID="btnLoginIndex" runat="server"  Text="Login" />
-    </header>
+    <header>
+    <asp:Button ID="btnHome" runat="server" Text="Startseite" OnClick="btnHome_Click" />
+    <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
+    <asp:Label ID="lblDisplayUsername" runat="server" Text=""></asp:Label>
 
-        <h3> Such dir einen Plantner für die Saison aus: </h3>
+    </header>&nbsp;<h3> Such dir einen Plantner für die Saison aus: </h3>
         
             <asp:Repeater ID="repeaterPlantList" runat="server">
                 
