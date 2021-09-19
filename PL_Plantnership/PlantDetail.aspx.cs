@@ -29,6 +29,8 @@ namespace PL_Plantnership
                 lblInfoVariety.Text = currentPlant.Variety;
                 lblInfoAge.Text = currentPlant.Age;
                 lblInfoDistrict.Text = currentPlant.District;
+                lblAmountType1.Text = currentPlant.getAmountOfAbos(1).ToString();
+                lblAmountType2.Text = currentPlant.getAmountOfAbos(2).ToString();
 
             }
             else
