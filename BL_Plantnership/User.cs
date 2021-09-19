@@ -140,7 +140,7 @@ namespace BL_Plantnership
 
         public Plants getUserPlants()
         {
-            return Plant.LoadAllFromUser(_ID);
+            return Plant.LoadAllFromUser(ID);
         }
 
         public Plants loadRentedPlants()
@@ -154,11 +154,10 @@ namespace BL_Plantnership
             if (aboType == 1) price = cat.AboPrice1;
             else if (aboType == 2) price = cat.AboPrice2;
 
-            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType, price) values (@pid, @uid, @atyp, @price)", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("pid", plant.ID));
             cmd.Parameters.Add(new SqlParameter("uid", _ID));
             cmd.Parameters.Add(new SqlParameter("atyp", aboType));
-            cmd.Parameters.Add(new SqlParameter("price", price));
             if (cmd.ExecuteNonQuery() > 0)
             {
                 return true;

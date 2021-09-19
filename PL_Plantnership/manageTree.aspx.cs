@@ -36,7 +36,7 @@ namespace PL_Plantnership
                     if (currentPlant != null)
                     {
                         //kopiere die Properties des Objekts in die Felder der Maske
-                        radioBtnCat.SelectedValue = currentPlant.Category;
+                        radioBtnCat.SelectedValue = currentPlant.CategoryID;
                         txtVariety.Text = currentPlant.Variety;
                         txtAge.Text = currentPlant.Age;
                         txtDistrict.Text = currentPlant.District;
@@ -73,7 +73,7 @@ namespace PL_Plantnership
             if (currentPlant != null)
             {
                 //Feldwerte in das Objekt laden
-                currentPlant.Category = radioBtnCat.SelectedValue;
+                currentPlant.CategoryID = radioBtnCat.SelectedValue;
                 currentPlant.Variety = txtVariety.Text;
                 currentPlant.Age = txtAge.Text;
                 currentPlant.District = txtDistrict.Text;

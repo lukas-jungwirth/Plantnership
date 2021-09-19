@@ -290,13 +290,13 @@ namespace BL_Plantnership
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
         internal static Plant Load(string plantID)
         {
-            string SQL = "select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID  where pl.ID = @id";
+            string SQL = "select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID  where p.ID = @plId";
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
-                cmd.Parameters.Add(new SqlParameter("id", plantID));
+                cmd.Parameters.Add(new SqlParameter("plId", plantID));
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -320,7 +320,7 @@ namespace BL_Plantnership
         internal static Plants LoadAllFromCategory(string catID)
         {
          
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where pl.categoryID = @cat", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where p.categoryID = @cat", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("cat", catID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
@@ -334,7 +334,7 @@ namespace BL_Plantnership
 
         internal static Plants LoadAllFromUser(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where pl.userID = @uID", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where p.userID = @uID", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("uID", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();

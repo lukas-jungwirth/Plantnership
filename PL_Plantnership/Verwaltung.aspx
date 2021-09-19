@@ -74,7 +74,7 @@
 
                                     <div class="flexBoxlisteBaumUnterkategorie2">
                                         <h2>Baumart</h2>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("Category") %>'></asp:Label>
+                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("CategoryName") %>'></asp:Label>
                                     </div>
 
                                     <div class="flexBoxlisteBaumUnterkategorie2">
@@ -84,7 +84,7 @@
 
                                     <div class="flexBoxlisteBaumUnterkategorie2">
                                         <h2>Vermieterin</h2>
-                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
+                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Age") %>'></asp:Label>
                                     </div>
 
 
