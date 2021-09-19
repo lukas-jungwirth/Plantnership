@@ -12,6 +12,7 @@ namespace BL_Plantnership
     {
         //init
         private string _ID = "";
+        private string _UserID;
         private string _Owner;
         private string _CategoryID;
         private string _CategoryName;
@@ -31,6 +32,11 @@ namespace BL_Plantnership
         {
             get { return _ID; }
             internal set { _ID = value; }
+        }
+        public string UserID
+        {
+            get { return _UserID; }
+            set { _UserID = value; }
         }
         public string Owner
         {
@@ -121,7 +127,7 @@ namespace BL_Plantnership
             if (_ID == "")
             {
                 //if there is no existing element in the database INSERT new
-                string SQL = "insert into Plant (ID, userID, categoryID, variety, age, district, street, houseNumber) values (@plID, @owner, @cat, @var, @age, @dis, @str, @num)";
+                string SQL = "insert into Plant (ID, userID, categoryID, variety, age, district, street, houseNumber) values (@plID, @uID, @cat, @var, @age, @dis, @str, @num)";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
@@ -129,7 +135,7 @@ namespace BL_Plantnership
                 _ID = Guid.NewGuid().ToString();
 
                 cmd.Parameters.Add(new SqlParameter("plID", _ID));
-                cmd.Parameters.Add(new SqlParameter("owner", Owner));
+                cmd.Parameters.Add(new SqlParameter("uID", UserID));
                 cmd.Parameters.Add(new SqlParameter("cat", CategoryID));
                 cmd.Parameters.Add(new SqlParameter("var", Variety));
                 cmd.Parameters.Add(new SqlParameter("age", Age));
@@ -276,21 +282,22 @@ namespace BL_Plantnership
         {
             Plant plant = new Plant();
             plant.ID = reader.GetString(0);
-            plant.Owner = reader.GetString(1);
-            plant.CategoryID = reader.GetString(2);
-            plant.CategoryName = reader.GetString(3);
-            plant.Variety = reader.GetString(4);
-            plant.Age = reader.GetString(5);
-            plant.District = reader.GetString(6);
-            plant.Street = reader.GetString(7);
-            plant.HouseNumber = reader.GetString(8);
+            plant.UserID = reader.GetString(1);
+            plant.Owner = reader.GetString(2);
+            plant.CategoryID = reader.GetString(3);
+            plant.CategoryName = reader.GetString(4);
+            plant.Variety = reader.GetString(5);
+            plant.Age = reader.GetString(6);
+            plant.District = reader.GetString(7);
+            plant.Street = reader.GetString(8);
+            plant.HouseNumber = reader.GetString(9);
             return plant;
         }
 
-        // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
+        // Load Plant Object
         internal static Plant Load(string plantID)
         {
-            string SQL = "select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID  where p.ID = @plId";
+            string SQL = "select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID  where p.ID = @plId";
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -320,7 +327,7 @@ namespace BL_Plantnership
         internal static Plants LoadAllFromCategory(string catID)
         {
          
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where p.categoryID = @cat", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID where p.categoryID = @cat", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("cat", catID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
@@ -334,7 +341,7 @@ namespace BL_Plantnership
 
         internal static Plants LoadAllFromUser(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where p.userID = @uID", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("SELECT p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID where p.userID = @uID", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("uID", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
@@ -348,7 +355,7 @@ namespace BL_Plantnership
 
         internal static Plants LoadRendtedPlants(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select pl.ID, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboType, pu.start, pu.price from Plant as pl LEFT JOIN Purchase as pu ON pl.userID = pu.userID  LEFT JOIN Category as c ON pl.categoryId = c.categoryID where pl.userID = @uID", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select pl.ID, u.username, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboType, pu.start, pu.price from Plant as pl LEFT JOIN [Purchase] as pu ON pl.userID = pu.userID  LEFT JOIN [Category] as c ON pl.categoryId = c.categoryID LEFT JOIN [User] as u ON pl.userID = u.ID where pl.userID = @uID", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("uID", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
@@ -356,16 +363,17 @@ namespace BL_Plantnership
             {
                 Plant plant = new Plant();
                 plant.ID = reader.GetString(0);
-                plant.CategoryID = reader.GetString(1);
-                plant.CategoryName = reader.GetString(2);
-                plant.Variety = reader.GetString(3);
-                plant.Age = reader.GetString(4);
-                plant.District = reader.GetString(5);
-                plant.Street = reader.GetString(6);
-                plant.HouseNumber = reader.GetString(7);
-                plant.Abotype = reader.GetString(8);
-                plant.AboStart = reader.GetString(9);
-                plant.AboPrice = reader.GetString(10);
+                plant.Owner = reader.GetString(1);
+                plant.CategoryID = reader.GetString(2);
+                plant.CategoryName = reader.GetString(3);
+                plant.Variety = reader.GetString(4);
+                plant.Age = reader.GetString(5);
+                plant.District = reader.GetString(6);
+                plant.Street = reader.GetString(7);
+                plant.HouseNumber = reader.GetString(8);
+                plant.Abotype = reader.GetString(9);
+                plant.AboStart = reader.GetString(10);
+                plant.AboPrice = reader.GetString(11);
                 allPlants.Add(plant);
             }
             return allPlants;

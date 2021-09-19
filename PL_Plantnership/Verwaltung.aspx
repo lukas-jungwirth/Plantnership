@@ -84,7 +84,7 @@
 
                                     <div class="flexBoxlisteBaumUnterkategorie2">
                                         <h2>Vermieterin</h2>
-                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Age") %>'></asp:Label>
+                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
                                     </div>
 
 
