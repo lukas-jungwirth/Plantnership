@@ -87,6 +87,24 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.Label lblInfoDistrict;
 
         /// <summary>
+        /// lblAmountType1-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmountType1;
+
+        /// <summary>
+        /// lblAmountType2-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmountType2;
+
+        /// <summary>
         /// radioBtnCat-Steuerelement
         /// </summary>
         /// <remarks>

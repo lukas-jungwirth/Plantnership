@@ -42,9 +42,29 @@
             </div>
             <div class="aboWrapper">
                 <h2>Abostufe wählen</h2>
+                <div class="aboWrapper">
+                    <table>
+                        <tr>
+                            <th>Supporter</th>
+                            <th>Planter</th>
+                        </tr>
+                        <tr>
+                            <td>Preis: $$€</td>
+                            <td>Preis: $$€</td>
+                        </tr>
+                        <tr>
+                            <td>Werde Supporter und untersütze deine Lieblingspflanzen um ihren Bedarf zu decken!</td>
+                            <td>Bekomme zusätzlich die Möglichkeit die Früchte deiner Pflanze zu ernten</td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label ID="lblAmountType1" runat="server" Text="0"></asp:Label><span> andere Personen haben auch dieses Abo gewählt.</span></td>
+                            <td><asp:Label ID="lblAmountType2" runat="server" Text="0"></asp:Label><span> andere Personen haben auch dieses Abo gewählt.</span></td>
+                        </tr> 
+                    </table>
+                </div>
                 <asp:RadioButtonList ID="radioBtnCat" runat="server" AutoPostBack="True" Style="margin-right: 0px" Width="176px">
-                    <asp:ListItem Value="basic">Basic</asp:ListItem>
-                    <asp:ListItem Value="premium">Planter+</asp:ListItem>
+                    <asp:ListItem Value="aboTyp1">Basic</asp:ListItem>
+                    <asp:ListItem Value="aboTyp2">Planter</asp:ListItem>
                 </asp:RadioButtonList>
                 <asp:Button ID="btnpay"  runat="server" Text="Kaufen" OnClick="btnpay_Click" />
             </div>

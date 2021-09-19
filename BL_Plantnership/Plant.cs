@@ -165,6 +165,21 @@ namespace BL_Plantnership
             }
         }//"Save()"
 
+        public int getAmountOfAbos(int aboType)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM [Purchase] WHERE plantID = @plId AND aboTyp = @abo", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("plId", ID));
+                cmd.Parameters.Add(new SqlParameter("abo", aboType));
+                Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+                return (int)count;
+
+            } catch
+            {
+                return -1;
+            }
+        }
 
 
 
