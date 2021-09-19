@@ -56,21 +56,27 @@ namespace PL_Plantnership
         {
             string loginUser = inputLoginUsername.Text;
             string loginPw = inputLoginPassword.Text;
-
-            string feedback = Starter.Login(loginUser, loginPw);
             string dispFdbk;
-            if (feedback == "error_db") dispFdbk = "Leider ist ein Fehler in der Datenbankverbindung aufgetreten!";
-            else if (feedback == "error_user") dispFdbk = "Der eingegebene Username ist nicht vorhanden!";
-            else if (feedback == "error_pw") dispFdbk = "Passwort falsch!";
+
+            int existingName = Starter.CheckUniqueUsername(loginUser);
+            if(existingName == -1) dispFdbk = "Leider ist ein Fehler in der Datenbankverbindung aufgetreten!";
+            else if(existingName == 0) dispFdbk = "Der eingegebene Username ist nicht vorhanden!";
             else
             {
-                dispFdbk = "Login erfolgreich";
-                // user to session
-                Session["currentUser"] = Starter.getUserByID(feedback);
-                Session["loggedIn"] = true;
-                Response.Redirect("index.aspx"); 
-                
+                User userToLogin = Starter.Login(loginUser, loginPw);
+                if(userToLogin != null)
+                {
+                    dispFdbk = "Login erfolgreich";
+                    // user to session
+                    Session["currentUser"] = userToLogin;
+                    Response.Redirect("index.aspx");
+                }
+                else
+                {
+                    dispFdbk = "Passwort falsch!";
+                }
             }
+
             lblFeedbackLogin.Text = dispFdbk;
         }
     }

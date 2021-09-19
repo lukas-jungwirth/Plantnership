@@ -82,14 +82,14 @@ namespace BL_Plantnership
             //else return -1;
         }
 
-        internal static int CheckUniqueUsername(string username)
+        public static int CheckUniqueUsername(string username)
         {
             try
             {
                 SqlCommand cmd = new SqlCommand("SELECT * from [User] WHERE username = @user", Starter.GetConnection());
                 cmd.Parameters.Add(new SqlParameter("user", username));
                 SqlDataReader reader = cmd.ExecuteReader();
-                int result = reader.HasRows ? 0 : 1;
+                int result = reader.HasRows ? 1 : 0;
                 return result;
             }
             catch
@@ -105,45 +105,11 @@ namespace BL_Plantnership
             return hashedPw;
         }
 
-        //login function return ID of user
-        public static string Login(string username, string password)
+
+        //login function return user object
+        public static User Login(string username, string password)
         {
-            try
-            {
-                SqlCommand cmd = new SqlCommand("SELECT ID, password FROM [User] WHERE username = @user", Starter.GetConnection());
-                cmd.Parameters.Add(new SqlParameter("user", username));
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                string hash = "";
-                string ID = "";
-                    while (reader.Read())
-                    {
-                    ID = reader.GetString(0);
-                    hash = reader.GetString(1);
-                     }
-                    
-                    bool verified = BCryptNet.Verify(password, hash);
-                    if (verified)
-                    {
-                        return ID;
-                    }
-                    else
-                    {
-                        return "error_pw";
-                    }
-
-                }
-                else
-                {
-                    return "error_user";
-                }
-
-            }
-            catch
-            {
-                return "error_db";
-            }
+            return User.LoadLoginUser(username, password);
         }
 
         public static Categories getAllCategories()
@@ -151,10 +117,6 @@ namespace BL_Plantnership
             return Category.LoadAllCategories();
         }
 
-        public static User getUserByID(string userID)
-        {
-            return User.Load(userID);
-        }
 
         //Methode ladet ale Kunden aus der BD, verpackt diese in Kundenobjekte und liefert sie als Kundenliste zurück.
         public static Plants getAllPlantsFromCategory(string category)
@@ -167,16 +129,9 @@ namespace BL_Plantnership
             return Plant.LoadAllFromUser(username);
         }
 
-        //Methode ladet einen Kundenrecord direkt aus der DB, speichert Werte in
-        //BOKunde-Objekt und gibt initialisiertes Objekt zurück.
         public static Plant getPlantByID(string plantID)
         {
             return Plant.Load(plantID);
-        }
-
-        public static Plant getPlantMatch(string sternzeichen, string jahreszeit, bool plantForLife)
-        {
-            return Plant.LoadMatchingPlant(sternzeichen, jahreszeit, plantForLife);
         }
 
         //gibt ein neues leeres Kundenobjekt zum SPeichern neuer Kunden zurück
@@ -190,35 +145,10 @@ namespace BL_Plantnership
             return new Plant();
         }
 
-        public static List<string> getPriceList(string category)
+        public static Plant getPlantMatch(string sternzeichen, string jahreszeit, bool plantForLife)
         {
-           
-            try
-            {
-                List<string> priceList = new List<string>();
-
-                SqlCommand cmd = new SqlCommand("select aboPrice1, aboPrice2 from Pricing where category = @cat", Starter.GetConnection());
-                cmd.Parameters.Add(new SqlParameter("cat", category));
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-
-                    string aboPrice1 = reader.GetString(0);
-                    string aboPrice2 = reader.GetString(1);
-
-                    priceList.Add(aboPrice1);
-                    priceList.Add(aboPrice2);
-                }
-                return priceList;
-
-            }
-            catch
-            {
-                return null;
-            }
+            return Plant.LoadMatchingPlant(sternzeichen, jahreszeit, plantForLife);
         }
-
 
 
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 
 namespace BL_Plantnership
@@ -16,8 +17,6 @@ namespace BL_Plantnership
         private string _Name;
         private string _LastName;
         private string _Mail;
-        private DateTime _DateOfEntrance;
-        private string _Rank;
 
         private DateTime currentDate = DateTime.Today;
 
@@ -48,24 +47,6 @@ namespace BL_Plantnership
             set { _Mail = value; }
         }
 
-        public string Rank
-        {
-            get
-            {
-                if((DateTime.Today - _DateOfEntrance).TotalDays < 7)
-                {
-                    return "Frisch gepflanzt";
-                }else if((DateTime.Today - _DateOfEntrance).TotalDays < 31){
-                    return "Sprössling";
-                }else if((DateTime.Today - _DateOfEntrance).TotalDays < 183){
-                    return "Jungpflanze";
-                }else if((DateTime.Today - _DateOfEntrance).TotalDays < 365){
-                    return "Ausgewachsener Baum";
-                }else{
-                    return "Alt und weise";
-                }
-            }
-        }
 
 
         //CONSTRUCTOR
@@ -172,34 +153,72 @@ namespace BL_Plantnership
 
 
         //STATIC METHODS
-        // Hilfsfunktion für die beiden unteren Methoden
+
+        private static User FillUserFromSQLDataReader(SqlDataReader reader)
+        {
+            User user = new User();
+            user.ID = reader.GetString(0);
+            user.Username = reader.GetString(1);
+            user.Name = reader.GetString(2);
+            user.LastName = reader.GetString(3);
+            user.Mail = reader.GetString(4);
+            return user;
+        }
 
 
-        // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
         internal static User Load(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select ID, username, name, lastName, mail from [User] where ID = @uid", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("uid", userID));
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows)
+            try
             {
-                User user = new User();
-                while (reader.Read())
+                SqlCommand cmd = new SqlCommand("select ID, username, name, lastName, mail from [User] where ID = @uid", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("uid", userID));
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    user.ID = reader.GetString(0);
-                    user.Username = reader.GetString(1);
-                    user.Name = reader.GetString(2);
-                    user.LastName = reader.GetString(3);
-                    user.LastName = reader.GetString(3);
-                    user.Mail = reader.GetString(4);
+                    reader.Read();
+                    return FillUserFromSQLDataReader(reader);
                 }
-                return user;
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch
             {
                 return null;
-            }   
+            }
+            
         }//"Load()"
+
+        internal static User LoadLoginUser(string username, string password)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("select ID, username, password, name, lastName, mail from [User] WHERE username = @user", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("user", username));
+                SqlDataReader reader = cmd.ExecuteReader();
+                
+                string hash = "";
+                while (reader.Read())
+                {
+                    User user = new User();
+                    user.ID = reader.GetString(0);
+                    user.Username = reader.GetString(1);
+                    hash = reader.GetString(2);
+                    user.Name = reader.GetString(3);
+                    user.LastName = reader.GetString(4);
+                    user.Mail = reader.GetString(5);
+
+                    bool verified = BCryptNet.Verify(password, hash);
+                    if (verified) return user;
+                }
+                return null;
+               }
+            catch
+            {
+                return null;
+            }
+        }//LoadLoginUser
 
 
 
