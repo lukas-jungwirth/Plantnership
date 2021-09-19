@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Plants.cs" />
     <Compile Include="Plant.cs" />
     <Compile Include="Starter.cs" />
