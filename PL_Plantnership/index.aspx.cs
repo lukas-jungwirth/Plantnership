@@ -13,6 +13,7 @@ namespace PL_Plantnership
     {
 
         private User currentUser;
+        private Categories categoryList;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,11 +21,23 @@ namespace PL_Plantnership
             {
                 Response.Redirect("login.aspx");
             }
+
+            if (!IsPostBack)
+            {
+                currentUser = (User)Session["currentUser"];
+                categoryList = Starter.getAllCategories();
+                lblDisplayUsername.Text = currentUser.Username;
+                CategoryRepeater.DataSource = categoryList;
+                CategoryRepeater.DataBind();
+            }
             else
             {
                 currentUser = (User)Session["currentUser"];
-                lblDisplayUsername.Text = currentUser.Username;
+                categoryList = (Categories)Session["categoryList"];
             }
+
+                
+            
             
         }
 
