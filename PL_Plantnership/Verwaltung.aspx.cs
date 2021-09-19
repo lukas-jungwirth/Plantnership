@@ -26,7 +26,7 @@ namespace PL_Plantnership
                 {
 
                     currentUser = (User)Session["currentUser"];
-                    myTrees = Starter.getPlantsByUsername(currentUser.Username);
+                    myTrees = currentUser.getUserPlants();
                     Repeater1.DataSource = myTrees;
                     Repeater1.DataBind();
 
@@ -39,8 +39,9 @@ namespace PL_Plantnership
                 else
                 {
 
-                    myTrees = (Plants)Session["myTrees"];
                     currentUser = (User)Session["currentUser"];
+                    myTrees = (Plants)Session["myTrees"];
+                    
                 }
             
         }

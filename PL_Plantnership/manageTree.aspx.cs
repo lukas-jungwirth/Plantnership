@@ -79,7 +79,7 @@ namespace PL_Plantnership
                 currentPlant.District = txtDistrict.Text;
                 currentPlant.Street = txtStreet.Text;
                 currentPlant.HouseNumber = txtHouseNumb.Text;
-                currentPlant.Owner = currentUser.Username;
+                currentPlant.Owner = currentUser.ID;
                 if (currentPlant.Save())
                 {
                     Response.Redirect("Verwaltung.aspx");

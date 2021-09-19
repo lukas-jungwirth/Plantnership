@@ -146,6 +146,10 @@ namespace BL_Plantnership
             }
         }
 
+        public static Categories getAllCategories()
+        {
+            return Category.LoadAllCategories();
+        }
 
         public static User getUserByID(string userID)
         {
@@ -216,23 +220,7 @@ namespace BL_Plantnership
         }
 
 
-        public static bool purchasePlant(string userID, string plantID, string aboType)
-        {
-            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", GetConnection());
-            cmd.Parameters.Add(new SqlParameter("pid", plantID));
-            cmd.Parameters.Add(new SqlParameter("uid", userID));
-            cmd.Parameters.Add(new SqlParameter("atyp", aboType));
-            if(cmd.ExecuteNonQuery() > 0)
-            {
-                return (Plant.ChangePlantSellState(plantID, true));
-                
-            }
-            else
-            {
-                return false;
-            }
-            
-        }
+
     }
 
 }

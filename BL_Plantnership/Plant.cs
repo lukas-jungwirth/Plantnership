@@ -13,13 +13,18 @@ namespace BL_Plantnership
         //init
         private string _ID = "";
         private string _Owner;
-        private string _Category;
+        private string _CategoryID;
+        private string _CategoryName;
         private string _Variety;
         private string _Age;
         private string _District;
         private string _Street;
         private string _HouseNumber;
-        private bool _Sold;
+        //only for rented plants
+        private string _AboType;
+        private string _AboStart;
+        private string _AboPrice;
+
 
         //PROPERTIES
         public string ID
@@ -27,46 +32,56 @@ namespace BL_Plantnership
             get { return _ID; }
             internal set { _ID = value; }
         }
-        public string Owner {
+        public string Owner
+        {
             get { return _Owner; }
             set { _Owner = value; }
         }
-
-        public string Category {
-            get { return _Category; }
-            set { _Category = value; }
+        public string CategoryID {
+            get { return _CategoryID; }
+            set { _CategoryID = value; }
         }
-
+        public string CategoryName {
+            get { return _CategoryName; }
+            set { _CategoryName = value; }
+        }
         public string Variety {
             get { return _Variety; }
             set { _Variety = value; }
         }
-
         public string Age {
             get { return _Age; }
             set { _Age = value; }
         }
-
         public string District {
             get { return _District; }
             set { _District = value; }
         }
-
         public string Street {
             get { return _Street; }
             set { _Street = value; }
         }
-
         public string HouseNumber {
             get { return _HouseNumber; }
             set { _HouseNumber = value; }
         }
-
-        public bool Sold
+        //only for rented trees
+        public string Abotype
         {
-            get { return _Sold; }
-            internal set { _Sold = value; }
+            get { return _AboType; }
+            set { _AboType = value; }
         }
+        public string AboStart
+        {
+            get { return _AboStart; }
+            set { _AboStart = value; }
+        }
+        public string AboPrice
+        {
+            get { return _AboPrice; }
+            set { _AboPrice = value; }
+        }
+
 
 
         //CONSTRUCTOR
@@ -106,7 +121,7 @@ namespace BL_Plantnership
             if (_ID == "")
             {
                 //if there is no existing element in the database INSERT new
-                string SQL = "insert into Plant (ID, owner, category, variety, age, district, street, houseNumber) values (@plID, @owner, @cat, @var, @age, @dis, @str, @num)";
+                string SQL = "insert into Plant (ID, userID, categoryID, variety, age, district, street, houseNumber) values (@plID, @owner, @cat, @var, @age, @dis, @str, @num)";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
@@ -115,7 +130,7 @@ namespace BL_Plantnership
 
                 cmd.Parameters.Add(new SqlParameter("plID", _ID));
                 cmd.Parameters.Add(new SqlParameter("owner", Owner));
-                cmd.Parameters.Add(new SqlParameter("cat", Category));
+                cmd.Parameters.Add(new SqlParameter("cat", CategoryID));
                 cmd.Parameters.Add(new SqlParameter("var", Variety));
                 cmd.Parameters.Add(new SqlParameter("age", Age));
                 cmd.Parameters.Add(new SqlParameter("dis", District));
@@ -129,12 +144,12 @@ namespace BL_Plantnership
             else
             {
                 //if there is an existing element UPDATE fields
-                string SQL = "update Plant set category=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where ID = @plID";
+                string SQL = "update Plant set categoryID=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where ID = @plID";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = SQL;
                 cmd.Connection = Starter.GetConnection();
                 cmd.Parameters.Add(new SqlParameter("plID", _ID));
-                cmd.Parameters.Add(new SqlParameter("cat", Category));
+                cmd.Parameters.Add(new SqlParameter("cat", CategoryID));
                 cmd.Parameters.Add(new SqlParameter("vari", Variety));
                 cmd.Parameters.Add(new SqlParameter("age", Age));
                 cmd.Parameters.Add(new SqlParameter("dis", District));
@@ -208,7 +223,7 @@ namespace BL_Plantnership
             return calculatedCat;
         }
 
-        public static List<string> getEntryIdList(string category)
+        internal static List<string> getEntryIdList(string category)
         {
             string SQL = "select count(*) from Plant where category = @cat";
             try
@@ -254,13 +269,7 @@ namespace BL_Plantnership
         }
 
 
-        public static bool ChangePlantSellState(string plantID, bool sold)
-        {
-            SqlCommand cmd = new SqlCommand("update Plant set sold = @sld where ID = @plID ", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("plID", plantID));
-            cmd.Parameters.Add(new SqlParameter("sld", sold));
-            return (cmd.ExecuteNonQuery() > 0);
-        }//"ChangePlantSellState()"
+
 
         // Hilfsfunktion für die beiden unteren Methoden
         private static Plant FillPlantFromSQLDataReader(SqlDataReader reader)
@@ -268,20 +277,20 @@ namespace BL_Plantnership
             Plant plant = new Plant();
             plant.ID = reader.GetString(0);
             plant.Owner = reader.GetString(1);
-            plant.Category = reader.GetString(2);
-            plant.Variety = reader.GetString(3);
-            plant.Age = reader.GetString(4);
-            plant.District = reader.GetString(5);
-            plant.Street = reader.GetString(6);
-            plant.HouseNumber = reader.GetString(7);
-            plant.Sold = reader.GetBoolean(8);
+            plant.CategoryID = reader.GetString(2);
+            plant.CategoryName = reader.GetString(3);
+            plant.Variety = reader.GetString(4);
+            plant.Age = reader.GetString(5);
+            plant.District = reader.GetString(6);
+            plant.Street = reader.GetString(7);
+            plant.HouseNumber = reader.GetString(8);
             return plant;
         }
 
         // Laden eines Kundenobjekts - wird von BOMail.getKunde() aufgerufen
         internal static Plant Load(string plantID)
         {
-            string SQL = "select ID, owner, category, variety, age, district, street, houseNumber, sold from Plant where ID = @id";
+            string SQL = "select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID  where pl.ID = @id";
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -307,12 +316,12 @@ namespace BL_Plantnership
               
         }
 
-        //loads all plant objects from a given category into a list of plant objects (if Plant.Sold is false)
-        internal static Plants LoadAllFromCategory(string Category)
+        //loads all plant objects from a given category into a list of plant objects
+        internal static Plants LoadAllFromCategory(string catID)
         {
          
-            SqlCommand cmd = new SqlCommand("select ID, owner, category, variety, age, district, street, houseNumber, sold from Plant where category = @cat and sold = 0", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("cat", Category));
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where pl.categoryID = @cat", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("cat", catID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
             while (reader.Read())
@@ -323,15 +332,40 @@ namespace BL_Plantnership
             return allPlants;
         }
 
-        internal static Plants LoadAllFromUser(string username)
+        internal static Plants LoadAllFromUser(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select ID, owner, category, variety, age, district, street, houseNumber, sold from Plant where owner = @user", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("user", username));
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from Plant as p LEFT JOIN Category as c ON p.categoryID = c.categoryID where pl.userID = @uID", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("uID", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
             while (reader.Read())
             {
                 Plant plant = FillPlantFromSQLDataReader(reader);
+                allPlants.Add(plant);
+            }
+            return allPlants;
+        }
+
+        internal static Plants LoadRendtedPlants(string userID)
+        {
+            SqlCommand cmd = new SqlCommand("select pl.ID, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboType, pu.start, pu.price from Plant as pl LEFT JOIN Purchase as pu ON pl.userID = pu.userID  LEFT JOIN Category as c ON pl.categoryId = c.categoryID where pl.userID = @uID", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("uID", userID));
+            SqlDataReader reader = cmd.ExecuteReader();
+            Plants allPlants = new Plants();
+            while (reader.Read())
+            {
+                Plant plant = new Plant();
+                plant.ID = reader.GetString(0);
+                plant.CategoryID = reader.GetString(1);
+                plant.CategoryName = reader.GetString(2);
+                plant.Variety = reader.GetString(3);
+                plant.Age = reader.GetString(4);
+                plant.District = reader.GetString(5);
+                plant.Street = reader.GetString(6);
+                plant.HouseNumber = reader.GetString(7);
+                plant.Abotype = reader.GetString(8);
+                plant.AboStart = reader.GetString(9);
+                plant.AboPrice = reader.GetString(10);
                 allPlants.Add(plant);
             }
             return allPlants;

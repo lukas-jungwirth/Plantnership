@@ -138,6 +138,39 @@ namespace BL_Plantnership
             }
         }//"Save"
 
+        public Plants getUserPlants()
+        {
+            return Plant.LoadAllFromUser(_ID);
+        }
+
+        public Plants loadRentedPlants()
+        {
+            return null;
+        }
+
+        public bool purchasePlant(Plant plant, Category cat, int aboType)
+        {
+            string price = "";
+            if (aboType == 1) price = cat.AboPrice1;
+            else if (aboType == 2) price = cat.AboPrice2;
+
+            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType, price) values (@pid, @uid, @atyp, @price)", Starter.GetConnection());
+            cmd.Parameters.Add(new SqlParameter("pid", plant.ID));
+            cmd.Parameters.Add(new SqlParameter("uid", _ID));
+            cmd.Parameters.Add(new SqlParameter("atyp", aboType));
+            cmd.Parameters.Add(new SqlParameter("price", price));
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
 
         //STATIC METHODS
         // Hilfsfunktion für die beiden unteren Methoden
