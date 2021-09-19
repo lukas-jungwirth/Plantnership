@@ -325,3 +325,14 @@ footer {
     padding: 15px;
     color: white;
 }
+
+
+/*---Button kaufen und Kaufen seite*/
+
+#btnpay {
+    background-color: #2d6a4f;
+    color: #fff;
+    border-radius: 8px;
+    line-height: 27px;
+    cursor: pointer;
+}

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -62,11 +65,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Fotos\1-pfirsichbaum-1176136976.jpg" />
     <Content Include="Fotos\77c66506-3181-4091-bebc-80f84d71c4b4.jpg" />
     <Content Include="Fotos\Apfelbaum-titelbild-für-artikel-1.jpg" />
@@ -78,6 +76,7 @@
     <Content Include="Fotos\pexels-photo-1632790.jpeg" />
     <Content Include="index.aspx" />
     <Content Include="ObstBaumUnterKategorie.aspx" />
+    <Content Include="payPage.aspx" />
     <Content Include="PlantDetail.aspx" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
@@ -101,6 +100,13 @@
     </Compile>
     <Compile Include="ObstBaumUnterKategorie.aspx.designer.cs">
       <DependentUpon>ObstBaumUnterKategorie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="payPage.aspx.cs">
+      <DependentUpon>payPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="payPage.aspx.designer.cs">
+      <DependentUpon>payPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlantDetail.aspx.cs">
       <DependentUpon>PlantDetail.aspx</DependentUpon>

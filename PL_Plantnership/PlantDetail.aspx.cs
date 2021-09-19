@@ -43,5 +43,10 @@ namespace PL_Plantnership
         {
             Response.Redirect("index.aspx");
         }
+
+        protected void btnpay_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("");
+        }
     }
 }

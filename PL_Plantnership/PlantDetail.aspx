@@ -46,6 +46,7 @@
                     <asp:ListItem Value="basic">Basic</asp:ListItem>
                     <asp:ListItem Value="premium">Planter+</asp:ListItem>
                 </asp:RadioButtonList>
+                <asp:Button ID="btnpay"  runat="server" Text="Kaufen" OnClick="btnpay_Click" />
             </div>
         </div>
     </form>
