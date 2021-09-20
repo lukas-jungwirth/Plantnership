@@ -36,6 +36,7 @@ namespace PL_Plantnership
                 currentPlant = Starter.getPlantByID(currentID);
                 Session["plant"] = currentPlant;
 
+                lblTitle.Text = currentCategory.Name + "baum";
                 lblInfoVariety.Text = currentPlant.Variety;
                 lblInfoAge.Text = currentPlant.Age;
                 lblInfoDistrict.Text = currentPlant.District;
@@ -83,6 +84,17 @@ namespace PL_Plantnership
                 lblBuyError.Text = "Kauf fehlgeschlagen!";
             }
             
+        }
+
+        protected void bntBaumVerwalten_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Verwalten.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("login.aspx");
         }
     }
 }

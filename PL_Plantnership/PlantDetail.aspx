@@ -17,8 +17,8 @@
                 <asp:Button ID="btnHome" runat="server" Text="Startseite" OnClick="btnHome_Click" />
             </div>
             <div class="headerRight">
-                <asp:Button ID="Button2" runat="server" Text="Meine Bäume verwalten" />
-                <asp:Button ID="Button3" runat="server" Text="Logout" />
+                <asp:Button ID="bntBaumVerwalten" runat="server" Text="Meine Bäume verwalten" OnClick="bntBaumVerwalten_Click" />
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
             </div>
         </header>
 
@@ -63,7 +63,7 @@
                     </table>
                 </div>
                 <asp:RadioButtonList ID="radioBtnCat" runat="server" AutoPostBack="True" Style="margin-right: 0px" Width="176px">
-                    <asp:ListItem Value="1">Basic</asp:ListItem>
+                    <asp:ListItem Value="1">Supporter</asp:ListItem>
                     <asp:ListItem Value="2">Planter</asp:ListItem>
                 </asp:RadioButtonList>
                 <asp:ImageButton ID="btnBuy" runat="server" AlternateText="Kaufen" ImageUrl="~/Fotos/googlePay.png" Height="40px" OnClick="btnBuy_Click"/>

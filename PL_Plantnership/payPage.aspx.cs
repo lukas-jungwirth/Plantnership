@@ -26,13 +26,12 @@ namespace PL_Plantnership
             {
                 Plant currentPlant = (Plant)Session["plant"];
 
-                /*
+                
                 lblInfoVariety.Text = currentPlant.Variety;
                 lblInfoAge.Text = currentPlant.Age;
                 lblInfoDistrict.Text = currentPlant.District;
-                lblAmountType1.Text = currentPlant.getAmountOfAbos(1).ToString();
-                lblAmountType2.Text = currentPlant.getAmountOfAbos(2).ToString();
-                */
+                lblAboInfo.Text = (string)Session["aboType"];
+                
             }
             else
             {
@@ -45,6 +44,22 @@ namespace PL_Plantnership
         protected void btnpay_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        protected void bntBaumVerwalten_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Verwaltung.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("login.aspx");
         }
     }
 }

@@ -61,6 +61,12 @@ namespace PL_Plantnership
 
         }
 
+        protected void btnLogout_Click(System.Object sender, System.EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("login.aspx");
+        }
+
         protected void imgBtnApfel_Click(object sender, ImageClickEventArgs e)
         {
             Session["category"] = "1";

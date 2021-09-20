@@ -5,28 +5,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+        <link rel="Stylesheet" href="style.css" type="text/css" />
+    <title>Rechnung</title>
 </head>
 <body>
     <form id="form1" runat="server">
 
-        <div class="wrapper">
 
-            <h1>Rechnung</h1>
-            <p>
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            </p>
-            <p>
-                <asp:Label ID="lbl" runat="server" Text="Label"></asp:Label>
-            </p>
-            <p>
-                <asp:Button ID="btnpay" runat="server" Text="Zahlen" />
-            </p>
+         <header>
+            <div class="headerLeft">
+                <asp:Button ID="btnHome" runat="server" Text="Startseite" OnClick="btnHome_Click" />
+            </div>
+            <div class="headerRight">
+                <asp:Button ID="bntBaumVerwalten" runat="server" Text="Meine Bäume verwalten" OnClick="bntBaumVerwalten_Click" />
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
+            </div>
+        </header>
 
+        <div class="rechnungsSite">
+        <h1>Rechnung</h1>
+          
 
+                <span class="infoRow">
+                    <span class="infoTitle">Sorte</span><asp:Label ID="lblInfoVariety" runat="server" Text="Label"></asp:Label>
+                </span>
+                <span class="infoRow">
+                    <span class="infoTitle">Alter</span><asp:Label ID="lblInfoAge" runat="server" Text="Label"></asp:Label>
+                </span>
+                <span class="infoRow">
+                    <span class="infoTitle">Bezirk</span><asp:Label ID="lblInfoDistrict" runat="server" Text="Label"></asp:Label>
+                </span>
 
-
-        </div>
+                <span class="infoRow">
+                    <span class="infoTitle">Abo Info</span><asp:Label ID="lblAboInfo" runat="server" Text="Label"></asp:Label>
+                </span>
+            
+                <p>Vielen Dank für Ihre Unterstützung. Wir hoffen, Sie haben eine/n PlantnerIn fürs Leben gefunden.
+            </div>
         
     </form>
 </body>

@@ -17,7 +17,7 @@
             </div>
             <div class="headerRight">
                  <asp:Button ID="btnBaumVerwalten" runat="server" OnClick="btnBaumVerwalten_Click" Text="Meine Bäume verwalten" />
-                <asp:Button ID="btnLogout" runat="server" OnClick="btnBaumVerwalten_Click" Text="Logout" />
+                <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" />
             </div>
         </header>
 

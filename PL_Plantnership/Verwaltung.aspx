@@ -17,46 +17,21 @@
             </div>
 
             <div class="headerRight">
-                <asp:Button ID="btnLogout" runat="server" Text="Logout" />
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
             </div>
         </header>
 
 
         <div class="settingContainer">
 
+            <div class="flexTreeRent">
             <div class="myTreeToggle">
                 <asp:Button ID="btnMyTreeSite" runat="server" Text="Meine Bäume" CssClass="loginActive loginSiteBtn" OnClick="btnMyTreeSite_Click" />
                 <asp:Button ID="btnRentTreeSite" runat="server" Text="Gemietete Bäume" CssClass="loginSiteBtn" OnClick="btnRentTreeSite_Click" />
             </div>
 
            
-            <div class="profilInfoWrapper">
-
-                <h2 class="h2Profil">PROFIL</h2>
-
-                <div class="profileRow">
-                    <span>Name:</span><asp:Label ID="lblProfileUsername" runat="server" Text=""></asp:Label>
-                </div>
-
-                <div class="profileRow">
-                    <span>Name:</span><asp:Label ID="lblProfileName" runat="server" Text=""></asp:Label>
-                </div>
-
-                <div class="profileRow">
-                    <span>Nachname:</span><asp:Label ID="lblProfileLstName" runat="server" Text=""></asp:Label>
-                </div>
-
-                <div class="profileRow">
-                    <span>Mail:</span><asp:Label ID="lblProfileMail" runat="server" Text=""></asp:Label>
-                </div>
-
-                <div class="profileRow">
-                    <asp:Button ID="btnCreateNewPlant" runat="server" Text="Neuen Baum hinzufügen" CssClass="buttonEdit" OnClick="btnCreateNewPlant_Click" />
-                </div>
-
-            </div>
-        </div>
-
+            
         <div class="verwaltungFlex ">
             <asp:MultiView ID="MultiViewVerwaltung" runat="server" ActiveViewIndex="0">
                 <asp:View ID="viewMyTrees" runat="server">
@@ -84,9 +59,9 @@
                                     </div>
 
 
-
-                                    <asp:Button ID="Button1" runat="server" Text="Details ändern" CssClass="buttonEdit" OnCommand="Edit_Click" CommandName="EditClick" CommandArgument='<%# Eval("ID") %>' />
-
+                                    
+                                    <asp:Button ID="btnDetailsVerwaltung" CssClass="btnDetailVerwaltung" runat="server" Text="Details ändern" OnCommand="Edit_Click" CommandName="EditClick" CommandArgument='<%# Eval("ID") %>' />
+                                    
                                 </div>
                             </ItemTemplate>
 
@@ -95,12 +70,14 @@
                 </asp:View>
       
                 <asp:View ID="viewRentedTrees" runat="server">
+                    
+                    <p class="aboDauer">Die Abodauer beträgt 1 Jahr.</p>
                     <asp:Repeater ID="RepeaterRented" runat="server">
 
                             <ItemTemplate>
                                 <div class="lblAlleDreiVerwaltung">
 
-
+                                    
 
                                     <div class="flexBoxlisteBaumUnterkategorie2">
                                         <h2>Baumart</h2>
@@ -134,8 +111,37 @@
                         </asp:Repeater>
                 </asp:View>
             </asp:MultiView>
+            </div>
         </div>
+
+            <div class="profilInfoWrapper">
+
+                <h2 class="h2Profil">PROFIL</h2>
+
+                <div class="profileRow">
+                    <span>Name:</span><asp:Label ID="lblProfileUsername" runat="server" Text=""></asp:Label>
+                </div>
+
+                <div class="profileRow">
+                    <span>Name:</span><asp:Label ID="lblProfileName" runat="server" Text=""></asp:Label>
+                </div>
+
+                <div class="profileRow">
+                    <span>Nachname:</span><asp:Label ID="lblProfileLstName" runat="server" Text=""></asp:Label>
+                </div>
+
+                <div class="profileRow">
+                    <span>Mail:</span><asp:Label ID="lblProfileMail" runat="server" Text=""></asp:Label>
+                </div>
+
+                <div class="profileRow">
+                    <asp:Button ID="btnCreateNewPlant" runat="server" Text="Neuen Baum hinzufügen" CssClass="buttonEdit" OnClick="btnCreateNewPlant_Click" />
+                </div>
+
+            </div>
         
+
+        </div>
     </form>
 </body>
 </html>
