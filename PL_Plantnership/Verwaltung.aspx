@@ -121,6 +121,11 @@
                                         <h2>Aboart</h2>
                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("AboType") %>'></asp:Label>
                                     </div>
+                                    
+                                    <div class="flexBoxlisteBaumUnterkategorie2">
+                                        <h2>Abostart</h2>
+                                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("AboStart") %>'></asp:Label>
+                                    </div>
 
 
                                 </div>
