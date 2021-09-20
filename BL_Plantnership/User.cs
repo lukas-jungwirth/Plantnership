@@ -17,7 +17,6 @@ namespace BL_Plantnership
         private string _Name;
         private string _LastName;
         private string _Mail;
-        //private DateTime currentDate = DateTime.Today;
 
         //PROPERTIES
         public string ID
@@ -56,48 +55,6 @@ namespace BL_Plantnership
 
         //METHODS
 
-
-        /*
-        public bool Save()
-        {
-
-            if (_ID == "")
-            {
-                //if there is no existing element in the database INSERT new
-                string SQL = "insert into User (ID, name , lastNam , mail, dateOfEntrance, username, password) values (@id, @name, @lstName, @gen, @mail, @doe, @user, @pw)";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = SQL;
-                cmd.Connection = Starter.GetConnection();
-                //create unique guid
-                _ID = Guid.NewGuid().ToString();
-
-                cmd.Parameters.Add(new SqlParameter("id", _ID));
-                cmd.Parameters.Add(new SqlParameter("name", Name));
-                cmd.Parameters.Add(new SqlParameter("lstName", LastName));
-                cmd.Parameters.Add(new SqlParameter("mail", Mail));
-                cmd.Parameters.Add(new SqlParameter("doe", currentDate));
-
-
-                //return number of applied records
-                //if insert worked return should be 1
-                return (cmd.ExecuteNonQuery() > 0);
-            }
-            else
-            {
-                //if there is an existing element UPDATE fields
-                string SQL = "update Plant set name=@name, lastName=@lstName, mail=@mail where ID = @id";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = SQL;
-                cmd.Connection = Starter.GetConnection();
-                cmd.Parameters.Add(new SqlParameter("id", _ID));
-                cmd.Parameters.Add(new SqlParameter("name", Name));
-                cmd.Parameters.Add(new SqlParameter("lstName", LastName));
-                cmd.Parameters.Add(new SqlParameter("mail", Mail));
-                cmd.Parameters.Add(new SqlParameter("doe", currentDate));
-                return (cmd.ExecuteNonQuery() > 0);
-            }
-        }//"Save"
-        */
 
         public Plants getUserPlants()
         {
@@ -138,9 +95,9 @@ namespace BL_Plantnership
             try
             {
                 SqlCommand cmd = new SqlCommand("INSERT INTO Purchase (plantID, userID, aboTyp) values (@pid, @uid, @atyp)", Starter.GetConnection());
-                cmd.Parameters.Add(new SqlParameter("pid", plant.ID));
-                cmd.Parameters.Add(new SqlParameter("uid", _ID));
-                cmd.Parameters.Add(new SqlParameter("atyp", aboType));
+                cmd.Parameters.Add(new SqlParameter("@pid", plant.ID));
+                cmd.Parameters.Add(new SqlParameter("@uid", _ID));
+                cmd.Parameters.Add(new SqlParameter("@atyp", aboType));
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     return true;

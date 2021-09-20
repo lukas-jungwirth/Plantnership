@@ -95,68 +95,88 @@ namespace BL_Plantnership
         // Den aktuellen Kunden aus der DB löschen
         public bool Delete()
         {
-            if (_ID != "")
+            try
             {
-                //if object with id exsists in databse -> DELETE
-                string SQL = "delete Plant where ID = @id";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = SQL;
-                cmd.Connection = Starter.GetConnection();
-                cmd.Parameters.Add(new SqlParameter("id", _ID));
-                if (cmd.ExecuteNonQuery() > 0)
+                if (_ID != "")
                 {
-                    _ID = ""; //das Objekt existiert weiter - es verhält sich aber wieder wie ein neuer Kunde
-                    return true;
+                    //if object with id exsists in databse -> DELETE
+                    string SQL = "delete Plant where ID = @id";
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = SQL;
+                    cmd.Connection = Starter.GetConnection();
+                    cmd.Parameters.Add(new SqlParameter("id", _ID));
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        _ID = ""; //das Objekt existiert weiter - es verhält sich aber wieder wie ein neuer Kunde
+                        return true;
+                    }
+                    else return false; //DELETE did not work
                 }
-                else return false; //DELETE did not work
+                //if there is no elemente with id in the database it can be seen as deleted
+                else return true;
             }
-            //if there is no elemente with id in the database it can be seen as deleted
-            else return true; 
+            catch
+            {
+                return false;
+            }
+            
         }//"Delete()"
 
 
         public bool Save()
         {
-            
-            if (_ID == "")
-            {
-                //if there is no existing element in the database INSERT new
-                string SQL = "insert into Plant (ID, userID, categoryID, variety, age, district, street, houseNumber) values (@plID, @uID, @cat, @var, @age, @dis, @str, @num)";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = SQL;
-                cmd.Connection = Starter.GetConnection();
-                //create unique guid
-                _ID = Guid.NewGuid().ToString();
 
-                cmd.Parameters.Add(new SqlParameter("plID", _ID));
-                cmd.Parameters.Add(new SqlParameter("uID", UserID));
-                cmd.Parameters.Add(new SqlParameter("cat", CategoryID));
-                cmd.Parameters.Add(new SqlParameter("var", Variety));
-                cmd.Parameters.Add(new SqlParameter("age", Age));
-                cmd.Parameters.Add(new SqlParameter("dis", District));
-                cmd.Parameters.Add(new SqlParameter("str", Street));
-                cmd.Parameters.Add(new SqlParameter("num", HouseNumber));
-
-                //return number of applied records
-                //if insert worked return should be 1
-                return (cmd.ExecuteNonQuery() > 0); 
-            }    
-            else
+            try
             {
-                //if there is an existing element UPDATE fields
-                string SQL = "update Plant set categoryID=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where ID = @plID";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = SQL;
-                cmd.Connection = Starter.GetConnection();
-                cmd.Parameters.Add(new SqlParameter("plID", _ID));
-                cmd.Parameters.Add(new SqlParameter("cat", CategoryID));
-                cmd.Parameters.Add(new SqlParameter("vari", Variety));
-                cmd.Parameters.Add(new SqlParameter("age", Age));
-                cmd.Parameters.Add(new SqlParameter("dis", District));
-                cmd.Parameters.Add(new SqlParameter("stre", Street));
-                cmd.Parameters.Add(new SqlParameter("numb", HouseNumber));
-                return (cmd.ExecuteNonQuery() > 0);
+
+                if (_ID == "")
+                {
+                    if (Variety == "" || Age == "" || District == "" || Street == "" || HouseNumber == "") return false;
+                    //if there is no existing element in the database INSERT new
+                    string SQL = "insert into Plant (ID, userID, categoryID, variety, age, district, street, houseNumber) values (@plID, @uID, @cat, @var, @age, @dis, @str, @num)";
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = SQL;
+                    cmd.Connection = Starter.GetConnection();
+                    //create unique guid
+                    _ID = Guid.NewGuid().ToString();
+
+                    cmd.Parameters.Add(new SqlParameter("@plID", _ID));
+                    cmd.Parameters.Add(new SqlParameter("@uID", UserID));
+                    cmd.Parameters.Add(new SqlParameter("@cat", CategoryID));
+                    cmd.Parameters.Add(new SqlParameter("@var", Variety));
+                    cmd.Parameters.Add(new SqlParameter("@age", Age));
+                    cmd.Parameters.Add(new SqlParameter("@dis", District));
+                    cmd.Parameters.Add(new SqlParameter("@str", Street));
+                    cmd.Parameters.Add(new SqlParameter("@num", HouseNumber));
+
+                    //return number of applied records
+                    //if insert worked return should be 1
+                    return (cmd.ExecuteNonQuery() > 0);
+                }
+                else
+                {
+                    if (Variety == "" || Age == "" || District == "" || Street == "" || HouseNumber == "") return false;
+                    //if there is an existing element UPDATE fields
+                    string SQL = "update Plant set categoryID=@cat, variety=@vari, age=@age, district=@dis, street=@stre, houseNumber=@numb  where ID = @plID";
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = SQL;
+                    cmd.Connection = Starter.GetConnection();
+                    cmd.Parameters.Add(new SqlParameter("@plID", _ID));
+                    cmd.Parameters.Add(new SqlParameter("@cat", CategoryID));
+                    cmd.Parameters.Add(new SqlParameter("@vari", Variety));
+                    cmd.Parameters.Add(new SqlParameter("@age", Age));
+                    cmd.Parameters.Add(new SqlParameter("@dis", District));
+                    cmd.Parameters.Add(new SqlParameter("@stre", Street));
+                    cmd.Parameters.Add(new SqlParameter("@numb", HouseNumber));
+                    return (cmd.ExecuteNonQuery() > 0);
+                }
             }
+            catch
+            {
+                return false;
+            }
+
+
         }//"Save()"
 
         public int getAmountOfAbos(int aboType)
@@ -382,6 +402,8 @@ namespace BL_Plantnership
         internal static Plants LoadRentedFromUser(string userID)
         {
 
+            try
+            {
                 SqlCommand cmd = new SqlCommand("select pl.ID, u.username, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboTyp, pu.mietstart from [Purchase] as pu LEFT JOIN [Plant] as pl ON pu.plantID = pl.ID  LEFT JOIN [Category] as c ON pl.categoryId = c.categoryID LEFT JOIN [User] as u ON pl.userID = u.ID where pu.userID = @uID", Starter.GetConnection());
                 cmd.Parameters.Add(new SqlParameter("uID", userID));
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -407,6 +429,12 @@ namespace BL_Plantnership
                     return allPlants;
                 }
                 else { return null; }
+            }
+            catch
+            {
+                return null;
+            }
+                
             
 
             
