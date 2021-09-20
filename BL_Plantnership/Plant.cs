@@ -23,7 +23,7 @@ namespace BL_Plantnership
         private string _HouseNumber;
         //only for rented plants
         private int _AboType;
-        private string _AboStart;
+        private DateTime _AboStart;
 
         //PROPERTIES
         public string ID
@@ -75,7 +75,7 @@ namespace BL_Plantnership
             get { return _AboType; }
             set { _AboType = value; }
         }
-        public string AboStart
+        public DateTime AboStart
         {
             get { return _AboStart; }
             set { _AboStart = value; }
@@ -335,57 +335,81 @@ namespace BL_Plantnership
         //loads all plant objects from a given category into a list of plant objects
         internal static Plants LoadAllFromCategory(int catID, User user)
         {
-         
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID WHERE p.categoryID = @cat AND p.userID != @uID ", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("cat", catID));
-            cmd.Parameters.Add(new SqlParameter("uID", user.ID));
-            SqlDataReader reader = cmd.ExecuteReader();
-            Plants allPlants = new Plants();
-            while (reader.Read())
+
+            try
             {
-                Plant plant = FillPlantFromSQLDataReader(reader);
-                allPlants.Add(plant);
+                SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID WHERE p.categoryID = @cat AND p.userID != @uID ", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("cat", catID));
+                cmd.Parameters.Add(new SqlParameter("uID", user.ID));
+                SqlDataReader reader = cmd.ExecuteReader();
+                Plants allPlants = new Plants();
+                while (reader.Read())
+                {
+                    Plant plant = FillPlantFromSQLDataReader(reader);
+                    allPlants.Add(plant);
+                }
+                return allPlants;
+            }catch
+            {
+                return null;
             }
-            return allPlants;
+            
         }
 
         internal static Plants LoadAllFromUser(string userID)
         {
-            SqlCommand cmd = new SqlCommand("SELECT p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID where p.userID = @uID", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("uID", userID));
-            SqlDataReader reader = cmd.ExecuteReader();
-            Plants allPlants = new Plants();
-            while (reader.Read())
+            try
             {
-                Plant plant = FillPlantFromSQLDataReader(reader);
-                allPlants.Add(plant);
+                SqlCommand cmd = new SqlCommand("SELECT p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID where p.userID = @uID", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("uID", userID));
+                SqlDataReader reader = cmd.ExecuteReader();
+                Plants allPlants = new Plants();
+                while (reader.Read())
+                {
+                    Plant plant = FillPlantFromSQLDataReader(reader);
+                    allPlants.Add(plant);
+                }
+                return allPlants;
             }
-            return allPlants;
+            catch
+            {
+                return null;
+            }
+            
         }
 
         internal static Plants LoadRentedFromUser(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select pl.ID, u.username, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboTyp, pu.mietstart from Plant as pl LEFT JOIN [Purchase] as pu ON pl.userID = pu.userID  LEFT JOIN [Category] as c ON pl.categoryId = c.categoryID LEFT JOIN [User] as u ON pl.userID = u.ID where pl.userID = @uID", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("uID", userID));
-            SqlDataReader reader = cmd.ExecuteReader();
-            Plants allPlants = new Plants();
-            while (reader.Read())
-            {
-                Plant plant = new Plant();
-                plant.ID = reader.GetString(0);
-                plant.Owner = reader.GetString(1);
-                plant.CategoryID = reader.GetInt32(2);
-                plant.CategoryName = reader.GetString(3);
-                plant.Variety = reader.GetString(4);
-                plant.Age = reader.GetString(5);
-                plant.District = reader.GetString(6);
-                plant.Street = reader.GetString(7);
-                plant.HouseNumber = reader.GetString(8);
-                //plant.Abotype = reader.GetInt32(9);
-                //plant.AboStart = reader.GetString(10);
-                allPlants.Add(plant);
-            }
-            return allPlants;
+
+                SqlCommand cmd = new SqlCommand("select pl.ID, u.username, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboTyp, pu.mietstart from [Purchase] as pu LEFT JOIN [Plant] as pl ON pu.plantID = pl.ID  LEFT JOIN [Category] as c ON pl.categoryId = c.categoryID LEFT JOIN [User] as u ON pl.userID = u.ID where pu.userID = @uID", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("uID", userID));
+                SqlDataReader reader = cmd.ExecuteReader();
+                Plants allPlants = new Plants();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Plant plant = new Plant();
+                        plant.ID = reader.GetString(0);
+                        plant.Owner = reader.GetString(1);
+                        plant.CategoryID = reader.GetInt32(2);
+                        plant.CategoryName = reader.GetString(3);
+                        plant.Variety = reader.GetString(4);
+                        plant.Age = reader.GetString(5);
+                        plant.District = reader.GetString(6);
+                        plant.Street = reader.GetString(7);
+                        plant.HouseNumber = reader.GetString(8);
+                        plant.Abotype = reader.GetInt32(9);
+                        plant.AboStart = reader.GetDateTime(10);
+                        allPlants.Add(plant);
+                    }
+                    return allPlants;
+                }
+                else { return null; }
+            
+
+            
+            
         }
 
     }//"class"

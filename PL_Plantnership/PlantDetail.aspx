@@ -49,8 +49,8 @@
                             <th>Planter</th>
                         </tr>
                         <tr>
-                            <td>Preis: $$€</td>
-                            <td>Preis: $$€</td>
+                            <td>Preis: <asp:Label ID="lblPrice1" runat="server" Text=""></asp:Label>€</td>
+                            <td>Preis: <asp:Label ID="lblPrice2" runat="server" Text=""></asp:Label>€</td>
                         </tr>
                         <tr>
                             <td>Werde Supporter und untersütze deine Lieblingspflanzen um ihren Bedarf zu decken!</td>
