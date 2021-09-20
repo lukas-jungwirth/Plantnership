@@ -60,6 +60,15 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.Button btnLogout;
 
         /// <summary>
+        /// RepeaterCategory-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterCategory;
+
+        /// <summary>
         /// imgBtnApfel-Steuerelement
         /// </summary>
         /// <remarks>

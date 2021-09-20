@@ -47,9 +47,9 @@ namespace BL_Plantnership
 
         }
 
-        public Plants getAllPlants()
+        public Plants getAllPlants(User user)
         {
-            return Plant.LoadAllFromCategory(ID);
+            return Plant.LoadAllFromCategory(ID, user);
         }
 
         internal static Categories LoadAllCategories()

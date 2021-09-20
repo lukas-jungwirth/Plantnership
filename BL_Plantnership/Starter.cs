@@ -119,6 +119,7 @@ namespace BL_Plantnership
 
 
         //Methode ladet ale Kunden aus der BD, verpackt diese in Kundenobjekte und liefert sie als Kundenliste zurück.
+        //muss noch entfernt werden
         public static Plants getAllPlantsFromCategory(string category)
         {
             return Plant.LoadAllFromCategory(category);

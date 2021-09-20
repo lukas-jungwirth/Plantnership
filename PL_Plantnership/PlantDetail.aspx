@@ -63,10 +63,11 @@
                     </table>
                 </div>
                 <asp:RadioButtonList ID="radioBtnCat" runat="server" AutoPostBack="True" Style="margin-right: 0px" Width="176px">
-                    <asp:ListItem Value="aboTyp1">Basic</asp:ListItem>
-                    <asp:ListItem Value="aboTyp2">Planter</asp:ListItem>
+                    <asp:ListItem Value="1">Basic</asp:ListItem>
+                    <asp:ListItem Value="2">Planter</asp:ListItem>
                 </asp:RadioButtonList>
-                <asp:Button ID="btnpay"  runat="server" Text="Kaufen" OnClick="btnpay_Click" />
+                <asp:ImageButton ID="btnBuy" runat="server" AlternateText="Kaufen" ImageUrl="~/Fotos/googlePay.png" Height="40px" OnClick="btnBuy_Click"/>
+                <asp:Label ID="lblBuyError" runat="server" Text=""></asp:Label>
             </div>
         </div>
     </form>

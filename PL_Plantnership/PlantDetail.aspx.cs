@@ -12,16 +12,22 @@ namespace PL_Plantnership
     {
         string currentID;
         Plant currentPlant;
+        User currentUser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((User)Session["currentUser"] == null)
-            {
-                Response.Redirect("login.aspx");
-            }
-
+            
             if (!IsPostBack)
             //if page is rendered the first time
             {
+                if ((User)Session["currentUser"] == null)
+                {
+                    Response.Redirect("login.aspx");
+                }
+                else
+                {
+                    currentUser = (User)Session["currentUser"];
+                }
+                
                 currentID = (string)Session["plantID"];
                 currentPlant = Starter.getPlantByID(currentID);
                 Session["plant"] = currentPlant;
@@ -31,12 +37,21 @@ namespace PL_Plantnership
                 lblInfoDistrict.Text = currentPlant.District;
                 lblAmountType1.Text = currentPlant.getAmountOfAbos(1).ToString();
                 lblAmountType2.Text = currentPlant.getAmountOfAbos(2).ToString();
+                radioBtnCat.SelectedIndex = 0;
 
+                //check if plant is allready purchased
+                if (currentUser.hasPurchased(currentPlant))
+                {
+                    btnBuy.Enabled = false;
+                    radioBtnCat.Enabled = false;
+                    lblBuyError.Text = "Sie sind bereits stolzer Abonnent dieser Pflanze!";
+                }
             }
             else
             {
 
                 currentPlant = (Plant)Session["plant"];
+                currentUser = (User)Session["currentUser"];
                 currentID = (string)Session["plantID"];
             }
         }
@@ -46,9 +61,21 @@ namespace PL_Plantnership
             Response.Redirect("index.aspx");
         }
 
-        protected void btnpay_Click(object sender, EventArgs e)
+        protected void btnBuy_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("");
+            int index = radioBtnCat.SelectedIndex;
+            //indx starts with 0 and abotype with 1
+            int aboType = index++;
+            bool success = currentUser.purchasePlant(currentPlant, aboType);
+            if (success)
+            {
+                Response.Redirect("payPage.aspx");
+            }
+            else
+            {
+                lblBuyError.Text = "Kauf fehlgeschlagen!";
+            }
+            
         }
     }
 }

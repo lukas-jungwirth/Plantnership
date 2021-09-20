@@ -27,8 +27,8 @@ namespace PL_Plantnership
                 currentUser = (User)Session["currentUser"];
                 categoryList = Starter.getAllCategories();
                 lblDisplayUsername.Text = currentUser.Username;
-                //CategoryRepeater.DataSource = categoryList;
-                //CategoryRepeater.DataBind();
+                RepeaterCategory.DataSource = categoryList;
+                RepeaterCategory.DataBind();
             }
             else
             {

@@ -129,25 +129,51 @@ namespace BL_Plantnership
             return null;
         }
 
-        public bool purchasePlant(Plant plant, Category cat, int aboType)
+        public bool hasPurchased(Plant plant)
         {
-            string price = "";
-            if (aboType == 1) price = cat.AboPrice1;
-            else if (aboType == 2) price = cat.AboPrice2;
-
-            SqlCommand cmd = new SqlCommand("insert into Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", Starter.GetConnection());
-            cmd.Parameters.Add(new SqlParameter("pid", plant.ID));
-            cmd.Parameters.Add(new SqlParameter("uid", _ID));
-            cmd.Parameters.Add(new SqlParameter("atyp", aboType));
-            if (cmd.ExecuteNonQuery() > 0)
+            try
             {
-                return true;
-
+                SqlCommand cmd = new SqlCommand("select * from [Purchase] where userID = @uid AND plantID = @plID", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("uid", ID));
+                cmd.Parameters.Add(new SqlParameter("plID", plant.ID));
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch
             {
                 return false;
             }
+        }
+        public bool purchasePlant(Plant plant, int aboType)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("pid", plant.ID));
+                cmd.Parameters.Add(new SqlParameter("uid", _ID));
+                cmd.Parameters.Add(new SqlParameter("atyp", aboType));
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            
 
         }
 

@@ -31,6 +31,17 @@
 
         <h2 class="categoryTree">Baumkategorien</h2>
 
+        <asp:Repeater ID="RepeaterCategory" runat="server">
+           <ItemTemplate>
+                <div class="category">
+
+
+
+                    <asp:Button ID="Button1" runat="server" Text="Details ändern" CssClass="buttonEdit" OnCommand="Edit_Click" CommandName="EditClick" CommandArgument='<%# Eval("ID") %>' />
+                </div>
+            </ItemTemplate>
+
+        </asp:Repeater>
 
         <div class="treeCat">
 
@@ -43,7 +54,7 @@
         <div class="treeCat">
             <asp:ImageButton ID="imgBtnMarille" runat="server" AlternateText="Marillenbaum" ImageUrl="~/Fotos/Marillen.jpg" Height="300px" Width="300px" OnClick="imgBtnMarille_Click" />
             <asp:ImageButton ID="imgBtnPfirsich" runat="server" AlternateText="Pfirsichbaum" ImageUrl="~/Fotos/1-pfirsichbaum-1176136976.jpg" Height="300px" Width="300px" OnClick="imgBtnPfirsich_Click" />
-            <asp:ImageButton ID="imgBtnZwetschke" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" Height="300px" Width="300px" OnClick="imgBtnZwetschke_Click" />
+            <asp:ImageButton ID="imgBtnZwetschke" runat="server" AlternateText="Zwetschkenbaum" ImageUrl="~/Fotos/77c66506-3181-4091-bebc-80f84d71c4b4.jpg" Height="300px" Width="300px"/>
 
         </div>
 

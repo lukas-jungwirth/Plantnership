@@ -285,11 +285,11 @@ footer {
     font-weight: bold;
     padding: 0px;
 }
-
+#btnBuy{
+    margin: 0 auto;
+}
 /*---ObstBaumUnterKategorie PAGE---*/
-
-
-.lblunterkat{
+.lblunterkat {
     display: flex;
     justify-content: space-between;
     max-width: 801px;
@@ -297,7 +297,6 @@ footer {
     border-top: solid;
     padding: 8px;
     align-items: center;
-    
 }
 
 .lblAlleDrei {

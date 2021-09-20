@@ -339,11 +339,12 @@ namespace BL_Plantnership
         }
 
         //loads all plant objects from a given category into a list of plant objects
-        internal static Plants LoadAllFromCategory(string catID)
+        internal static Plants LoadAllFromCategory(string catID, User user)
         {
          
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID where p.categoryID = @cat", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID WHERE p.categoryID = @cat AND p.userID IS NOT @uID ", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("cat", catID));
+            cmd.Parameters.Add(new SqlParameter("uID", user.ID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
             while (reader.Read())

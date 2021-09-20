@@ -114,12 +114,21 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.RadioButtonList radioBtnCat;
 
         /// <summary>
-        /// btnpay-Steuerelement
+        /// btnBuy-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnpay;
+        protected global::System.Web.UI.WebControls.ImageButton btnBuy;
+
+        /// <summary>
+        /// lblBuyError-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBuyError;
     }
 }
