@@ -33,7 +33,8 @@ namespace BL_Plantnership
 
             List<string> dirs = new List<string>(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory).Split('\\'));
             dirs.RemoveAt(dirs.Count - 1); //letztes Verzeichnis entfernen
-            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + String.Join(@"\", dirs) + @"\DB_Plantnership\Platnership.mdf;Integrated Security=True;Connect Timeout=30";
+            string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Magdalena\source\repos\SWEFINALORDNER\DB_Plantnership\DB_Plantnership\Platnership.mdf; Integrated Security = True; Connect Timeout = 30";
+
             
             try
             {

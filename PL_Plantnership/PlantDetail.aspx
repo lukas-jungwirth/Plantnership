@@ -57,8 +57,8 @@
                             <td>Bekomme zusätzlich die Möglichkeit die Früchte deiner Pflanze zu ernten</td>
                         </tr>
                         <tr>
-                            <td><asp:Label ID="lblAmountType1" runat="server" Text="0"></asp:Label><span> andere Personen haben auch dieses Abo gewählt.</span></td>
-                            <td><asp:Label ID="lblAmountType2" runat="server" Text="0"></asp:Label><span> andere Personen haben auch dieses Abo gewählt.</span></td>
+                            <td><strong><asp:Label ID="lblAmountType1" runat="server" Text="0"></asp:Label></strong><span> andere Personen haben auch dieses Abo gewählt.</span></td>
+                            <td><strong><asp:Label ID="lblAmountType2" runat="server" Text="0"></asp:Label></strong><span> andere Personen haben auch dieses Abo gewählt.</span></td>
                         </tr> 
                     </table>
                 </div>
