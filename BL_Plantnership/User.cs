@@ -156,7 +156,7 @@ namespace BL_Plantnership
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Purchase (plantID, userID, aboType) values (@pid, @uid, @atyp)", Starter.GetConnection());
+                SqlCommand cmd = new SqlCommand("INSERT INTO Purchase (plantID, userID, aboTyp) values (@pid, @uid, @atyp)", Starter.GetConnection());
                 cmd.Parameters.Add(new SqlParameter("pid", plant.ID));
                 cmd.Parameters.Add(new SqlParameter("uid", _ID));
                 cmd.Parameters.Add(new SqlParameter("atyp", aboType));

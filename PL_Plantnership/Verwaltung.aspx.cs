@@ -51,8 +51,14 @@ namespace PL_Plantnership
                     currentUser = (User)Session["currentUser"];
                     myTrees = (Plants)Session["myTrees"];
                     rentedTrees = (Plants)Session["rentedTrees"];
-                    
-                }
+
+                //rentedTrees = currentUser.loadRentedPlants();
+                //RepeaterRented.DataSource = rentedTrees;
+                //RepeaterRented.DataBind();
+                //RepeaterRented.DataSource = rentedTrees;
+                //RepeaterRented.DataBind();
+
+            }
             
         }
 
