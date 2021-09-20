@@ -178,6 +178,7 @@ namespace BL_Plantnership
 
 
         //STATIC METHODS
+        /*
         public static string getMatchCategory(string sternzeichen, string jahreszeit)
         {
             string sz = sternzeichen.ToLower();
@@ -282,7 +283,7 @@ namespace BL_Plantnership
             string id = categoryIds[numb];
             return Load(id);
         }
-
+        */
 
 
 

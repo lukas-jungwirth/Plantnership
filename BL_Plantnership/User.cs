@@ -17,8 +17,7 @@ namespace BL_Plantnership
         private string _Name;
         private string _LastName;
         private string _Mail;
-
-        private DateTime currentDate = DateTime.Today;
+        //private DateTime currentDate = DateTime.Today;
 
         //PROPERTIES
         public string ID
@@ -56,28 +55,9 @@ namespace BL_Plantnership
         }
 
         //METHODS
-        public bool Delete()
-        {
-            if (_ID != "")
-            {
-                //if object with id exsists in databse -> DELETE
-                string SQL = "delete Plant where ID = @id";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = SQL;
-                cmd.Connection = Starter.GetConnection();
-                cmd.Parameters.Add(new SqlParameter("id", _ID));
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    _ID = ""; //das Objekt existiert weiter - es verhält sich aber wieder wie ein neuer Kunde
-                    return true;
-                }
-                else return false; //DELETE did not work
-            }
-            //if there is no elemente with id in the database it can be seen as deleted
-            else return true;
-        }//"Delete()"
 
 
+        /*
         public bool Save()
         {
 
@@ -96,8 +76,7 @@ namespace BL_Plantnership
                 cmd.Parameters.Add(new SqlParameter("lstName", LastName));
                 cmd.Parameters.Add(new SqlParameter("mail", Mail));
                 cmd.Parameters.Add(new SqlParameter("doe", currentDate));
-                cmd.Parameters.Add(new SqlParameter("user", currentDate));
-                cmd.Parameters.Add(new SqlParameter("doe", currentDate));
+
 
                 //return number of applied records
                 //if insert worked return should be 1
@@ -118,6 +97,7 @@ namespace BL_Plantnership
                 return (cmd.ExecuteNonQuery() > 0);
             }
         }//"Save"
+        */
 
         public Plants getUserPlants()
         {
@@ -152,6 +132,7 @@ namespace BL_Plantnership
                 return false;
             }
         }
+        //add purchase entry
         public bool purchasePlant(Plant plant, int aboType)
         {
             try

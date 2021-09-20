@@ -102,7 +102,7 @@ namespace BL_Plantnership
 
         }
 
-        public static string hashPw(string pw)
+        internal static string hashPw(string pw)
         {
             string hashedPw = BCryptNet.HashPassword(pw);
             return hashedPw;
@@ -141,17 +141,7 @@ namespace BL_Plantnership
         //gibt ein neues leeres Kundenobjekt zum SPeichern neuer Kunden zurück
         public static Plant newPlant()
         {
-            // ok, das erscheint jetzt eher komisch, hat aber den Vorteil, dass,
-            // ich diese Methode im BL später noch erweitern kan ohne im PL
-            // was zu ändern (zB Vorinitialisierung, oder ähnliches)
-            // das gelcihe könnte ich in diesem Fall auch mit einem Konstruktor in
-            // der Klasse BOKunde erreichen.
             return new Plant();
-        }
-
-        public static Plant getPlantMatch(string sternzeichen, string jahreszeit, bool plantForLife)
-        {
-            return Plant.LoadMatchingPlant(sternzeichen, jahreszeit, plantForLife);
         }
 
 
