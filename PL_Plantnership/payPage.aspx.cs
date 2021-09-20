@@ -41,5 +41,10 @@ namespace PL_Plantnership
                 //currentID = (string)Session["plantID"];
             }
         }
+
+        protected void btnpay_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
