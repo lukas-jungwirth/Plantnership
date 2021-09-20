@@ -67,12 +67,12 @@ namespace BL_Plantnership
                 
                 SqlCommand cmd = new SqlCommand("insert into [User] (ID, name , lastName , mail, username, password) values (@id, @name, @lstName, @mail, @user, @pw)", Starter.GetConnection());
                 string ID = Guid.NewGuid().ToString();
-                cmd.Parameters.Add(new SqlParameter("id", ID));
-                cmd.Parameters.Add(new SqlParameter("user", username));
-                cmd.Parameters.Add(new SqlParameter("pw", hashPw(password)));
-                cmd.Parameters.Add(new SqlParameter("name", name));
-                cmd.Parameters.Add(new SqlParameter("lstName", lastname));
-                cmd.Parameters.Add(new SqlParameter("mail", mail));
+                cmd.Parameters.Add(new SqlParameter("@id", ID));
+                cmd.Parameters.Add(new SqlParameter("@user", username));
+                cmd.Parameters.Add(new SqlParameter("@pw", hashPw(password)));
+                cmd.Parameters.Add(new SqlParameter("@name", name));
+                cmd.Parameters.Add(new SqlParameter("@lstName", lastname));
+                cmd.Parameters.Add(new SqlParameter("@mail", mail));
                 if (cmd.ExecuteNonQuery() > 0) return 1;
                 return -1;
             }
