@@ -27,12 +27,12 @@ namespace BL_Plantnership
         }
         public string AboPrice1
         {
-            get { return _Name; }
+            get { return _AboPrice1; }
             set { _AboPrice1 = value; }
         }
         public string AboPrice2
         {
-            get { return _Name; }
+            get { return _AboPrice2; }
             set { _AboPrice2 = value; }
         }
         public string ImageUrl

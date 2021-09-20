@@ -13,6 +13,7 @@ namespace PL_Plantnership
         string currentID;
         Plant currentPlant;
         User currentUser;
+        Category currentCategory;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -23,11 +24,14 @@ namespace PL_Plantnership
                 {
                     Response.Redirect("login.aspx");
                 }
-                else
+                else if ((Category)Session["category"] == null)
                 {
-                    currentUser = (User)Session["currentUser"];
+                    Response.Redirect("index.aspx");
                 }
-                
+
+
+                currentCategory = (Category)Session["category"];
+                currentUser = (User)Session["currentUser"];
                 currentID = (string)Session["plantID"];
                 currentPlant = Starter.getPlantByID(currentID);
                 Session["plant"] = currentPlant;
@@ -35,6 +39,8 @@ namespace PL_Plantnership
                 lblInfoVariety.Text = currentPlant.Variety;
                 lblInfoAge.Text = currentPlant.Age;
                 lblInfoDistrict.Text = currentPlant.District;
+                lblPrice1.Text = currentCategory.AboPrice1;
+                lblPrice2.Text = currentCategory.AboPrice2;
                 lblAmountType1.Text = currentPlant.getAmountOfAbos(1).ToString();
                 lblAmountType2.Text = currentPlant.getAmountOfAbos(2).ToString();
                 radioBtnCat.SelectedIndex = 0;
@@ -49,7 +55,7 @@ namespace PL_Plantnership
             }
             else
             {
-
+                currentCategory = (Category)Session["category"];
                 currentPlant = (Plant)Session["plant"];
                 currentUser = (User)Session["currentUser"];
                 currentID = (string)Session["plantID"];
@@ -70,6 +76,7 @@ namespace PL_Plantnership
             if (success)
             {
                 Response.Redirect("payPage.aspx");
+                Session["aboType"] = radioBtnCat.SelectedValue;
             }
             else
             {

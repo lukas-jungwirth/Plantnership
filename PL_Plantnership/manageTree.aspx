@@ -27,9 +27,9 @@
                     <asp:ListItem Value="1">Apfel</asp:ListItem>
                     <asp:ListItem Value="2">Birne</asp:ListItem>
                     <asp:ListItem Value="3">Kirsche</asp:ListItem>
-                    <asp:ListItem Value="4">Marille</asp:ListItem>
-                    <asp:ListItem Value="5">Zwetschke</asp:ListItem>
-                    <asp:ListItem Value="6">Pfirsich</asp:ListItem>
+                    <asp:ListItem Value="4">Pfirsich</asp:ListItem>
+                    <asp:ListItem Value="5">Marille</asp:ListItem>
+                    <asp:ListItem Value="6">Zwetschke</asp:ListItem>
                 </asp:RadioButtonList>
             </div>
             <div class="inputWrapper">
