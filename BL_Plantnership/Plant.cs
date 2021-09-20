@@ -22,10 +22,8 @@ namespace BL_Plantnership
         private string _Street;
         private string _HouseNumber;
         //only for rented plants
-        private string _AboType;
+        private int _AboType;
         private string _AboStart;
-        private string _AboPrice;
-
 
         //PROPERTIES
         public string ID
@@ -72,7 +70,7 @@ namespace BL_Plantnership
             set { _HouseNumber = value; }
         }
         //only for rented trees
-        public string Abotype
+        public int Abotype
         {
             get { return _AboType; }
             set { _AboType = value; }
@@ -82,11 +80,7 @@ namespace BL_Plantnership
             get { return _AboStart; }
             set { _AboStart = value; }
         }
-        public string AboPrice
-        {
-            get { return _AboPrice; }
-            set { _AboPrice = value; }
-        }
+
 
 
 
@@ -369,9 +363,9 @@ namespace BL_Plantnership
             return allPlants;
         }
 
-        internal static Plants LoadRendtedPlants(string userID)
+        internal static Plants LoadRentedFromUser(string userID)
         {
-            SqlCommand cmd = new SqlCommand("select pl.ID, u.username, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboType, pu.start, pu.price from Plant as pl LEFT JOIN [Purchase] as pu ON pl.userID = pu.userID  LEFT JOIN [Category] as c ON pl.categoryId = c.categoryID LEFT JOIN [User] as u ON pl.userID = u.ID where pl.userID = @uID", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select pl.ID, u.username, pl.categoryID, c.categoryName, pl.variety, pl.age, pl.district, pl.street, pl.houseNumber, pu.aboTyp, pu.mietstart from Plant as pl LEFT JOIN [Purchase] as pu ON pl.userID = pu.userID  LEFT JOIN [Category] as c ON pl.categoryId = c.categoryID LEFT JOIN [User] as u ON pl.userID = u.ID where pl.userID = @uID", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("uID", userID));
             SqlDataReader reader = cmd.ExecuteReader();
             Plants allPlants = new Plants();
@@ -387,9 +381,8 @@ namespace BL_Plantnership
                 plant.District = reader.GetString(6);
                 plant.Street = reader.GetString(7);
                 plant.HouseNumber = reader.GetString(8);
-                plant.Abotype = reader.GetString(9);
-                plant.AboStart = reader.GetString(10);
-                plant.AboPrice = reader.GetString(11);
+                //plant.Abotype = reader.GetInt32(9);
+                //plant.AboStart = reader.GetString(10);
                 allPlants.Add(plant);
             }
             return allPlants;

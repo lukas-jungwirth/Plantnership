@@ -59,7 +59,6 @@
 
         <div class="verwaltungFlex ">
             <asp:MultiView ID="MultiViewVerwaltung" runat="server" ActiveViewIndex="0">
-
                 <asp:View ID="viewMyTrees" runat="server">
                     <div class="vierbaume">
                         <asp:Repeater ID="Repeater1" runat="server">
@@ -92,11 +91,44 @@
                             </ItemTemplate>
 
                         </asp:Repeater>
+                    </div>
                 </asp:View>
-        </div>
-        <asp:View ID="viewRentedTrees" runat="server">
-        </asp:View>
-        </asp:MultiView>
+      
+                <asp:View ID="viewRentedTrees" runat="server">
+                    <asp:Repeater ID="RepeaterRented" runat="server">
+
+                            <ItemTemplate>
+                                <div class="lblAlleDreiVerwaltung">
+
+
+
+                                    <div class="flexBoxlisteBaumUnterkategorie2">
+                                        <h2>Baumart</h2>
+                                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("CategoryName") %>'></asp:Label>
+                                    </div>
+
+                                    <div class="flexBoxlisteBaumUnterkategorie2">
+                                        <h2>Sorte</h2>
+                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("Variety") %>'></asp:Label>
+                                    </div>
+
+                                    <div class="flexBoxlisteBaumUnterkategorie2">
+                                        <h2>Vermieterin</h2>
+                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Owner") %>'></asp:Label>
+                                    </div>
+
+                                    <div class="flexBoxlisteBaumUnterkategorie2">
+                                        <h2>Aboart</h2>
+                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("AboType") %>'></asp:Label>
+                                    </div>
+
+
+                                </div>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+                </asp:View>
+            </asp:MultiView>
         </div>
         
     </form>

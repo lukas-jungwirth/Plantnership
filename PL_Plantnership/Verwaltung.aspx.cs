@@ -13,6 +13,7 @@ namespace PL_Plantnership
     {
         User currentUser;
         Plants myTrees;
+        Plants rentedTrees;
         protected void Page_Load(object sender, EventArgs e)
         {
             if ((User)Session["currentUser"] == null)
@@ -27,8 +28,16 @@ namespace PL_Plantnership
 
                     currentUser = (User)Session["currentUser"];
                     myTrees = currentUser.getUserPlants();
+                    
                     Repeater1.DataSource = myTrees;
                     Repeater1.DataBind();
+
+                    rentedTrees = currentUser.loadRentedPlants();
+                    RepeaterRented.DataSource = rentedTrees;
+                    RepeaterRented.DataBind();
+
+                    Session["myTrees"] = myTrees;
+                    Session["rentedTrees"] = rentedTrees;
 
                     lblProfileUsername.Text = currentUser.Username;
                     lblProfileName.Text = currentUser.Name;
@@ -41,6 +50,7 @@ namespace PL_Plantnership
 
                     currentUser = (User)Session["currentUser"];
                     myTrees = (Plants)Session["myTrees"];
+                    rentedTrees = (Plants)Session["rentedTrees"];
                     
                 }
             

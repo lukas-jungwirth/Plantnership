@@ -126,9 +126,10 @@ namespace BL_Plantnership
 
         public Plants loadRentedPlants()
         {
-            return null;
+            return Plant.LoadRentedFromUser(ID);
         }
 
+        //check if user has purchased a specific tree
         public bool hasPurchased(Plant plant)
         {
             try
