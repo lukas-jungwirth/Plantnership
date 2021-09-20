@@ -34,10 +34,8 @@
         <asp:Repeater ID="RepeaterCategory" runat="server">
            <ItemTemplate>
                 <div class="category">
-
-
-
-                    <asp:Button ID="Button1" runat="server" Text="Details ändern" CssClass="buttonEdit" OnCommand="Edit_Click" CommandName="EditClick" CommandArgument='<%# Eval("ID") %>' />
+                    <h2><%# Eval("Name") %></h2>
+                    <asp:ImageButton ID="imgCat" runat="server" ImageUrl='<%# Eval("ImageUrl") %>' Height="300px" Width="300px" OnCommand="ShowCat_Click" CommandName="ShowCategory" CommandArgument='<%# Eval("ID") %>' /> 
                 </div>
             </ItemTemplate>
 

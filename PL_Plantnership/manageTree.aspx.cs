@@ -36,7 +36,7 @@ namespace PL_Plantnership
                     if (currentPlant != null)
                     {
                         //kopiere die Properties des Objekts in die Felder der Maske
-                        radioBtnCat.SelectedValue = currentPlant.CategoryID;
+                        radioBtnCat.SelectedValue = currentPlant.CategoryID.ToString();
                         txtVariety.Text = currentPlant.Variety;
                         txtAge.Text = currentPlant.Age;
                         txtDistrict.Text = currentPlant.District;
@@ -49,7 +49,7 @@ namespace PL_Plantnership
                     {
                         lblError.Text = "Leider konnten wir ihre Pflanze nicht finden. Gerne können Sie eine neue Pflanze anlegen!";
                         btnManageDelete.Visible = false;
-                        Session["Plant"] = Starter.newPlant(); //new empty Plant
+                        Session["Plant"] = Starter.newPlant(); //new empty P6lant
                     }
                 }
                 else
@@ -73,7 +73,7 @@ namespace PL_Plantnership
             if (currentPlant != null)
             {
                 //Feldwerte in das Objekt laden
-                currentPlant.CategoryID = radioBtnCat.SelectedValue;
+                currentPlant.CategoryID = Convert.ToInt32(radioBtnCat.SelectedValue);
                 currentPlant.Variety = txtVariety.Text;
                 currentPlant.Age = txtAge.Text;
                 currentPlant.District = txtDistrict.Text;
@@ -96,7 +96,7 @@ namespace PL_Plantnership
         {
             currentPlant = (Plant)Session["Plant"];
             if (currentPlant.Delete())
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Verwaltung.aspx");
             else
                 lblError.Text = "Löschen nicht möglich";
         }

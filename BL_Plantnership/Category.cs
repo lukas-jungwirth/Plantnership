@@ -9,13 +9,13 @@ namespace BL_Plantnership
 {
     public class Category
     {
-        private string _ID = "";
+        private int _ID;
         private string _Name;
         private string _AboPrice1;
         private string _AboPrice2;
         private string _ImageUrl;
 
-        public string ID
+        public int ID
         {
             get { return _ID; }
             internal set { _ID = value; }
@@ -52,6 +52,7 @@ namespace BL_Plantnership
             return Plant.LoadAllFromCategory(ID, user);
         }
 
+        //load all 
         internal static Categories LoadAllCategories()
         {
 
@@ -61,7 +62,7 @@ namespace BL_Plantnership
             while (reader.Read())
             {
                 Category cat = new Category();
-                cat.ID = reader.GetString(0);
+                cat.ID = reader.GetInt32(0);
                 cat.Name = reader.GetString(1);
                 cat.AboPrice1 = reader.GetString(2);
                 cat.AboPrice2 = reader.GetString(3);
@@ -69,8 +70,36 @@ namespace BL_Plantnership
                 allCats.Add(cat);
             }
             return allCats;
-
         }
+
+        //load by id
+        internal static Category Load(int catID)
+        {
+          
+                SqlCommand cmd = new SqlCommand("SELECT categoryID, categoryName, aboPrice1, aboPrice2, imageUrl from Category where categoryID = @catId", Starter.GetConnection());
+                cmd.Parameters.Add(new SqlParameter("catId", catID));
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    Category cat = new Category();
+                    while (reader.Read())
+                    {
+                        cat.ID = reader.GetInt32(0);
+                        cat.Name = reader.GetString(1);
+                        cat.AboPrice1 = reader.GetString(2);
+                        cat.AboPrice2 = reader.GetString(3);
+                        cat.ImageUrl = reader.GetString(4);
+                    }
+                    return cat;
+                }
+                else
+                {
+                    return null;
+                }
+          
+
+        }//"Load()"
+
 
 
     }//end class

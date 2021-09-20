@@ -38,7 +38,8 @@ namespace PL_Plantnership
             string mail = inputRegMail.Text;
             int feedback = Starter.register(user, pw, name, lstName, mail);
             string feedbackStr;
-            if (feedback == 1) {
+            if (feedback == 1)
+            {
                 MultViewLogin.ActiveViewIndex = 0;
                 btnLoginSite.CssClass = "loginActive loginSiteBtn";
                 btnRegisterSite.CssClass = "loginSiteBtn";
@@ -46,6 +47,7 @@ namespace PL_Plantnership
                 lblFeedbackLogin.Text = "Registrierung war erfolgreich";
             }
             else if (feedback == 0) feedbackStr = "Benutzername bereits vorhanden";
+            else if (feedback == -2) feedbackStr = "Alle Felder müssen ausgefüllt sein!";
             else feedbackStr = "Ein Fehler ist aufgetreten!";
 
             lblFeedbackReg.Text = feedbackStr;

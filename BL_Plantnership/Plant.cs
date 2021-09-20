@@ -14,7 +14,7 @@ namespace BL_Plantnership
         private string _ID = "";
         private string _UserID;
         private string _Owner;
-        private string _CategoryID;
+        private int _CategoryID;
         private string _CategoryName;
         private string _Variety;
         private string _Age;
@@ -43,7 +43,7 @@ namespace BL_Plantnership
             get { return _Owner; }
             set { _Owner = value; }
         }
-        public string CategoryID {
+        public int CategoryID {
             get { return _CategoryID; }
             set { _CategoryID = value; }
         }
@@ -299,7 +299,7 @@ namespace BL_Plantnership
             plant.ID = reader.GetString(0);
             plant.UserID = reader.GetString(1);
             plant.Owner = reader.GetString(2);
-            plant.CategoryID = reader.GetString(3);
+            plant.CategoryID = reader.GetInt32(3);
             plant.CategoryName = reader.GetString(4);
             plant.Variety = reader.GetString(5);
             plant.Age = reader.GetString(6);
@@ -339,10 +339,10 @@ namespace BL_Plantnership
         }
 
         //loads all plant objects from a given category into a list of plant objects
-        internal static Plants LoadAllFromCategory(string catID, User user)
+        internal static Plants LoadAllFromCategory(int catID, User user)
         {
          
-            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID WHERE p.categoryID = @cat AND p.userID IS NOT @uID ", Starter.GetConnection());
+            SqlCommand cmd = new SqlCommand("select p.ID, p.userID, u.username, p.categoryID, c.categoryName, p.variety, p.age, p.district, p.street, p.houseNumber from [Plant] as p LEFT JOIN [Category] as c ON p.categoryID = c.categoryID LEFT JOIN [User] as u ON p.userID = u.ID WHERE p.categoryID = @cat AND p.userID != @uID ", Starter.GetConnection());
             cmd.Parameters.Add(new SqlParameter("cat", catID));
             cmd.Parameters.Add(new SqlParameter("uID", user.ID));
             SqlDataReader reader = cmd.ExecuteReader();
@@ -380,7 +380,7 @@ namespace BL_Plantnership
                 Plant plant = new Plant();
                 plant.ID = reader.GetString(0);
                 plant.Owner = reader.GetString(1);
-                plant.CategoryID = reader.GetString(2);
+                plant.CategoryID = reader.GetInt32(2);
                 plant.CategoryName = reader.GetString(3);
                 plant.Variety = reader.GetString(4);
                 plant.Age = reader.GetString(5);

@@ -54,9 +54,12 @@ namespace BL_Plantnership
         //-1 - error        
         public static int register(string username, string password, string name, string lastname, string mail)
         {
+            //check if not input field is empty
+            if (username == "" || password == "" || name == "" || lastname == "" || mail == "") return -2;
+
             //check if username already exists
             int checkUser = CheckUniqueUsername(username);
-            if (checkUser != 1) return checkUser;
+            if (checkUser != 0) return checkUser;
 
             try
             {
@@ -117,13 +120,13 @@ namespace BL_Plantnership
             return Category.LoadAllCategories();
         }
 
+        public static Category getCategoryById(int categoryID)
+        {
+            return Category.Load(categoryID);
+        }
+
 
         //Methode ladet ale Kunden aus der BD, verpackt diese in Kundenobjekte und liefert sie als Kundenliste zurück.
-        //muss noch entfernt werden
-        public static Plants getAllPlantsFromCategory(string category)
-        {
-            return Plant.LoadAllFromCategory(category);
-        }
 
         public static Plants getPlantsByUsername(string username)
         {

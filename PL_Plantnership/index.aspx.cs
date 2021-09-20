@@ -101,5 +101,16 @@ namespace PL_Plantnership
         {
             Response.Redirect("index.aspx");
         }
+
+        protected void ShowCat_Click(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "ShowCategory")
+            {
+                int catID = Convert.ToInt32(e.CommandArgument);
+                Category currentCategory = Starter.getCategoryById(catID);
+                Session["category"] = currentCategory;
+                Response.Redirect("ObstBaumUnterKategorie.aspx");
+            }
+        }
     }
 }

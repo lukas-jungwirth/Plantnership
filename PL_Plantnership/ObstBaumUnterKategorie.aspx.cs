@@ -10,20 +10,27 @@ namespace PL_Plantnership
 {
     public partial class ObstBaumUnterKategorie : System.Web.UI.Page
     {
-        string currentCategory;
-        Plants allCategoryPlants;
+        User currentUser;
+        Category currentCategory;
+        Plants allCategoryPlants; 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ((User)Session["currentUser"] == null)
-            {
-                Response.Redirect("login.aspx");
-            }
+            
 
             if (!IsPostBack)
             //if page is rendered the first time
             {
-                currentCategory = (string)Session["category"];
-                allCategoryPlants = Starter.getAllPlantsFromCategory(currentCategory);
+                if ((User)Session["currentUser"] == null)
+                {
+                    Response.Redirect("login.aspx");
+                }
+                else
+                {
+                    currentUser = (User)Session["currentUser"];
+                }
+
+                currentCategory = (Category)Session["category"];
+                allCategoryPlants = currentCategory.getAllPlants(currentUser);
                 Session["allCategoryPlants"] = allCategoryPlants;
 
                 repeaterPlantList.DataSource = allCategoryPlants;
@@ -34,7 +41,8 @@ namespace PL_Plantnership
             {
 
                 allCategoryPlants = (Plants)Session["allCategoryPlants"];
-                currentCategory = (string)Session["currentCategory"];
+                currentCategory = (Category)Session["category"];
+                currentUser = (User)Session["currentUser"];
             }
         }
 
