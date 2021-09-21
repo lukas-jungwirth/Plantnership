@@ -1,14 +1,4 @@
-﻿/// BOKunden: Businessobjekt zur Applikation PLWebKunden (C# ASP.Net Presentation Layer)
-/// Demoapplikation in der LV "Web Programmierung 2"
-/// Author: G. Schmiedl, FH St. Pölten
-/// 
-/// Dieses Projekt realisiert das BO nach dem Domain Model Pattern, wobei das Erzeugen von
-/// Objekten nur durch die Verwendung von BO-Methoden erlaubt ist. 
-///  cMain: Starterobjekt ist statisch - kann nicht instanziert werden - aber verwendet
-///  BOKunde: bekommt man nur mit Hilfe von Methoden in cMain
-///  BOKommentar: bekommt man nur von Methoden aus BOKunde
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +10,7 @@ using System.Security.Policy;
 
 namespace BL_Plantnership
 {
-    // Die Klasse Main ist das Starterobjekt dieses Businessobjekts
-    // Sie ist statisch, d.h. der Programmierer des PL muss kein Objekt erzeugen, sondern kann die Methoden
-    // der Klasse direkt aufrufen, z.B. x = BOKunden.getKundenListe()
-    // Dieses BO ist so konzipiert, dass der PL-Programmierer nie eine Klasse mit new instanzieren muss.
+
     public static class Starter
     {
 
@@ -60,7 +47,7 @@ namespace BL_Plantnership
 
             //check if username already exists
             int checkUser = CheckUniqueUsername(username);
-            if (checkUser != 0) return checkUser;
+            if (checkUser == 1) return 0;
 
             try
             {
@@ -80,10 +67,6 @@ namespace BL_Plantnership
             {
                 return -1;
             }
-
-            //register user
-            //if (User.register(username, password, name, lastname, mail)) return 1;
-            //else return -1;
         }
 
         public static int CheckUniqueUsername(string username)
