@@ -46,7 +46,7 @@
 
 
         <h2 class="categoryTree">Du suchst den Plantner fürs Leben?</h2>
-        <h3>Finde mit unserem Match Finder die perfekte Pflanze für deine Bedürfnisse!</h3>
+        <p><strong>Find die perfekte Pflanze für deine Bedürfnisse!</strong></p>
 
         <footer>
             Hello World! Du bis am Ende der Seite angekommen, scroll bitte wieder rauf!

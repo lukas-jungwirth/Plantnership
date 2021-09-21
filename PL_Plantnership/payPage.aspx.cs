@@ -10,6 +10,7 @@ namespace PL_Plantnership
 {
     public partial class payPage : System.Web.UI.Page
     {
+        Plant currentPlant;
         protected void Page_Load(object sender, EventArgs e)
         {
             if ((User)Session["currentUser"] == null)
@@ -24,20 +25,27 @@ namespace PL_Plantnership
             if (!IsPostBack)
             //if page is rendered the first time
             {
-                Plant currentPlant = (Plant)Session["plant"];
-
+                currentPlant = (Plant)Session["plant"];
+                int aboType = (int)Session["aboType"];
                 
                 lblInfoVariety.Text = currentPlant.Variety;
                 lblInfoAge.Text = currentPlant.Age;
                 lblInfoDistrict.Text = currentPlant.District;
-                lblAboInfo.Text = (string)Session["aboType"];
-                
+                lblStreet.Text = currentPlant.Street;
+                lblHouseNumber.Text = currentPlant.HouseNumber;
+                lblAboInfo.Text = aboType.ToString();
+
+                if (aboType == 0) lblDescription.Text = "Sie sind jetzt offizieller Supporter dieser Pflanze!";
+                else lblDescription.Text = "Als offizieller Planter haben sie nun die Lizenz selbst die reifen Früchte ihrer Pflanze zu ernten. Nehmen sie dabei Rücksicht auf andere Plantner und beachten Sie, dass die Pflückerlaubnis nach dem Prinzip Wer zuerst kommt pflückt zuerst erfolgt!";
+
+
+
+
             }
             else
             {
 
-                //currentPlant = (Plant)Session["plant"];
-                //currentID = (string)Session["plantID"];
+                currentPlant = (Plant)Session["plant"];
             }
         }
 

@@ -42,8 +42,8 @@ namespace PL_Plantnership
                 lblInfoDistrict.Text = currentPlant.District;
                 lblPrice1.Text = currentCategory.AboPrice1;
                 lblPrice2.Text = currentCategory.AboPrice2;
-                lblAmountType1.Text = currentPlant.getAmountOfAbos(1).ToString();
-                lblAmountType2.Text = currentPlant.getAmountOfAbos(2).ToString();
+                lblAmountType1.Text = currentPlant.getAmountOfAbos(0).ToString();
+                lblAmountType2.Text = currentPlant.getAmountOfAbos(1).ToString();
                 radioBtnCat.SelectedIndex = 0;
 
                 //check if plant is allready purchased
@@ -76,8 +76,9 @@ namespace PL_Plantnership
             bool success = currentUser.purchasePlant(currentPlant, aboType);
             if (success)
             {
+                Session["aboType"] = radioBtnCat.SelectedIndex;
                 Response.Redirect("payPage.aspx");
-                Session["aboType"] = radioBtnCat.SelectedValue;
+                
             }
             else
             {
@@ -88,7 +89,7 @@ namespace PL_Plantnership
 
         protected void bntBaumVerwalten_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Verwalten.aspx");
+            Response.Redirect("Verwaltung.aspx");
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)

@@ -92,8 +92,7 @@ namespace BL_Plantnership
         //add purchase entry
         public bool purchasePlant(Plant plant, int aboType)
         {
-            try
-            {
+
                 SqlCommand cmd = new SqlCommand("INSERT INTO Purchase (plantID, userID, aboTyp) values (@pid, @uid, @atyp)", Starter.GetConnection());
                 cmd.Parameters.Add(new SqlParameter("@pid", plant.ID));
                 cmd.Parameters.Add(new SqlParameter("@uid", _ID));
@@ -107,11 +106,7 @@ namespace BL_Plantnership
                 {
                     return false;
                 }
-            }
-            catch
-            {
-                return false;
-            }
+   
             
 
         }

@@ -27,20 +27,26 @@
           
 
                 <span class="infoRow">
-                    <span class="infoTitle">Sorte</span><asp:Label ID="lblInfoVariety" runat="server" Text="Label"></asp:Label>
+                    <span class="infoTitle">Sorte</span><asp:Label ID="lblInfoVariety" runat="server" Text=""></asp:Label>
                 </span>
                 <span class="infoRow">
-                    <span class="infoTitle">Alter</span><asp:Label ID="lblInfoAge" runat="server" Text="Label"></asp:Label>
+                    <span class="infoTitle">Alter</span><asp:Label ID="lblInfoAge" runat="server" Text=""></asp:Label>
                 </span>
                 <span class="infoRow">
-                    <span class="infoTitle">Bezirk</span><asp:Label ID="lblInfoDistrict" runat="server" Text="Label"></asp:Label>
+                    <span class="infoTitle">Bezirk</span><asp:Label ID="lblInfoDistrict" runat="server" Text=""></asp:Label>
                 </span>
-
+             <span class="infoRow">
+                    <span class="infoTitle">Straße</span><asp:Label ID="lblStreet" runat="server" Text=""></asp:Label>
+                </span>
+             <span class="infoRow">
+                    <span class="infoTitle">Hausnummer</span><asp:Label ID="lblHouseNumber" runat="server" Text=""></asp:Label>
+                </span>
                 <span class="infoRow">
-                    <span class="infoTitle">Abo Info</span><asp:Label ID="lblAboInfo" runat="server" Text="Label"></asp:Label>
+                    <span class="infoTitle">Abo Info</span><asp:Label ID="lblAboInfo" runat="server" Text=""></asp:Label>
                 </span>
             
-                <p>Vielen Dank für Ihre Unterstützung. Wir hoffen, Sie haben eine/n PlantnerIn fürs Leben gefunden.
+                <p>Vielen Dank für Ihre Unterstützung. Wir hoffen, Sie haben eine/n PlantnerIn fürs Leben gefunden.</p>
+                    <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label>
             </div>
         
     </form>

@@ -78,6 +78,24 @@ namespace PL_Plantnership
         protected global::System.Web.UI.WebControls.Label lblInfoDistrict;
 
         /// <summary>
+        /// lblStreet-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStreet;
+
+        /// <summary>
+        /// lblHouseNumber-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHouseNumber;
+
+        /// <summary>
         /// lblAboInfo-Steuerelement
         /// </summary>
         /// <remarks>
@@ -85,5 +103,14 @@ namespace PL_Plantnership
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAboInfo;
+
+        /// <summary>
+        /// lblDescription-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescription;
     }
 }
